@@ -25,7 +25,7 @@ namespace MasterMind_Game
         int EasyDigits = 4, MediumDigits = 5, HardDigits = 6, InsaneDigits = 8;
 
 
-
+        //constuctor
         public frmNumberGame()
         {
             InitializeComponent();
