@@ -32,3 +32,17 @@ C:\Users\User\Desktop\C#\Project\MasterMind Game Official\MasterMind Game\obj\x8
 C:\Users\User\Desktop\C#\Project\MasterMind Game Official\MasterMind Game\obj\x86\Debug\MasterMind Game.application
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind Game.exe
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind Game.pdb
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\bin\Debug\MasterMind Game.exe.manifest
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\bin\Debug\MasterMind Game.application
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\bin\Debug\MasterMind Game.exe
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\bin\Debug\MasterMind Game.pdb
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind Game.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind_Game.frmAskForName.resources
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind_Game.frmMenu.resources
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind_Game.frmNumberGame.resources
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind_Game.frmColorGame.resources
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind_Game.Properties.Resources.resources
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind_Game.frmLeaderBoard.resources
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind Game.csproj.GenerateResource.Cache
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind Game.exe.manifest
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind Game.application
