@@ -31,6 +31,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnColorGame = new System.Windows.Forms.Button();
             this.btnNumberGame = new System.Windows.Forms.Button();
+            this.lblDoneBy = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnExit
@@ -69,11 +70,22 @@
             this.btnNumberGame.UseVisualStyleBackColor = true;
             this.btnNumberGame.Click += new System.EventHandler(this.btnNumberGame_Click);
             // 
+            // lblDoneBy
+            // 
+            this.lblDoneBy.AutoSize = true;
+            this.lblDoneBy.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDoneBy.Location = new System.Drawing.Point(3, 284);
+            this.lblDoneBy.Name = "lblDoneBy";
+            this.lblDoneBy.Size = new System.Drawing.Size(292, 20);
+            this.lblDoneBy.TabIndex = 6;
+            this.lblDoneBy.Text = "Done by: Poh Shi Hui / 140530R";
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 313);
+            this.Controls.Add(this.lblDoneBy);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnColorGame);
             this.Controls.Add(this.btnNumberGame);
@@ -91,6 +103,7 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnColorGame;
         private System.Windows.Forms.Button btnNumberGame;
+        private System.Windows.Forms.Label lblDoneBy;
     }
 }
 

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnScoreBoard = new System.Windows.Forms.Button();
+            this.btnLeaderBoard = new System.Windows.Forms.Button();
             this.btnMenu = new System.Windows.Forms.Button();
             this.btnHint = new System.Windows.Forms.Button();
             this.btnCheck = new System.Windows.Forms.Button();
@@ -54,15 +54,16 @@
             this.btnUpload = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnScoreBoard
+            // btnLeaderBoard
             // 
-            this.btnScoreBoard.AutoSize = true;
-            this.btnScoreBoard.Location = new System.Drawing.Point(160, 554);
-            this.btnScoreBoard.Name = "btnScoreBoard";
-            this.btnScoreBoard.Size = new System.Drawing.Size(149, 35);
-            this.btnScoreBoard.TabIndex = 45;
-            this.btnScoreBoard.Text = "LeaderBoard";
-            this.btnScoreBoard.UseVisualStyleBackColor = true;
+            this.btnLeaderBoard.AutoSize = true;
+            this.btnLeaderBoard.Location = new System.Drawing.Point(160, 554);
+            this.btnLeaderBoard.Name = "btnLeaderBoard";
+            this.btnLeaderBoard.Size = new System.Drawing.Size(149, 35);
+            this.btnLeaderBoard.TabIndex = 45;
+            this.btnLeaderBoard.Text = "LeaderBoard";
+            this.btnLeaderBoard.UseVisualStyleBackColor = true;
+            this.btnLeaderBoard.Click += new System.EventHandler(this.btnLeaderBoard_Click);
             // 
             // btnMenu
             // 
@@ -296,7 +297,7 @@
             this.Controls.Add(this.btnShowAnswer);
             this.Controls.Add(this.btnNewGame);
             this.Controls.Add(this.btnInstructions);
-            this.Controls.Add(this.btnScoreBoard);
+            this.Controls.Add(this.btnLeaderBoard);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnHint);
             this.Controls.Add(this.btnCheck);
@@ -315,7 +316,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnScoreBoard;
+        private System.Windows.Forms.Button btnLeaderBoard;
         private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Button btnHint;
         private System.Windows.Forms.Button btnCheck;

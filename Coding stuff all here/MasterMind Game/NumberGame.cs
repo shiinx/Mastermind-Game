@@ -18,8 +18,8 @@ namespace MasterMind_Game
          * 
          * End...
          */
-        string randNumber;
-        int btnClickedCount = 0;
+        string randNumber,timeElapsed;
+        int btnClickedCount = 0 ,  ClickCount;
         int sec = 0, min = 0, hr = 0;
         // Change number of digits per difficulty by changing numbers
         int EasyDigits = 4, MediumDigits = 5, HardDigits = 6, InsaneDigits = 8;
@@ -54,12 +54,12 @@ namespace MasterMind_Game
 
 
         // To open scoreboard
-        frmLeaderBoard frmLeaderBoard = new frmLeaderBoard();
+        frmLeaderBoard LeaderBoard = new frmLeaderBoard();
         private void btnLeaderBoard_Click(object sender, EventArgs e)
         {
-            frmLeaderBoard.ShowDialog();
+            LeaderBoard.ShowDialog();
         }
-
+        
 
 
         // To open instructions  
@@ -189,8 +189,8 @@ namespace MasterMind_Game
             }
 
             // Rest of the freakin code
-            string strInputNumber = txtDigitInput.Text, winMessage, timeElapsed;
-            int CorrectlyPlacedDigits, CorrectDigits, ClickCount;
+            string strInputNumber = txtDigitInput.Text, winMessage;
+            int CorrectlyPlacedDigits, CorrectDigits;
             btnClickedCount++;
             winMessage = String.Format("Congratulations! You got it right!\n{0}", randNumber);
             
@@ -325,7 +325,21 @@ namespace MasterMind_Game
             }
             lblTimer.Text = String.Format("{0:00}:{1:00}:{2:00}", hr, min, sec);
         }
-        
+
+
+        frmAskForName AskForName = new frmAskForName();
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            AskForName.ShowDialog();
+            if (AskForName.DialogResult == DialogResult.OK)
+            {
+
+            }
+            else
+            {
+                return;
+            }
+        }
 
 
 
@@ -511,10 +525,7 @@ namespace MasterMind_Game
             return;
         }
 
-        private void btnUpload_Click(object sender, EventArgs e)
-        {
 
-        }
         
         // End of fuction definitions... 
 
