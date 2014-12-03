@@ -28,58 +28,105 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.User = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Tries = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cboDifficulty = new System.Windows.Forms.ComboBox();
+            this.lstvLeaderboard = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cboDifficulty
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.comboBox1.Location = new System.Drawing.Point(437, 38);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 0;
+            this.cboDifficulty.FormattingEnabled = true;
+            this.cboDifficulty.Items.AddRange(new object[] {
+            "Easy",
+            "Medium",
+            "Hard",
+            "Insane"});
+            this.cboDifficulty.Location = new System.Drawing.Point(340, 28);
+            this.cboDifficulty.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cboDifficulty.Name = "cboDifficulty";
+            this.cboDifficulty.Size = new System.Drawing.Size(263, 33);
+            this.cboDifficulty.TabIndex = 0;
             // 
-            // listView1
+            // lstvLeaderboard
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.User,
-            this.Tries,
-            this.Time});
-            this.listView1.Location = new System.Drawing.Point(161, 129);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(812, 255);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lstvLeaderboard.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.lstvLeaderboard.GridLines = true;
+            this.lstvLeaderboard.Location = new System.Drawing.Point(71, 88);
+            this.lstvLeaderboard.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.lstvLeaderboard.Name = "lstvLeaderboard";
+            this.lstvLeaderboard.Size = new System.Drawing.Size(800, 350);
+            this.lstvLeaderboard.TabIndex = 1;
+            this.lstvLeaderboard.UseCompatibleStateImageBehavior = false;
+            this.lstvLeaderboard.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Rank";
+            this.columnHeader1.Width = 65;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Name";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 200;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "No. Of Tries";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 250;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Time Taken";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 275;
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.Location = new System.Drawing.Point(855, 446);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 35);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Ok";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmLeaderBoard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1121, 464);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(942, 493);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lstvLeaderboard);
+            this.Controls.Add(this.cboDifficulty);
+            this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "frmLeaderBoard";
             this.Text = "LeaderBoard";
+            this.Load += new System.EventHandler(this.frmLeaderBoard_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader User;
-        private System.Windows.Forms.ColumnHeader Tries;
-        private System.Windows.Forms.ColumnHeader Time;
+        private System.Windows.Forms.ComboBox cboDifficulty;
+        private System.Windows.Forms.ListView lstvLeaderboard;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Button button1;
+
     }
 }
