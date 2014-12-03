@@ -51,6 +51,7 @@
             this.btnGiveUp = new System.Windows.Forms.Button();
             this.lblTimer = new System.Windows.Forms.Label();
             this.timTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnUpload = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLeaderBoard
@@ -267,12 +268,25 @@
             this.timTimer.Interval = 1000;
             this.timTimer.Tick += new System.EventHandler(this.timTimer_Tick);
             // 
+            // btnUpload
+            // 
+            this.btnUpload.AutoSize = true;
+            this.btnUpload.Enabled = false;
+            this.btnUpload.Location = new System.Drawing.Point(752, 479);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(315, 35);
+            this.btnUpload.TabIndex = 56;
+            this.btnUpload.Text = "Upload score to leaderboard";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
             // frmNumberGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1134, 601);
+            this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.btnGiveUp);
             this.Controls.Add(this.lstvOutput);
@@ -324,5 +338,6 @@
         private System.Windows.Forms.Button btnGiveUp;
         private System.Windows.Forms.Label lblTimer;
         private System.Windows.Forms.Timer timTimer;
+        private System.Windows.Forms.Button btnUpload;
     }
 }

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MasterMind Game.exe" size="25600">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MasterMind Game.exe" size="25088">
       <assemblyIdentity name="MasterMind Game" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>VzyNO5O35ZciuL8KjyKWBCN6FU4=</dsig:DigestValue>
+        <dsig:DigestValue>mhTVCnWR0s7a+6w8AqwBieJkyhU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

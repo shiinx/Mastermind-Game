@@ -23,8 +23,6 @@ namespace MasterMind_Game
         int sec = 0, min = 0, hr = 0;
         // Change number of digits per difficulty by changing numbers
         int EasyDigits = 4, MediumDigits = 5, HardDigits = 6, InsaneDigits = 8;
-        int storageCounter=0;
-
 
 
         //constuctor
@@ -177,8 +175,6 @@ namespace MasterMind_Game
          * 
          * End...
          */
-
-        frmAskForName AskForName = new frmAskForName();
         private void btnCheck_Click(object sender, EventArgs e)
         {
             // Check for only numbers is input by user and no blanks.
@@ -212,6 +208,17 @@ namespace MasterMind_Game
 
                         CorrectlyPlacedDigits = correctNumDigitsPlaced(EasyDigits);
                         CorrectDigits = correctNumDigits(EasyDigits);
+
+                        if (strInputNumber == randNumber)
+                        {
+                            timTimer.Stop();
+                            timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", hr, min, sec);
+                            ClickCount = btnClickedCount;
+                            MessageBox.Show(winMessage + "\n" + ClickCount + "\n" + timeElapsed);
+                            giveupORwinActions();
+
+                        }
+
                         lstvOutput.Items.Add(lviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
                         break;
 
@@ -226,6 +233,16 @@ namespace MasterMind_Game
 
                         CorrectlyPlacedDigits = correctNumDigitsPlaced(MediumDigits);
                         CorrectDigits = correctNumDigits(MediumDigits);
+
+                        if (strInputNumber == randNumber)
+                        {
+                            timTimer.Stop();
+                            timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", hr, min, sec);
+                            ClickCount = btnClickedCount;
+                            MessageBox.Show(winMessage + "\n" + ClickCount + "\n" + timeElapsed);
+                            giveupORwinActions();
+                        }
+                        
                         lstvOutput.Items.Add(lviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
                         break;
 
@@ -240,6 +257,16 @@ namespace MasterMind_Game
 
                         CorrectlyPlacedDigits = correctNumDigitsPlaced(HardDigits);
                         CorrectDigits = correctNumDigits(HardDigits);
+
+                        if (strInputNumber == randNumber)
+                        {
+                            timTimer.Stop();
+                            timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", hr, min, sec);
+                            ClickCount = btnClickedCount;
+                            MessageBox.Show(winMessage + "\n" + ClickCount + "\n" + timeElapsed);
+                            giveupORwinActions();
+                        }
+
                         lstvOutput.Items.Add(lviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
                         break;
 
@@ -254,6 +281,16 @@ namespace MasterMind_Game
 
                         CorrectlyPlacedDigits = correctNumDigitsPlaced(InsaneDigits);
                         CorrectDigits = correctNumDigits(InsaneDigits);
+
+                        if (strInputNumber == randNumber)
+                        {
+                            timTimer.Stop();
+                            timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", hr, min, sec);
+                            ClickCount = btnClickedCount;
+                            MessageBox.Show(winMessage + "\n" + ClickCount + "\n" + timeElapsed);
+                            giveupORwinActions();
+                        }
+                         
                         lstvOutput.Items.Add(lviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
                          break;
                 default :
@@ -261,23 +298,6 @@ namespace MasterMind_Game
                          break;
 
             }
-            
-            if (strInputNumber == randNumber)
-            {
-                timTimer.Stop();
-                timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", hr, min, sec);
-                ClickCount = btnClickedCount;
-                MessageBox.Show(winMessage + "\n" + ClickCount + "\n" + timeElapsed);
-                giveupORwinActions();
-                AskForName.ShowDialog();
-                if (AskForName.DialogResult == DialogResult.OK)
-                {
-                    LeaderBoard.timeTaken[storageCounter] = timeElapsed;
-                    LeaderBoard.tryCount[storageCounter] = ClickCount;
-                    storageCounter++;
-                }
-            }
-
             lstvOutput.EnsureVisible(lstvOutput.Items.Count-1);
             txtDigitInput.Text = "";
             txtDigitInput.Focus();
@@ -304,6 +324,21 @@ namespace MasterMind_Game
                 min = 0;
             }
             lblTimer.Text = String.Format("{0:00}:{1:00}:{2:00}", hr, min, sec);
+        }
+
+
+        frmAskForName AskForName = new frmAskForName();
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            AskForName.ShowDialog();
+            if (AskForName.DialogResult == DialogResult.OK)
+            {
+
+            }
+            else
+            {
+                return;
+            }
         }
 
 

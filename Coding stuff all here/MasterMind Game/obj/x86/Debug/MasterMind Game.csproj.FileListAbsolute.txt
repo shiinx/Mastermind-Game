@@ -36,6 +36,7 @@ C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind 
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\bin\Debug\MasterMind Game.application
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\bin\Debug\MasterMind Game.exe
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\bin\Debug\MasterMind Game.pdb
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind Game.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind_Game.frmAskForName.resources
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind_Game.frmMenu.resources
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind_Game.frmNumberGame.resources
