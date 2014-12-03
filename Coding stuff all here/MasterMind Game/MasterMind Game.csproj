@@ -74,12 +74,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AskForName.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AskForName.Designer.cs">
-      <DependentUpon>AskForName.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,15 +94,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LeaderBoard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LeaderBoard.Designer.cs">
-      <DependentUpon>LeaderBoard.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="AskForName.resx">
-      <DependentUpon>AskForName.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,10 +112,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="LeaderBoard.resx">
-      <DependentUpon>LeaderBoard.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

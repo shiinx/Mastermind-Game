@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnLeaderBoard = new System.Windows.Forms.Button();
             this.btnMenu = new System.Windows.Forms.Button();
             this.btnHint = new System.Windows.Forms.Button();
             this.btnCheck = new System.Windows.Forms.Button();
@@ -51,19 +50,7 @@
             this.btnGiveUp = new System.Windows.Forms.Button();
             this.lblTimer = new System.Windows.Forms.Label();
             this.timTimer = new System.Windows.Forms.Timer(this.components);
-            this.btnUpload = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnLeaderBoard
-            // 
-            this.btnLeaderBoard.AutoSize = true;
-            this.btnLeaderBoard.Location = new System.Drawing.Point(160, 554);
-            this.btnLeaderBoard.Name = "btnLeaderBoard";
-            this.btnLeaderBoard.Size = new System.Drawing.Size(149, 35);
-            this.btnLeaderBoard.TabIndex = 45;
-            this.btnLeaderBoard.Text = "LeaderBoard";
-            this.btnLeaderBoard.UseVisualStyleBackColor = true;
-            this.btnLeaderBoard.Click += new System.EventHandler(this.btnLeaderBoard_Click);
             // 
             // btnMenu
             // 
@@ -268,25 +255,12 @@
             this.timTimer.Interval = 1000;
             this.timTimer.Tick += new System.EventHandler(this.timTimer_Tick);
             // 
-            // btnUpload
-            // 
-            this.btnUpload.AutoSize = true;
-            this.btnUpload.Enabled = false;
-            this.btnUpload.Location = new System.Drawing.Point(752, 479);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(315, 35);
-            this.btnUpload.TabIndex = 56;
-            this.btnUpload.Text = "Upload score to leaderboard";
-            this.btnUpload.UseVisualStyleBackColor = true;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
-            // 
             // frmNumberGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1134, 601);
-            this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.btnGiveUp);
             this.Controls.Add(this.lstvOutput);
@@ -297,7 +271,6 @@
             this.Controls.Add(this.btnShowAnswer);
             this.Controls.Add(this.btnNewGame);
             this.Controls.Add(this.btnInstructions);
-            this.Controls.Add(this.btnLeaderBoard);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnHint);
             this.Controls.Add(this.btnCheck);
@@ -316,7 +289,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnLeaderBoard;
         private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Button btnHint;
         private System.Windows.Forms.Button btnCheck;
@@ -338,6 +310,5 @@
         private System.Windows.Forms.Button btnGiveUp;
         private System.Windows.Forms.Label lblTimer;
         private System.Windows.Forms.Timer timTimer;
-        private System.Windows.Forms.Button btnUpload;
     }
 }
