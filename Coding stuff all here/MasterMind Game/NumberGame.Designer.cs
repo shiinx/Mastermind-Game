@@ -252,6 +252,7 @@
             // 
             // timTimer
             // 
+            this.timTimer.Interval = 100000;
             this.timTimer.Tick += new System.EventHandler(this.timTimer_Tick);
             // 
             // frmNumberGame

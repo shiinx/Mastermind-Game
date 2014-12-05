@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnExit = new System.Windows.Forms.Button();
-            this.btnColorGame = new System.Windows.Forms.Button();
+            this.btnPictureGame = new System.Windows.Forms.Button();
             this.btnNumberGame = new System.Windows.Forms.Button();
             this.lblDoneBy = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -46,23 +46,22 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // btnColorGame
+            // btnPictureGame
             // 
-            this.btnColorGame.AutoSize = true;
-            this.btnColorGame.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColorGame.Location = new System.Drawing.Point(339, 120);
-            this.btnColorGame.Name = "btnColorGame";
-            this.btnColorGame.Size = new System.Drawing.Size(260, 35);
-            this.btnColorGame.TabIndex = 4;
-            this.btnColorGame.Text = "Color Guessing Game";
-            this.btnColorGame.UseVisualStyleBackColor = true;
-            this.btnColorGame.Click += new System.EventHandler(this.btnColorGame_Click);
+            this.btnPictureGame.AutoSize = true;
+            this.btnPictureGame.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPictureGame.Location = new System.Drawing.Point(323, 120);
+            this.btnPictureGame.Name = "btnPictureGame";
+            this.btnPictureGame.Size = new System.Drawing.Size(281, 35);
+            this.btnPictureGame.TabIndex = 4;
+            this.btnPictureGame.Text = "Picture Guessing Game";
+            this.btnPictureGame.UseVisualStyleBackColor = true;
             // 
             // btnNumberGame
             // 
             this.btnNumberGame.AutoSize = true;
             this.btnNumberGame.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNumberGame.Location = new System.Drawing.Point(24, 120);
+            this.btnNumberGame.Location = new System.Drawing.Point(18, 120);
             this.btnNumberGame.Name = "btnNumberGame";
             this.btnNumberGame.Size = new System.Drawing.Size(290, 35);
             this.btnNumberGame.TabIndex = 3;
@@ -87,7 +86,7 @@
             this.ClientSize = new System.Drawing.Size(622, 313);
             this.Controls.Add(this.lblDoneBy);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnColorGame);
+            this.Controls.Add(this.btnPictureGame);
             this.Controls.Add(this.btnNumberGame);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
@@ -101,7 +100,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnColorGame;
+        private System.Windows.Forms.Button btnPictureGame;
         private System.Windows.Forms.Button btnNumberGame;
         private System.Windows.Forms.Label lblDoneBy;
     }

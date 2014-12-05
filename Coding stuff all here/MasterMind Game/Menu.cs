@@ -17,7 +17,7 @@ namespace MasterMind_Game
         }
 
         frmNumberGame frmNumberGameVariable = new frmNumberGame();  //Number game's foorm variable creation
-        frmColorGame frmColorGameVariable = new frmColorGame();     //Color game's form variable creation
+        frmPictureGame frmPictureGameVariable = new frmPictureGame();     //Color game's form variable creation
 
         // Switch to NumberGame form
         private void btnNumberGame_Click(object sender, EventArgs e)
@@ -32,12 +32,12 @@ namespace MasterMind_Game
         }
 
         //Switch to ColorGame Form
-        private void btnColorGame_Click(object sender, EventArgs e)
+        private void btnPictureGame_Click(object sender, EventArgs e)
         {
             this.Hide();
-            frmColorGameVariable.ShowDialog();
+            frmPictureGameVariable.ShowDialog();
 
-            if (frmColorGameVariable.DialogResult == DialogResult.OK)
+            if (frmPictureGameVariable.DialogResult == DialogResult.OK)
             {
                 this.Show();
             }
