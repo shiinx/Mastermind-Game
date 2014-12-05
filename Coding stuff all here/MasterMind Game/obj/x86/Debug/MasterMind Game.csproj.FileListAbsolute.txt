@@ -44,3 +44,4 @@ C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind 
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind Game.csproj.GenerateResource.Cache
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind Game.exe.manifest
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind Game.application
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\MasterMind Game\obj\x86\Debug\MasterMind_Game.LeaderBoard.resources

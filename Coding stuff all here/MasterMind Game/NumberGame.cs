@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 
@@ -12,17 +13,17 @@ namespace MasterMind_Game
     public partial class frmNumberGame : Form
     {
         /* private declares
-         * string randNumber
-         * int btnClickCount
-         * int set time to 0
+         * string randNumber, time Elapsed
+         * int btnClickCount , ClickCount
          * int Difficulty settings for Number of digits
+         * new Stopwatch
          * End...
          */
         string randNumber,timeElapsed;
         int btnClickedCount = 0 ,  ClickCount;
-        int sec = 0, min = 0, hr = 0;
         // Change number of digits per difficulty by changing numbers
         int EasyDigits = 4, MediumDigits = 5, HardDigits = 6, InsaneDigits = 8;
+        Stopwatch stpWatch = new Stopwatch();
 
 
 
@@ -60,8 +61,7 @@ namespace MasterMind_Game
                 + "\nEasy:\t"   + EasyDigits    + " digits\t" 
                 + "\nMedium:\t" + MediumDigits  + " digits\t" 
                 + "\nHard:\t"   + HardDigits    + " digits\t" 
-                + "\nInsane:\t" + InsaneDigits  + " digits\t" 
-                + "Press upload to leaderboard to transfer your score to the leaderboards.");
+                + "\nInsane:\t" + InsaneDigits  + " digits\t");
         }
 
 
@@ -71,6 +71,7 @@ namespace MasterMind_Game
          * If no difficulty selected show error message
          * To clear items in listboxview
          * To clear input textbox
+         * To reset time and lbltimer
          * To reset Click Count number
          * Enable check and hint button
          * Disable difficulty buttons to prevent difficulty switching when game starts
@@ -88,7 +89,8 @@ namespace MasterMind_Game
             lstvOutput.Items.Clear();
             txtDigitInput.Text = "";
             btnClickedCount = 0;
-            timTimerReset();
+            stpWatch.Restart();
+            lblTimer.Text = "00:00:00";
             timTimer.Start();
             newgameActions();
         }
@@ -102,6 +104,7 @@ namespace MasterMind_Game
             if (MessageBox.Show("Are you sure you want to give up?", "Confirmation", MessageBoxButtons.YesNo)==DialogResult.Yes)
             {
                 giveupORwinActions();
+                stpWatch.Stop();
                 timTimer.Stop();
             }
         }
@@ -162,6 +165,10 @@ namespace MasterMind_Game
          * clear textbox after button click
          * +1 to click count
          * switch focus to textbox when checkbutton is pressed to ensure continuos input
+         * 
+         * if Win
+         * Stop time
+         * Display win message
          * 
          * End...
          */
@@ -250,11 +257,14 @@ namespace MasterMind_Game
 
             if (strInputNumber == randNumber)
             {
+                stpWatch.Stop();
                 timTimer.Stop();
-                timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", hr, min, sec);
+                TimeSpan ts = stpWatch.Elapsed;
+                timeElapsed = String.Format("{0:00}:{1:00}:{2:00}",ts.Hours,ts.Minutes,ts.Seconds);
                 ClickCount = btnClickedCount;
-                MessageBox.Show(winMessage + "\n" + ClickCount + "\n" + timeElapsed);
+                MessageBox.Show(winMessage + "\n Tries Used:" + ClickCount + "\n Time Taken:" + timeElapsed);
                 giveupORwinActions();
+                
             }
                          
             lstvOutput.EnsureVisible(lstvOutput.Items.Count-1);
@@ -265,22 +275,15 @@ namespace MasterMind_Game
 
 
 
-        // timer/stopwatch
         private void timTimer_Tick(object sender, EventArgs e)
         {
-            sec++;
-            if (sec == 59)
-            {
-                min++;
-                sec = 0;
-            }
-            if (min == 59)
-            {
-                hr++;
-                min = 0;
-            }
-            lblTimer.Text = String.Format("{0:00}:{1:00}:{2:00}", hr, min, sec);
+            TimeSpan ts = stpWatch.Elapsed;
+            lblTimer.Text = String.Format(String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds));
         }
+
+
+
+
 
 
 
@@ -291,12 +294,13 @@ namespace MasterMind_Game
          * correctNumDigitsPlaced   -> Return number of digits correctly placed
          * correctNumDigits         -> Return number of correct digits
          * lviOutput                -> Returns the items/subitems that is to be put into the listviewbox
-         * timTimerReset            -> Resets timer
+         * newgameActions           -> Resets visibility for certain buttons
+         * giveupORwinActions       -> Resets visibility for certain buttons
          * 
          * End...
          */
 
-        
+
         // Returns Difficulty
         private string DifficultyChecker()
         {
@@ -451,21 +455,6 @@ namespace MasterMind_Game
             rBtnInsane.Enabled = false;
             return;
         }
-
-        
-
-        // timer reset function
-        private void timTimerReset()
-        {
-            sec = 0;
-            min = 0;
-            hr = 0;
-            lblTimer.Text = "00:00:00";
-            return;
-        }
-
-
-        
         // End of fuction definitions... 
 
 
