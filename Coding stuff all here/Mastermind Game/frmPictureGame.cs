@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MasterMind_Game
+namespace Mastermind_Game
 {
     public partial class frmPictureGame : Form
     {
@@ -16,6 +16,8 @@ namespace MasterMind_Game
         {
             InitializeComponent();
         }
+
+
 
          /* private declares
          * string randNumber, time Elapsed
@@ -57,8 +59,7 @@ namespace MasterMind_Game
             MessageBox.Show("Click New Game to generate a new number.\nList below shows the number of digits per difficulty."
                 + "\nEasy:\t"   + EasyDigits    + " digits\t" 
                 + "\nMedium:\t" + MediumDigits  + " digits\t" 
-                + "\nHard:\t"   + HardDigits    + " digits\t" 
-                + "\nInsane:\t" + InsaneDigits  + " digits\t");
+                + "\nHard:\t"   + HardDigits    + " digits\t");
         }
 
 
@@ -104,41 +105,6 @@ namespace MasterMind_Game
                 timTimer.Stop();
             }
         }
-
-
-
-        /* Hints click event
-         * Show first digit for Easy and Medium
-         * Show first and last digit for Hard and Insane
-         * End...
-         */
-        private void btnHint_Click(object sender, EventArgs e)
-        {
-            String Difficulty = DifficultyChecker();
-            String hint = "";
-            switch (Difficulty)
-            {
-                case "Easy":    hint = "          First digit: \n\t" + randNumber[0];
-                                break;
-
-                case "Medium":  hint = "          First digit: \n\t" + randNumber[0];
-                                break;
-
-                case "Hard":    hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[HardDigits - 1];
-                                break;
-
-                case "Insane":  hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[InsaneDigits - 1];
-                                break;
-
-                default:        hint = "You can't be here!...\n Whelp, must be the stupid coders mistake...";
-                                break;
-
-            }
-
-            MessageBox.Show(hint, "Hint", MessageBoxButtons.OK);
-        }
-        // End of hint click codes
-
 
 
 
@@ -315,13 +281,11 @@ namespace MasterMind_Game
         private void giveupORwinActions()
         {
             btnCheck.Enabled = false;
-            btnHint.Enabled = false;
             btnGiveUp.Enabled = false;
             btnNewGame.Enabled = true;
             rBtnEasy.Enabled = true;
             rBtnMedium.Enabled = true;
             rBtnHard.Enabled = true;
-            rBtnInsane.Enabled = true;
             return;
         }
 
@@ -329,13 +293,11 @@ namespace MasterMind_Game
         {
 
             btnCheck.Enabled = true;
-            btnHint.Enabled = true;
             btnGiveUp.Enabled = true;
             btnNewGame.Enabled = false;
             rBtnEasy.Enabled = false;
             rBtnMedium.Enabled = false;
             rBtnHard.Enabled = false;
-            rBtnInsane.Enabled = false;
             return;
         }
         // End of fuction definitions... 

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MasterMind_Game.Properties
+namespace Mastermind_Game.Properties
 {
 
 

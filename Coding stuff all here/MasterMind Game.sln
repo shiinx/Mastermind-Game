@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterMind Game", "MasterMind Game\MasterMind Game.csproj", "{3F580B1F-C532-4424-B91B-16AB8EA4971D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mastermind Game", "Mastermind Game\Mastermind Game.csproj", "{B6E00CC7-E5ED-4F32-9A9C-47FF54819859}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3F580B1F-C532-4424-B91B-16AB8EA4971D}.Debug|x86.ActiveCfg = Debug|x86
-		{3F580B1F-C532-4424-B91B-16AB8EA4971D}.Debug|x86.Build.0 = Debug|x86
-		{3F580B1F-C532-4424-B91B-16AB8EA4971D}.Release|x86.ActiveCfg = Release|x86
-		{3F580B1F-C532-4424-B91B-16AB8EA4971D}.Release|x86.Build.0 = Release|x86
+		{B6E00CC7-E5ED-4F32-9A9C-47FF54819859}.Debug|x86.ActiveCfg = Debug|x86
+		{B6E00CC7-E5ED-4F32-9A9C-47FF54819859}.Debug|x86.Build.0 = Debug|x86
+		{B6E00CC7-E5ED-4F32-9A9C-47FF54819859}.Release|x86.ActiveCfg = Release|x86
+		{B6E00CC7-E5ED-4F32-9A9C-47FF54819859}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
