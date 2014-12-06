@@ -111,6 +111,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -143,6 +144,36 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20121127_063931.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20130218_140133.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20130218_150051.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20130311_180758.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20130311_184550.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20130612_124857.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20130625_175722.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20140512_034308.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20140725_103803.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20140802_141009.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
