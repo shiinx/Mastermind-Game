@@ -139,7 +139,7 @@
             // btnShowAnswer
             // 
             this.btnShowAnswer.AutoSize = true;
-            this.btnShowAnswer.Location = new System.Drawing.Point(488, 688);
+            this.btnShowAnswer.Location = new System.Drawing.Point(488, 698);
             this.btnShowAnswer.Name = "btnShowAnswer";
             this.btnShowAnswer.Size = new System.Drawing.Size(158, 35);
             this.btnShowAnswer.TabIndex = 89;
@@ -161,7 +161,7 @@
             // btnMenu
             // 
             this.btnMenu.AutoSize = true;
-            this.btnMenu.Location = new System.Drawing.Point(942, 688);
+            this.btnMenu.Location = new System.Drawing.Point(942, 698);
             this.btnMenu.Name = "btnMenu";
             this.btnMenu.Size = new System.Drawing.Size(180, 35);
             this.btnMenu.TabIndex = 86;
@@ -172,7 +172,7 @@
             // btnInstructions
             // 
             this.btnInstructions.AutoSize = true;
-            this.btnInstructions.Location = new System.Drawing.Point(12, 688);
+            this.btnInstructions.Location = new System.Drawing.Point(12, 698);
             this.btnInstructions.Name = "btnInstructions";
             this.btnInstructions.Size = new System.Drawing.Size(142, 35);
             this.btnInstructions.TabIndex = 87;
