@@ -65,7 +65,7 @@ namespace Mastermind_Game.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Picture1 {
             get {
-                object obj = ResourceManager.GetObject("1", resourceCulture);
+                object obj = ResourceManager.GetObject("Picture1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,7 +75,7 @@ namespace Mastermind_Game.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Picture2 {
             get {
-                object obj = ResourceManager.GetObject("2", resourceCulture);
+                object obj = ResourceManager.GetObject("Picture2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -85,7 +85,7 @@ namespace Mastermind_Game.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Picture3 {
             get {
-                object obj = ResourceManager.GetObject("3", resourceCulture);
+                object obj = ResourceManager.GetObject("Picture3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,7 +95,7 @@ namespace Mastermind_Game.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Picture4 {
             get {
-                object obj = ResourceManager.GetObject("4", resourceCulture);
+                object obj = ResourceManager.GetObject("Picture4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +105,7 @@ namespace Mastermind_Game.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Picture5 {
             get {
-                object obj = ResourceManager.GetObject("5", resourceCulture);
+                object obj = ResourceManager.GetObject("Picture5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -115,7 +115,7 @@ namespace Mastermind_Game.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Picture6 {
             get {
-                object obj = ResourceManager.GetObject("6", resourceCulture);
+                object obj = ResourceManager.GetObject("Picture6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -125,7 +125,7 @@ namespace Mastermind_Game.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Picture7 {
             get {
-                object obj = ResourceManager.GetObject("7", resourceCulture);
+                object obj = ResourceManager.GetObject("Picture7", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -135,7 +135,7 @@ namespace Mastermind_Game.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Picture8 {
             get {
-                object obj = ResourceManager.GetObject("8", resourceCulture);
+                object obj = ResourceManager.GetObject("Picture8", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

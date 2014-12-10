@@ -215,69 +215,63 @@
             // 
             // picOne
             // 
-            this.picOne.Image = global::Mastermind_Game.Properties.Resources.Picture1;
+            this.picOne.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picOne.Location = new System.Drawing.Point(67, 121);
             this.picOne.Name = "picOne";
             this.picOne.Size = new System.Drawing.Size(160, 120);
             this.picOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picOne.TabIndex = 96;
             this.picOne.TabStop = false;
-            this.picOne.Click += new System.EventHandler(this.CommonPic_Click);
             // 
             // picSix
             // 
-            this.picSix.Image = global::Mastermind_Game.Properties.Resources.Picture1;
+            this.picSix.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picSix.Location = new System.Drawing.Point(907, 121);
             this.picSix.Name = "picSix";
             this.picSix.Size = new System.Drawing.Size(160, 120);
             this.picSix.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSix.TabIndex = 97;
             this.picSix.TabStop = false;
-            this.picSix.Click += new System.EventHandler(this.CommonPic_Click);
             // 
             // picFive
             // 
-            this.picFive.Image = global::Mastermind_Game.Properties.Resources.Picture1;
+            this.picFive.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picFive.Location = new System.Drawing.Point(739, 121);
             this.picFive.Name = "picFive";
             this.picFive.Size = new System.Drawing.Size(160, 120);
             this.picFive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFive.TabIndex = 98;
             this.picFive.TabStop = false;
-            this.picFive.Click += new System.EventHandler(this.CommonPic_Click);
             // 
             // picFour
             // 
-            this.picFour.Image = global::Mastermind_Game.Properties.Resources.Picture1;
+            this.picFour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picFour.Location = new System.Drawing.Point(571, 121);
             this.picFour.Name = "picFour";
             this.picFour.Size = new System.Drawing.Size(160, 120);
             this.picFour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFour.TabIndex = 99;
             this.picFour.TabStop = false;
-            this.picFour.Click += new System.EventHandler(this.CommonPic_Click);
             // 
             // picThree
             // 
-            this.picThree.Image = global::Mastermind_Game.Properties.Resources.Picture1;
+            this.picThree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picThree.Location = new System.Drawing.Point(403, 121);
             this.picThree.Name = "picThree";
             this.picThree.Size = new System.Drawing.Size(160, 120);
             this.picThree.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picThree.TabIndex = 100;
             this.picThree.TabStop = false;
-            this.picThree.Click += new System.EventHandler(this.CommonPic_Click);
             // 
             // picTwo
             // 
-            this.picTwo.Image = global::Mastermind_Game.Properties.Resources.Picture1;
+            this.picTwo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picTwo.Location = new System.Drawing.Point(235, 121);
             this.picTwo.Name = "picTwo";
             this.picTwo.Size = new System.Drawing.Size(160, 120);
             this.picTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picTwo.TabIndex = 101;
             this.picTwo.TabStop = false;
-            this.picTwo.Click += new System.EventHandler(this.CommonPic_Click);
             // 
             // frmPictureGame
             // 
