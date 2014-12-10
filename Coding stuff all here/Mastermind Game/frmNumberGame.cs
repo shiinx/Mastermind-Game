@@ -285,6 +285,7 @@ namespace Mastermind_Game
 
 
 
+
         /* Code bellow are all function definition stuff...
          * DifficultyChecker        -> Check which difficuly is checked
          * randomNumber             -> Random Number returned depending on difficulty
@@ -453,6 +454,8 @@ namespace Mastermind_Game
             rBtnInsane.Enabled = false;
             return;
         }
+
+
 
         // End of fuction definitions... 
 

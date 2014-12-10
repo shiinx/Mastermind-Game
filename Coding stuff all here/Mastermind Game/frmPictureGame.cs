@@ -237,7 +237,7 @@ namespace Mastermind_Game
         // Return number of correctly placed digits
         private int correctNumDigitsPlaced(int numOfDigits)
         {
-            string strInputNumber = txtDigitInput.Text;
+            string strInputNumber = "a";
             int CorrectlyPlacedDigits = 0, n;
             for (n = 0; n < numOfDigits; n++)
             {
@@ -251,7 +251,7 @@ namespace Mastermind_Game
         // Return number of correct digits
         private int correctNumDigits(int numOfDigits)
         {
-            string strInputNumber = txtDigitInput.Text;
+            string strInputNumber = "a";
             int i, a, n = 0;
             for (i = 0; i < numOfDigits; i++)
             {
