@@ -16,8 +16,6 @@ namespace Mastermind_Game
         {
             InitializeComponent();
         }
-
-        int[] picture = new int[6];
         
 
 
@@ -304,51 +302,97 @@ namespace Mastermind_Game
         }
 
 
+        /* My picture change on click code
+         * I'll shorten it when I have the dam time or know how
+         * Tedious as heck code
+         * Try using more array to shorten
+         */
+        Bitmap[] resourcePic = new Bitmap[8]{Properties.Resources.Picture1,
+        Properties.Resources.Picture2,
+        Properties.Resources.Picture3,
+        Properties.Resources.Picture4,
+        Properties.Resources.Picture5,
+        Properties.Resources.Picture6,
+        Properties.Resources.Picture7,
+        Properties.Resources.Picture8};
 
-        private void CommonPic_Click(object sender, EventArgs e)
+
+        int resourcePicCounter1 = 1;
+        private void picOne_Click(object sender, EventArgs e)
         {
-            PictureBox[] picImg = new PictureBox[6] { picOne, picTwo, picThree, picFour, picFive, picSix };
-            Bitmap[] resourcePic = new Bitmap[8]{Mastermind_Game.Properties.Resources.Picture1,
-                                        Mastermind_Game.Properties.Resources.Picture2,
-                                        Mastermind_Game.Properties.Resources.Picture3,
-                                        Mastermind_Game.Properties.Resources.Picture4,
-                                        Mastermind_Game.Properties.Resources.Picture5,
-                                        Mastermind_Game.Properties.Resources.Picture6,
-                                        Mastermind_Game.Properties.Resources.Picture7,
-                                        Mastermind_Game.Properties.Resources.Picture8};
-            int intCounter = 0,intPicCounter = 0;
-            bool changed = false;
-            while (intCounter < 6)
+            if (resourcePicCounter1 == 8)
             {
-                if (sender == picImg[intCounter])
-                {
-                    while (!changed)
-                    {
-                        if (intPicCounter == 8)
-                        {
-                            intPicCounter = 0;
-                        }
-
-                        else
-                        {
-                            if (picImg[intCounter].Tag == resourcePic[intPicCounter])
-                            {
-                                picImg[intCounter].Image = resourcePic[intPicCounter++];
-                                changed = true;
-                                return;
-                            }
-                            else
-                            {
-                                intPicCounter++;
-                            }
-                        }
-                    }
-                }
-                intCounter++;
+                resourcePicCounter1 = 0;
             }
+
+            picOne.Image = resourcePic[resourcePicCounter1];
+            resourcePicCounter1++;
         }
+
+        int resourcePicCounter2 = 1;
+        private void picTwo_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter2 == 8)
+            {
+                resourcePicCounter2 = 0;
+            }
+
+            picTwo.Image = resourcePic[resourcePicCounter2];
+            resourcePicCounter2++;
+        }
+
+
+        int resourcePicCounter3 = 1;
+        private void picThree_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter3 == 8)
+            {
+                resourcePicCounter3 = 0;
+            }
+
+            picThree.Image = resourcePic[resourcePicCounter3];
+            resourcePicCounter3++;
+        }
+
+        int resourcePicCounter4 = 1;
+        private void picFour_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter4 == 8)
+            {
+                resourcePicCounter4 = 0;
+            }
+
+            picFour.Image = resourcePic[resourcePicCounter4];
+            resourcePicCounter4++;
+        }
+
+        int resourcePicCounter5 = 1;
+        private void picFive_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter5 == 8)
+            {
+                resourcePicCounter5 = 0;
+            }
+
+            picFive.Image = resourcePic[resourcePicCounter5];
+            resourcePicCounter5++;
+        }
+
+        int resourcePicCounter6 = 1;
+        private void picSix_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter6 == 8)
+            {
+                resourcePicCounter6 = 0;
+            }
+
+            picSix.Image = resourcePic[resourcePicCounter6];
+            resourcePicCounter6++;
+        }
+
 
 
         // End of fuction definitions... 
     }
+
 }
