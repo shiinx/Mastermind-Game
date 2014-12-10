@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPictureGame));
             this.lblTimer = new System.Windows.Forms.Label();
             this.btnGiveUp = new System.Windows.Forms.Button();
             this.lstvOutput = new System.Windows.Forms.ListView();
@@ -52,6 +51,12 @@
             this.picFour = new System.Windows.Forms.PictureBox();
             this.picThree = new System.Windows.Forms.PictureBox();
             this.picTwo = new System.Windows.Forms.PictureBox();
+            this.lblPic1 = new System.Windows.Forms.Label();
+            this.lblPic2 = new System.Windows.Forms.Label();
+            this.lblPic3 = new System.Windows.Forms.Label();
+            this.lblPic4 = new System.Windows.Forms.Label();
+            this.lblPic5 = new System.Windows.Forms.Label();
+            this.lblPic6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSix)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFive)).BeginInit();
@@ -216,75 +221,141 @@
             // 
             // picOne
             // 
-            this.picOne.Image = ((System.Drawing.Image)(resources.GetObject("picOne.Image")));
+            this.picOne.Enabled = false;
             this.picOne.Location = new System.Drawing.Point(67, 121);
             this.picOne.Name = "picOne";
             this.picOne.Size = new System.Drawing.Size(160, 120);
             this.picOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picOne.TabIndex = 96;
             this.picOne.TabStop = false;
+            this.picOne.Visible = false;
             this.picOne.Click += new System.EventHandler(this.picOne_Click);
             // 
             // picSix
             // 
-            this.picSix.Image = ((System.Drawing.Image)(resources.GetObject("picSix.Image")));
+            this.picSix.Enabled = false;
             this.picSix.Location = new System.Drawing.Point(907, 121);
             this.picSix.Name = "picSix";
             this.picSix.Size = new System.Drawing.Size(160, 120);
             this.picSix.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSix.TabIndex = 97;
             this.picSix.TabStop = false;
+            this.picSix.Visible = false;
             this.picSix.Click += new System.EventHandler(this.picSix_Click);
             // 
             // picFive
             // 
-            this.picFive.Image = ((System.Drawing.Image)(resources.GetObject("picFive.Image")));
+            this.picFive.Enabled = false;
             this.picFive.Location = new System.Drawing.Point(739, 121);
             this.picFive.Name = "picFive";
             this.picFive.Size = new System.Drawing.Size(160, 120);
             this.picFive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFive.TabIndex = 98;
             this.picFive.TabStop = false;
+            this.picFive.Visible = false;
             this.picFive.Click += new System.EventHandler(this.picFive_Click);
             // 
             // picFour
             // 
-            this.picFour.Image = ((System.Drawing.Image)(resources.GetObject("picFour.Image")));
+            this.picFour.Enabled = false;
             this.picFour.Location = new System.Drawing.Point(571, 121);
             this.picFour.Name = "picFour";
             this.picFour.Size = new System.Drawing.Size(160, 120);
             this.picFour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFour.TabIndex = 99;
             this.picFour.TabStop = false;
+            this.picFour.Visible = false;
             this.picFour.Click += new System.EventHandler(this.picFour_Click);
             // 
             // picThree
             // 
-            this.picThree.Image = ((System.Drawing.Image)(resources.GetObject("picThree.Image")));
+            this.picThree.Enabled = false;
             this.picThree.Location = new System.Drawing.Point(403, 121);
             this.picThree.Name = "picThree";
             this.picThree.Size = new System.Drawing.Size(160, 120);
             this.picThree.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picThree.TabIndex = 100;
             this.picThree.TabStop = false;
+            this.picThree.Visible = false;
             this.picThree.Click += new System.EventHandler(this.picThree_Click);
             // 
             // picTwo
             // 
-            this.picTwo.Image = ((System.Drawing.Image)(resources.GetObject("picTwo.Image")));
+            this.picTwo.Enabled = false;
             this.picTwo.Location = new System.Drawing.Point(235, 121);
             this.picTwo.Name = "picTwo";
             this.picTwo.Size = new System.Drawing.Size(160, 120);
             this.picTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picTwo.TabIndex = 101;
             this.picTwo.TabStop = false;
+            this.picTwo.Visible = false;
             this.picTwo.Click += new System.EventHandler(this.picTwo_Click);
+            // 
+            // lblPic1
+            // 
+            this.lblPic1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic1.Location = new System.Drawing.Point(67, 244);
+            this.lblPic1.Name = "lblPic1";
+            this.lblPic1.Size = new System.Drawing.Size(160, 25);
+            this.lblPic1.TabIndex = 102;
+            this.lblPic1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic2
+            // 
+            this.lblPic2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic2.Location = new System.Drawing.Point(235, 244);
+            this.lblPic2.Name = "lblPic2";
+            this.lblPic2.Size = new System.Drawing.Size(160, 25);
+            this.lblPic2.TabIndex = 103;
+            this.lblPic2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic3
+            // 
+            this.lblPic3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic3.Location = new System.Drawing.Point(403, 244);
+            this.lblPic3.Name = "lblPic3";
+            this.lblPic3.Size = new System.Drawing.Size(160, 25);
+            this.lblPic3.TabIndex = 104;
+            this.lblPic3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic4
+            // 
+            this.lblPic4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic4.Location = new System.Drawing.Point(571, 244);
+            this.lblPic4.Name = "lblPic4";
+            this.lblPic4.Size = new System.Drawing.Size(160, 25);
+            this.lblPic4.TabIndex = 105;
+            this.lblPic4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic5
+            // 
+            this.lblPic5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic5.Location = new System.Drawing.Point(739, 244);
+            this.lblPic5.Name = "lblPic5";
+            this.lblPic5.Size = new System.Drawing.Size(160, 25);
+            this.lblPic5.TabIndex = 106;
+            this.lblPic5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic6
+            // 
+            this.lblPic6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic6.Location = new System.Drawing.Point(907, 244);
+            this.lblPic6.Name = "lblPic6";
+            this.lblPic6.Size = new System.Drawing.Size(160, 25);
+            this.lblPic6.TabIndex = 107;
+            this.lblPic6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmPictureGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 745);
+            this.Controls.Add(this.lblPic6);
+            this.Controls.Add(this.lblPic5);
+            this.Controls.Add(this.lblPic4);
+            this.Controls.Add(this.lblPic3);
+            this.Controls.Add(this.lblPic2);
+            this.Controls.Add(this.lblPic1);
             this.Controls.Add(this.picTwo);
             this.Controls.Add(this.picThree);
             this.Controls.Add(this.picFour);
@@ -342,5 +413,11 @@
         private System.Windows.Forms.PictureBox picFour;
         private System.Windows.Forms.PictureBox picThree;
         private System.Windows.Forms.PictureBox picTwo;
+        private System.Windows.Forms.Label lblPic1;
+        private System.Windows.Forms.Label lblPic2;
+        private System.Windows.Forms.Label lblPic3;
+        private System.Windows.Forms.Label lblPic4;
+        private System.Windows.Forms.Label lblPic5;
+        private System.Windows.Forms.Label lblPic6;
     }
 }

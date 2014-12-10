@@ -28,8 +28,6 @@ namespace Mastermind_Game
          */
         string randNumber,timeElapsed;
         int btnClickedCount = 0 ,  ClickCount;
-        // Change number of digits per difficulty by changing numbers
-        int EasyDigits = 4, MediumDigits = 5, HardDigits = 6;
         Stopwatch stpWatch = new Stopwatch();
 
 
@@ -57,9 +55,9 @@ namespace Mastermind_Game
         private void btnInstructions_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Click New Game to generate a new number.\nList below shows the number of digits per difficulty."
-                + "\nEasy:\t"   + EasyDigits    + " digits\t" 
-                + "\nMedium:\t" + MediumDigits  + " digits\t" 
-                + "\nHard:\t"   + HardDigits    + " digits\t");
+                + "\nEasy:\t4 Pictures" 
+                + "\nMedium:\t5 Pictures" 
+                + "\nHard:\t6 Pictures");
         }
 
 
@@ -84,6 +82,7 @@ namespace Mastermind_Game
                 MessageBox.Show("Please select a difficulty before pressing New Game.");
                 return;
             }
+            DifficultyChecker();
             lstvOutput.Items.Clear();
             btnClickedCount = 0;
             stpWatch.Restart();
@@ -129,13 +128,101 @@ namespace Mastermind_Game
         // End of check click event code
 
 
-
-        /*private void timTimer_Tick(object sender, EventArgs e)
+        /*
+        private void timTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan ts = stpWatch.Elapsed;
             lblTimer.Text = String.Format(String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds));
         }
         */
+
+        /* My picture change on click code
+         * I'll shorten it when I have the dam time or know how
+         * Tedious as heck code
+         * Try using more array to shorten
+         */
+        Bitmap[] resourcePic = new Bitmap[8]{Properties.Resources.Picture1,
+        Properties.Resources.Picture2,
+        Properties.Resources.Picture3,
+        Properties.Resources.Picture4,
+        Properties.Resources.Picture5,
+        Properties.Resources.Picture6,
+        Properties.Resources.Picture7,
+        Properties.Resources.Picture8};
+
+
+        int resourcePicCounter1 = 1;
+        private void picOne_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter1 == 8)
+            {
+                resourcePicCounter1 = 0;
+            }
+
+            picOne.Image = resourcePic[resourcePicCounter1];
+            resourcePicCounter1++;
+        }
+
+        int resourcePicCounter2 = 1;
+        private void picTwo_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter2 == 8)
+            {
+                resourcePicCounter2 = 0;
+            }
+
+            picTwo.Image = resourcePic[resourcePicCounter2];
+            resourcePicCounter2++;
+        }
+
+
+        int resourcePicCounter3 = 1;
+        private void picThree_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter3 == 8)
+            {
+                resourcePicCounter3 = 0;
+            }
+
+            picThree.Image = resourcePic[resourcePicCounter3];
+            resourcePicCounter3++;
+        }
+
+        int resourcePicCounter4 = 1;
+        private void picFour_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter4 == 8)
+            {
+                resourcePicCounter4 = 0;
+            }
+
+            picFour.Image = resourcePic[resourcePicCounter4];
+            resourcePicCounter4++;
+        }
+
+        int resourcePicCounter5 = 1;
+        private void picFive_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter5 == 8)
+            {
+                resourcePicCounter5 = 0;
+            }
+
+            picFive.Image = resourcePic[resourcePicCounter5];
+            resourcePicCounter5++;
+        }
+
+        int resourcePicCounter6 = 1;
+        private void picSix_Click(object sender, EventArgs e)
+        {
+            if (resourcePicCounter6 == 8)
+            {
+                resourcePicCounter6 = 0;
+            }
+
+            picSix.Image = resourcePic[resourcePicCounter6];
+            resourcePicCounter6++;
+        }
 
 
 
@@ -161,14 +248,29 @@ namespace Mastermind_Game
         {
             if (rBtnEasy.Checked == true)
             {
+                basicdifficultyActions();
+                picFive.Enabled = false;
+                picFive.Visible = false;
+                picSix.Enabled = false;
+                picSix.Visible = false;
                 return "Easy";
             }
             if (rBtnMedium.Checked == true)
             {
+                basicdifficultyActions();
+                picFive.Enabled = true;
+                picFive.Visible = true;
+                picSix.Enabled = false;
+                picSix.Visible = false;
                 return "Medium";
             }
             if (rBtnHard.Checked == true)
             {
+                basicdifficultyActions();
+                picFive.Enabled = true;
+                picFive.Visible = true;
+                picSix.Enabled = true;
+                picSix.Visible = true;
                 return "Hard";
             }
             else
@@ -178,6 +280,7 @@ namespace Mastermind_Game
 
         }
 
+        
 
         // Returns Randomnized Number depending on difficulty
         private string randomNumber()
@@ -186,11 +289,11 @@ namespace Mastermind_Game
             string Difficulty = DifficultyChecker();
             switch (Difficulty)
             {
-                case "Easy":    randomNumber = strRandNumber(EasyDigits);
+                case "Easy":    randomNumber = strRandNumber(4);
                     break;
-                case "Medium":  randomNumber = strRandNumber(MediumDigits);
+                case "Medium":  randomNumber = strRandNumber(5);
                     break;
-                case "Hard":    randomNumber = strRandNumber(HardDigits);
+                case "Hard":    randomNumber = strRandNumber(6);
                     break;
                 default:        randomNumber = "false";
                     break;
@@ -286,6 +389,12 @@ namespace Mastermind_Game
             rBtnEasy.Enabled = true;
             rBtnMedium.Enabled = true;
             rBtnHard.Enabled = true;
+            picOne.Enabled = false;
+            picTwo.Enabled = false;
+            picThree.Enabled = false;
+            picFour.Enabled = false;
+            picFive.Enabled = false;
+            picSix.Enabled = false;
             return;
         }
 
@@ -298,97 +407,35 @@ namespace Mastermind_Game
             rBtnEasy.Enabled = false;
             rBtnMedium.Enabled = false;
             rBtnHard.Enabled = false;
+            picOne.Image = Properties.Resources.Picture1;
+            picTwo.Image = Properties.Resources.Picture1;
+            picThree.Image = Properties.Resources.Picture1;
+            picFour.Image = Properties.Resources.Picture1;
+            picFive.Image = Properties.Resources.Picture1;
+            picSix.Image = Properties.Resources.Picture1;
+            resourcePicCounter1 = 1;
+            resourcePicCounter2 = 1;
+            resourcePicCounter3 = 1;
+            resourcePicCounter4 = 1;
+            resourcePicCounter5 = 1;
+            resourcePicCounter6 = 1;
             return;
         }
 
-
-        /* My picture change on click code
-         * I'll shorten it when I have the dam time or know how
-         * Tedious as heck code
-         * Try using more array to shorten
-         */
-        Bitmap[] resourcePic = new Bitmap[8]{Properties.Resources.Picture1,
-        Properties.Resources.Picture2,
-        Properties.Resources.Picture3,
-        Properties.Resources.Picture4,
-        Properties.Resources.Picture5,
-        Properties.Resources.Picture6,
-        Properties.Resources.Picture7,
-        Properties.Resources.Picture8};
-
-
-        int resourcePicCounter1 = 1;
-        private void picOne_Click(object sender, EventArgs e)
+        private void basicdifficultyActions()
         {
-            if (resourcePicCounter1 == 8)
-            {
-                resourcePicCounter1 = 0;
-            }
-
-            picOne.Image = resourcePic[resourcePicCounter1];
-            resourcePicCounter1++;
+            picOne.Enabled = true;
+            picOne.Visible = true;
+            picTwo.Enabled = true;
+            picTwo.Visible = true;
+            picThree.Enabled = true;
+            picThree.Visible = true;
+            picFour.Enabled = true;
+            picFour.Visible = true;
+            return;
         }
 
-        int resourcePicCounter2 = 1;
-        private void picTwo_Click(object sender, EventArgs e)
-        {
-            if (resourcePicCounter2 == 8)
-            {
-                resourcePicCounter2 = 0;
-            }
-
-            picTwo.Image = resourcePic[resourcePicCounter2];
-            resourcePicCounter2++;
-        }
-
-
-        int resourcePicCounter3 = 1;
-        private void picThree_Click(object sender, EventArgs e)
-        {
-            if (resourcePicCounter3 == 8)
-            {
-                resourcePicCounter3 = 0;
-            }
-
-            picThree.Image = resourcePic[resourcePicCounter3];
-            resourcePicCounter3++;
-        }
-
-        int resourcePicCounter4 = 1;
-        private void picFour_Click(object sender, EventArgs e)
-        {
-            if (resourcePicCounter4 == 8)
-            {
-                resourcePicCounter4 = 0;
-            }
-
-            picFour.Image = resourcePic[resourcePicCounter4];
-            resourcePicCounter4++;
-        }
-
-        int resourcePicCounter5 = 1;
-        private void picFive_Click(object sender, EventArgs e)
-        {
-            if (resourcePicCounter5 == 8)
-            {
-                resourcePicCounter5 = 0;
-            }
-
-            picFive.Image = resourcePic[resourcePicCounter5];
-            resourcePicCounter5++;
-        }
-
-        int resourcePicCounter6 = 1;
-        private void picSix_Click(object sender, EventArgs e)
-        {
-            if (resourcePicCounter6 == 8)
-            {
-                resourcePicCounter6 = 0;
-            }
-
-            picSix.Image = resourcePic[resourcePicCounter6];
-            resourcePicCounter6++;
-        }
+        
 
 
 
