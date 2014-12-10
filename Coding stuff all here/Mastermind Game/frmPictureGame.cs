@@ -17,6 +17,8 @@ namespace Mastermind_Game
             InitializeComponent();
         }
 
+        int[] picture = new int[6];
+        
 
 
          /* private declares
@@ -300,6 +302,53 @@ namespace Mastermind_Game
             rBtnHard.Enabled = false;
             return;
         }
+
+
+
+        private void CommonPic_Click(object sender, EventArgs e)
+        {
+            PictureBox[] picImg = new PictureBox[6] { picOne, picTwo, picThree, picFour, picFive, picSix };
+            Bitmap[] resourcePic = new Bitmap[8]{Mastermind_Game.Properties.Resources.Picture1,
+                                        Mastermind_Game.Properties.Resources.Picture2,
+                                        Mastermind_Game.Properties.Resources.Picture3,
+                                        Mastermind_Game.Properties.Resources.Picture4,
+                                        Mastermind_Game.Properties.Resources.Picture5,
+                                        Mastermind_Game.Properties.Resources.Picture6,
+                                        Mastermind_Game.Properties.Resources.Picture7,
+                                        Mastermind_Game.Properties.Resources.Picture8};
+            int intCounter = 0,intPicCounter = 0;
+            bool changed = false;
+            while (intCounter < 6)
+            {
+                if (sender == picImg[intCounter])
+                {
+                    while (!changed)
+                    {
+                        if (intPicCounter == 8)
+                        {
+                            intPicCounter = 0;
+                        }
+
+                        else
+                        {
+                            if (picImg[intCounter].Tag == resourcePic[intPicCounter])
+                            {
+                                picImg[intCounter].Image = resourcePic[intPicCounter++];
+                                changed = true;
+                                return;
+                            }
+                            else
+                            {
+                                intPicCounter++;
+                            }
+                        }
+                    }
+                }
+                intCounter++;
+            }
+        }
+
+
         // End of fuction definitions... 
     }
 }
