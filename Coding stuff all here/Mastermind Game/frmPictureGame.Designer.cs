@@ -57,6 +57,7 @@
             this.lblPic4 = new System.Windows.Forms.Label();
             this.lblPic5 = new System.Windows.Forms.Label();
             this.lblPic6 = new System.Windows.Forms.Label();
+            this.lblAnswer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSix)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFive)).BeginInit();
@@ -122,7 +123,7 @@
             this.rBtnHard.AutoSize = true;
             this.rBtnHard.Location = new System.Drawing.Point(621, 24);
             this.rBtnHard.Name = "rBtnHard";
-            this.rBtnHard.Size = new System.Drawing.Size(64, 22);
+            this.rBtnHard.Size = new System.Drawing.Size(81, 29);
             this.rBtnHard.TabIndex = 92;
             this.rBtnHard.TabStop = true;
             this.rBtnHard.Text = "Hard";
@@ -137,7 +138,7 @@
             this.rBtnMedium.AutoSize = true;
             this.rBtnMedium.Location = new System.Drawing.Point(494, 24);
             this.rBtnMedium.Name = "rBtnMedium";
-            this.rBtnMedium.Size = new System.Drawing.Size(89, 22);
+            this.rBtnMedium.Size = new System.Drawing.Size(112, 29);
             this.rBtnMedium.TabIndex = 91;
             this.rBtnMedium.TabStop = true;
             this.rBtnMedium.Text = "Medium";
@@ -148,7 +149,7 @@
             this.rBtnEasy.AutoSize = true;
             this.rBtnEasy.Location = new System.Drawing.Point(399, 24);
             this.rBtnEasy.Name = "rBtnEasy";
-            this.rBtnEasy.Size = new System.Drawing.Size(64, 22);
+            this.rBtnEasy.Size = new System.Drawing.Size(80, 29);
             this.rBtnEasy.TabIndex = 90;
             this.rBtnEasy.TabStop = true;
             this.rBtnEasy.Text = "Easy";
@@ -215,7 +216,7 @@
             this.lblDifficulty.AutoSize = true;
             this.lblDifficulty.Location = new System.Drawing.Point(281, 26);
             this.lblDifficulty.Name = "lblDifficulty";
-            this.lblDifficulty.Size = new System.Drawing.Size(94, 18);
+            this.lblDifficulty.Size = new System.Drawing.Size(118, 25);
             this.lblDifficulty.TabIndex = 84;
             this.lblDifficulty.Text = "Difficulty :";
             // 
@@ -293,63 +294,78 @@
             // 
             // lblPic1
             // 
+            this.lblPic1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblPic1.Location = new System.Drawing.Point(67, 244);
             this.lblPic1.Name = "lblPic1";
-            this.lblPic1.Size = new System.Drawing.Size(160, 25);
+            this.lblPic1.Size = new System.Drawing.Size(160, 35);
             this.lblPic1.TabIndex = 102;
             this.lblPic1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPic1.Visible = false;
             // 
             // lblPic2
             // 
+            this.lblPic2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblPic2.Location = new System.Drawing.Point(235, 244);
             this.lblPic2.Name = "lblPic2";
-            this.lblPic2.Size = new System.Drawing.Size(160, 25);
+            this.lblPic2.Size = new System.Drawing.Size(160, 35);
             this.lblPic2.TabIndex = 103;
             this.lblPic2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPic2.Visible = false;
             // 
             // lblPic3
             // 
+            this.lblPic3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblPic3.Location = new System.Drawing.Point(403, 244);
             this.lblPic3.Name = "lblPic3";
-            this.lblPic3.Size = new System.Drawing.Size(160, 25);
+            this.lblPic3.Size = new System.Drawing.Size(160, 35);
             this.lblPic3.TabIndex = 104;
             this.lblPic3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPic3.Visible = false;
             // 
             // lblPic4
             // 
+            this.lblPic4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblPic4.Location = new System.Drawing.Point(571, 244);
             this.lblPic4.Name = "lblPic4";
-            this.lblPic4.Size = new System.Drawing.Size(160, 25);
+            this.lblPic4.Size = new System.Drawing.Size(160, 35);
             this.lblPic4.TabIndex = 105;
             this.lblPic4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPic4.Visible = false;
             // 
             // lblPic5
             // 
+            this.lblPic5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblPic5.Location = new System.Drawing.Point(739, 244);
             this.lblPic5.Name = "lblPic5";
-            this.lblPic5.Size = new System.Drawing.Size(160, 25);
+            this.lblPic5.Size = new System.Drawing.Size(160, 35);
             this.lblPic5.TabIndex = 106;
             this.lblPic5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPic5.Visible = false;
             // 
             // lblPic6
             // 
+            this.lblPic6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblPic6.Location = new System.Drawing.Point(907, 244);
             this.lblPic6.Name = "lblPic6";
-            this.lblPic6.Size = new System.Drawing.Size(160, 25);
+            this.lblPic6.Size = new System.Drawing.Size(160, 35);
             this.lblPic6.TabIndex = 107;
             this.lblPic6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPic6.Visible = false;
             // 
+            // lblAnswer
+            // 
+            this.lblAnswer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblAnswer.Location = new System.Drawing.Point(460, 660);
+            this.lblAnswer.Name = "lblAnswer";
+            this.lblAnswer.Size = new System.Drawing.Size(214, 35);
+            this.lblAnswer.TabIndex = 108;
+            // 
             // frmPictureGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 745);
+            this.Controls.Add(this.lblAnswer);
             this.Controls.Add(this.lblPic6);
             this.Controls.Add(this.lblPic5);
             this.Controls.Add(this.lblPic4);
@@ -419,5 +435,6 @@
         private System.Windows.Forms.Label lblPic4;
         private System.Windows.Forms.Label lblPic5;
         private System.Windows.Forms.Label lblPic6;
+        private System.Windows.Forms.Label lblAnswer;
     }
 }

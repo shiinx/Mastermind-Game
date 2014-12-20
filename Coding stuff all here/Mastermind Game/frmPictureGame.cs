@@ -27,12 +27,16 @@ namespace Mastermind_Game
          * array for pictures
          * End...
          */
-        string randNumber,timeElapsed;
-        int btnClickedCount = 0 ,  ClickCount;
-        int easyPicsNum = 4, mediumPicsNum = 5, hardPicsNum = 6;
+        const int easyPicsNum = 4, mediumPicsNum = 5, hardPicsNum = 6;
+        const int COUNT = 8;
+        Int32[] easyNum = new Int32[easyPicsNum];
+        Int32[] mediumNum = new Int32[mediumPicsNum];
+        Int32[] hardNum = new Int32[hardPicsNum];
+        string randNumber, timeElapsed, error;
+        int btnClickedCount = 0, ClickCount;
         Stopwatch stpWatch = new Stopwatch();
 
-        Bitmap[] resourcePic = new Bitmap[8]{Properties.Resources.Picture1,
+        Bitmap[] resourcePic = new Bitmap[COUNT]{Properties.Resources.Picture1,
             Properties.Resources.Picture2,
             Properties.Resources.Picture3,
             Properties.Resources.Picture4,
@@ -41,17 +45,16 @@ namespace Mastermind_Game
             Properties.Resources.Picture7,
             Properties.Resources.Picture8};
 
-        const int COUNT = 8;
         String[] picName = new String[COUNT] 
         {
-            "Danbooru",
-            "JellyFish",
-            "Shark",
-            "Hut",
-            "Boat",
-            "Mountain",
-            "Frog",
-            "Duckies"
+            "0. Danbooru",
+            "1. JellyFish",
+            "2. Shark",
+            "3. Hut",
+            "4. Boat",
+            "5. Mountain",
+            "6. Frog",
+            "7. Duckies"
         };
 
 
@@ -59,7 +62,23 @@ namespace Mastermind_Game
         // To show Answer for error checking
         private void btnShowAnswer_Click(object sender, EventArgs e)
         {
-            MessageBox.Show();
+            lblAnswer.Text = "";
+            string difficulty = DifficultyChecker();
+            switch (difficulty)
+            {
+                case "Easy":
+                    lblAnswer.Text = string.Join("", easyNum);
+                    break;
+                case "Medium":
+                    lblAnswer.Text = string.Join("", mediumNum);
+                    break;
+                case "Hard":
+                    lblAnswer.Text = string.Join("", hardNum);
+                    break;
+                default:
+                    lblAnswer.Text = "";
+                    break;
+            }
         }
 
 
@@ -101,19 +120,20 @@ namespace Mastermind_Game
          */
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-            randNumber = randomNumber();
-            if(randNumber == "false")
+            RandomNumber();
+            if(error == "false")
             {
                 MessageBox.Show("Please select a difficulty before pressing New Game.");
                 return;
             }
             DifficultyChecker();
+            VisibilityToggle();
             lstvOutput.Items.Clear();
             btnClickedCount = 0;
             stpWatch.Restart();
             lblTimer.Text = "00:00:00";
             timTimer.Start();
-            newgameActions();
+            NewgameActions();
         }
         // End of New Game Click button event code
 
@@ -124,7 +144,7 @@ namespace Mastermind_Game
         {
             if (MessageBox.Show("Are you sure you want to give up?", "Confirmation", MessageBoxButtons.YesNo)==DialogResult.Yes)
             {
-                giveupORwinActions();
+                GiveupOrWinActions();
                 stpWatch.Stop();
                 timTimer.Stop();
             }
@@ -139,19 +159,41 @@ namespace Mastermind_Game
          */
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            int correctlyPlacedPictures, correctPictures;
+            //int correctlyPlacedPictures, correctPictures;
             btnClickedCount++;
             String winMessage = "Congratulations! You got it right!";
 
             switch (DifficultyChecker())
             {
                 case "Easy":
-
-                    
+                    if (picName[easyNum[0]] == lblPic1.Text &&
+                        picName[easyNum[1]] == lblPic2.Text &&
+                        picName[easyNum[2]] == lblPic3.Text &&
+                        picName[easyNum[3]] == lblPic4.Text)
+                    {
+                        MessageBox.Show(winMessage);
+                    }
                     break;
                 case "Medium":
+                    if (picName[mediumNum[0]] == lblPic1.Text &&
+                        picName[mediumNum[1]] == lblPic2.Text &&
+                        picName[mediumNum[2]] == lblPic3.Text &&
+                        picName[mediumNum[3]] == lblPic4.Text &&
+                        picName[mediumNum[4]] == lblPic5.Text)
+                    {
+                        MessageBox.Show(winMessage);
+                    }
                     break;
                 case "Hard":
+                    if (picName[hardNum[0]] == lblPic1.Text &&
+                        picName[hardNum[1]] == lblPic2.Text &&
+                        picName[hardNum[2]] == lblPic3.Text &&
+                        picName[hardNum[3]] == lblPic4.Text &&
+                        picName[hardNum[4]] == lblPic5.Text &&
+                        picName[hardNum[5]] == lblPic6.Text)
+                    {
+                        MessageBox.Show(winMessage);
+                    }
                     break;
                 default:
                     break;
@@ -278,35 +320,15 @@ namespace Mastermind_Game
         {
             if (rBtnEasy.Checked == true)
             {
-                basicdifficultyActions();
-                picFive.Enabled = false;
-                picFive.Visible = false;
-                picSix.Enabled = false;
-                picSix.Visible = false;
-                lblPic5.Visible = false;
-                lblPic6.Visible = false;
                 return "Easy";
             }
             if (rBtnMedium.Checked == true)
             {
-                basicdifficultyActions();
-                picFive.Enabled = true;
-                picFive.Visible = true;
-                picSix.Enabled = false;
-                picSix.Visible = false;
-                lblPic5.Visible = true;
-                lblPic6.Visible = false;
+                
                 return "Medium";
             }
             if (rBtnHard.Checked == true)
             {
-                basicdifficultyActions();
-                picFive.Enabled = true;
-                picFive.Visible = true;
-                picSix.Enabled = true;
-                picSix.Visible = true;
-                lblPic5.Visible = true;
-                lblPic6.Visible = true;
                 return "Hard";
             }
             else
@@ -316,25 +338,67 @@ namespace Mastermind_Game
 
         }
 
-        
+        private void VisibilityToggle()
+        {
+            switch (DifficultyChecker())
+            {
+                case "Easy":
+                    BasicDifficultyActions();
+                    picFive.Enabled = false;
+                    picFive.Visible = false;
+                    picSix.Enabled = false;
+                    picSix.Visible = false;
+                    lblPic5.Visible = false;
+                    lblPic6.Visible = false;
+                    break;
+
+                case "Medium": 
+                    BasicDifficultyActions();
+                    picFive.Enabled = true;
+                    picFive.Visible = true;
+                    picSix.Enabled = false;
+                    picSix.Visible = false;
+                    lblPic5.Visible = true;
+                    lblPic6.Visible = false;
+                    break;
+
+                case "Hard":
+                    BasicDifficultyActions();
+                    picFive.Enabled = true;
+                    picFive.Visible = true;
+                    picSix.Enabled = true;
+                    picSix.Visible = true;
+                    lblPic5.Visible = true;
+                    lblPic6.Visible = true;
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
 
         // Returns Randomnized Number depending on difficulty
-        private string randomNumber()
+        private void RandomNumber()
         {
-            string randomNumber;
             string Difficulty = DifficultyChecker();
             switch (Difficulty)
             {
-                case "Easy":    randomNumber = strRandNumber(easyPicsNum);
+                case "Easy":
+                    easyNum = RandNumber(easyPicsNum);
                     break;
-                case "Medium":  randomNumber = strRandNumber(mediumPicsNum);
+                case "Medium":
+                    mediumNum = RandNumber(mediumPicsNum);
                     break;
-                case "Hard":    randomNumber = strRandNumber(hardPicsNum);
+                case "Hard":
+                    hardNum = RandNumber(hardPicsNum);
                     break;
-                default:        randomNumber = "false";
+                default:
+                    error = "false";
                     break;
             }
-            return randomNumber;
+            
+            return ;
         }
 
 
@@ -344,7 +408,7 @@ namespace Mastermind_Game
          * 
          * End...
          */
-        private string strRandNumber(int difficultyDigits)
+        private Int32[] RandNumber(int difficultyDigits)
         {
             Random Randomnizer = new Random();
             bool[] NumberIsUsed = new bool[8];
@@ -355,26 +419,25 @@ namespace Mastermind_Game
 
             int digits = 0;
             int numberToPick;
-            String randNumber = "";
+            Int32[] number = new Int32[difficultyDigits];
 
             for (digits = 0; digits < difficultyDigits; digits++)
             {
-                numberToPick = Randomnizer.Next(0, 8);
+                numberToPick = Randomnizer.Next(0,8);
                 while (NumberIsUsed[numberToPick])
                 {
-                    numberToPick = Randomnizer.Next(0, 8);
+                    numberToPick = Randomnizer.Next(0,8);
                 }
                 NumberIsUsed[numberToPick] = true;
-                randNumber += numberToPick.ToString();
+                number[digits] = numberToPick;
             }
-            return randNumber;
+            return number;
         }
 
 
         // Return number of correctly placed digits
-        private int correctNumDigitsPlaced(int numOfDigits)
+        /*private int CorrectNumDigitsPlaced(int numOfDigits)
         {
-            string strInputNumber = "a";
             int CorrectlyPlacedDigits = 0, n;
             for (n = 0; n < numOfDigits; n++)
             {
@@ -386,9 +449,8 @@ namespace Mastermind_Game
 
 
         // Return number of correct digits
-        private int correctNumDigits(int numOfDigits)
+        private int CorrectNumDigits(int numOfDigits)
         {
-            string strInputNumber = "a";
             int i, a, n = 0;
             for (i = 0; i < numOfDigits; i++)
             {
@@ -403,10 +465,11 @@ namespace Mastermind_Game
             }
             return n;
         }
+         */
 
 
         // Returns listviewitems
-        private ListViewItem lviOutput(int ClickCount,string InputNumber,int CorrectDigits,int CorrectlyPlacedDigits)
+        private ListViewItem LviOutput(int ClickCount,string InputNumber,int CorrectDigits,int CorrectlyPlacedDigits)
         {
             ListViewItem lviOutput = new ListViewItem(ClickCount.ToString());
             lviOutput.SubItems.Add(InputNumber);
@@ -415,7 +478,7 @@ namespace Mastermind_Game
             return lviOutput;
         }
 
-        private void giveupORwinActions()
+        private void GiveupOrWinActions()
         {
             btnCheck.Enabled = false;
             btnGiveUp.Enabled = false;
@@ -432,7 +495,7 @@ namespace Mastermind_Game
             return;
         }
 
-        private void newgameActions()
+        private void NewgameActions()
         {
 
             btnCheck.Enabled = true;
@@ -462,7 +525,7 @@ namespace Mastermind_Game
             return;
         }
 
-        private void basicdifficultyActions()
+        private void BasicDifficultyActions()
         {
             picOne.Enabled = true;
             picOne.Visible = true;
