@@ -17,8 +17,7 @@ namespace Mastermind_Game
             InitializeComponent();
         }
         
-        /* 
-         * To show Answer for error checking/debugging
+        /* To show Answer for error checking/debugging
          * To be removed along with buttons when project is done
          */
         private void btnShowAnswer_Click(object sender, EventArgs e)
@@ -29,8 +28,7 @@ namespace Mastermind_Game
 
 
 
-        /* 
-         * To close dialog / return to menu when btnMenu is clicked or redcross is clicked
+        /* To close dialog / return to menu when btnMenu is clicked or redcross is clicked
          */
         private void btnMenu_Click(object sender, EventArgs e)
         {
@@ -85,8 +83,7 @@ namespace Mastermind_Game
         };
 
 
-        /* 
-         * To open instructions
+        /* To open instructions
          */
         private void btnInstructions_Click(object sender, EventArgs e)
         {
@@ -157,7 +154,13 @@ namespace Mastermind_Game
 
 
         /* Button Check Click event
-         * 
+         * Increase btnClickCount by one
+         * Check if picture name from piclabals match with randomly generated number
+         * If match display message that player got it right and show number of tries it took and time taken
+         * Add items to listview, try number, the pictures that player picked , correctly placed number of pictures and number of correct pictures
+         * stop stopwatch and timer
+         * get elapsed time
+         * enable/disable radio buttons/buttons
          * End...
          */
         private void btnCheck_Click(object sender, EventArgs e)
@@ -168,8 +171,8 @@ namespace Mastermind_Game
             string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
             int n,i=0;
 
-            correctlyPlacedPictures = CorrectNumDigitsPlaced(numOfPics);
-            correctPictures = CorrectNumDigits(numOfPics);
+            correctlyPlacedPictures = CorrectNumDPicturesPlaced(numOfPics);
+            correctPictures = CorrectNumPictures(numOfPics);
             lstvOutput.Items.Add(LviOutput(btnClickedCount, correctPictures, correctlyPlacedPictures));
             for (n = 0; n < numOfPics; n++)
             {
@@ -186,15 +189,16 @@ namespace Mastermind_Game
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
                 ClickCount = btnClickedCount;
-                MessageBox.Show(winMessage + "\n Tries Used:" + ClickCount + "\n Time Taken:" + timeElapsed);
+                MessageBox.Show(winMessage + "\n Tries Used: " + ClickCount + "\n Time Taken: " + timeElapsed);
                 GiveupOrWinActions();
             }
             
         }
-        // End of check click event code
 
 
-        
+        /* Timer Event
+         * Display elapsed time on label
+         */
         private void timTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan ts = stpWatch.Elapsed;
@@ -207,7 +211,6 @@ namespace Mastermind_Game
          * Tedious as heck code
          * Try using more array to shorten
          */
-
         int resourcePicCounter1 = 1;
         private void picOne_Click(object sender, EventArgs e)
         {
@@ -291,22 +294,21 @@ namespace Mastermind_Game
 
 
 
-
-        /* Code bellow are all function definition stuff...
-         * DifficultyChecker        -> Check which difficuly is checked
-         * randomNumber             -> Random Number returned depending on difficulty
-         * strRandNumber            -> Random Number with digits randomnized individually to prevent repeating numbers
-         * correctNumDigitsPlaced   -> Return number of digits correctly placed
-         * correctNumDigits         -> Return number of correct digits
-         * lviOutput                -> Returns the items/subitems that is to be put into the listviewbox
-         * newgameActions           -> Resets visibility for certain buttons
-         * giveupORwinActions       -> Resets visibility for certain buttons
-         * 
-         * End...
+        /* Method definition below...
+         * DifficultyChecker        
+         * RandomNumber             
+         * RandNumber            
+         * CorrectNumDPicturesPlaced
+         * CorrectNumPictures   
+         * LviOutput
+         * GiveupORwinActions
+         * NewgameActions    
+         * VisibilityToggle
+         * BasicDifficultyActions
          */
 
-
-        // Returns Difficulty
+        /* Returns String Difficulty
+         */
         private string DifficultyChecker()
         {
             if (rBtnEasy.Checked == true)
@@ -331,47 +333,10 @@ namespace Mastermind_Game
 
         }
 
-        private void VisibilityToggle()
-        {
-            switch (DifficultyChecker())
-            {
-                case "Easy":
-                    BasicDifficultyActions();
-                    picFive.Enabled = false;
-                    picFive.Visible = false;
-                    picSix.Enabled = false;
-                    picSix.Visible = false;
-                    lblPic5.Visible = false;
-                    lblPic6.Visible = false;
-                    break;
 
-                case "Medium": 
-                    BasicDifficultyActions();
-                    picFive.Enabled = true;
-                    picFive.Visible = true;
-                    picSix.Enabled = false;
-                    picSix.Visible = false;
-                    lblPic5.Visible = true;
-                    lblPic6.Visible = false;
-                    break;
-
-                case "Hard":
-                    BasicDifficultyActions();
-                    picFive.Enabled = true;
-                    picFive.Visible = true;
-                    picSix.Enabled = true;
-                    picSix.Visible = true;
-                    lblPic5.Visible = true;
-                    lblPic6.Visible = true;
-                    break;
-
-                default:
-                    break;
-            }
-
-        }
-
-        // Returns Randomnized Number depending on difficulty
+        /* Puts generated number into global variable globalRandomNumber
+         * 
+         */
         private void RandomNumber()
         {
             string Difficulty = DifficultyChecker();
@@ -391,11 +356,10 @@ namespace Mastermind_Game
         }
 
 
+
         /* Returns string of randomned number
          * Fuction required to indiviudally randomnize digits
          * To check and prevent repeat number within the random number string
-         * 
-         * End...
          */
         private Int32[] RandNumber(int difficultyDigits)
         {
@@ -424,8 +388,11 @@ namespace Mastermind_Game
         }
 
 
-        // Return number of correctly placed digits
-        private int CorrectNumDigitsPlaced(int numOfDigits)
+
+        /* Returns number of correctly placed pictures
+         * Uses crap variables, need better names?
+         */
+        private int CorrectNumDPicturesPlaced(int numOfDigits)
         {
             string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
             int CorrectlyPlacedDigits = 0, n;
@@ -438,8 +405,11 @@ namespace Mastermind_Game
         }
 
 
-        // Return number of correct digits
-        private int CorrectNumDigits(int numOfDigits)
+
+        /* Returns number of correct pictures
+         * Uses crap variables too
+         */
+        private int CorrectNumPictures(int numOfDigits)
         {
             string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
             int i, a, correctNumDigits = 0;
@@ -458,8 +428,13 @@ namespace Mastermind_Game
         }
 
 
-        // Returns listviewitems
-        private ListViewItem LviOutput(int ClickCount,int CorrectDigits,int CorrectlyPlacedDigits)
+
+        /* Returns listviewitems
+         * Gets clickcount, number of correct pictures and correctly placed pictures
+         * returns the items to be added to listview 
+         * : Number of tries, Pictures selected , Number of correct pictures, number of correctly placed pictures
+         */
+        private ListViewItem LviOutput(int ClickCount,int CorrectPicture,int CorrectlyPlacedPictures)
         {
             string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
             string inputPictures ="";
@@ -471,11 +446,23 @@ namespace Mastermind_Game
                 inputPictures += String.Join("",lblName[a]);
             }
             lviOutput.SubItems.Add(inputPictures);
-            lviOutput.SubItems.Add(CorrectDigits.ToString());
-            lviOutput.SubItems.Add(CorrectlyPlacedDigits.ToString());
+            lviOutput.SubItems.Add(CorrectPicture.ToString());
+            lviOutput.SubItems.Add(CorrectlyPlacedPictures.ToString());
             return lviOutput;
         }
 
+
+
+        /* Actions made when give up or player win event happens
+         * Turned OFF:
+         * Check Button
+         * Give up Button
+         * 
+         * Turned ON:
+         * New Game button
+         * Difficulty selection radio buttons
+         * Picture boxes 
+         */
         private void GiveupOrWinActions()
         {
             btnCheck.Enabled = false;
@@ -493,6 +480,22 @@ namespace Mastermind_Game
             return;
         }
 
+
+
+        /* Actions made when new game button is pressed
+         * Turned ON:
+         * Check Button
+         * Give Up Button
+         * 
+         * Turned OFF:
+         * New Game button
+         * Difficulty selection radio button
+         * 
+         * Reset:
+         * Picture Boxes reset back to first picture
+         * Label below Picture Box reset back to first name
+         * Counter for Pictures
+         */
         private void NewgameActions()
         {
 
@@ -523,6 +526,60 @@ namespace Mastermind_Game
             return;
         }
 
+
+
+        /* Toggles visibilty/enable ON/OFF depending on difficulty
+         * Hardcoded so if number of pictures are changed this has to be changed manually
+         * For picture boxes and labels
+         */
+        private void VisibilityToggle()
+        {
+            switch (DifficultyChecker())
+            {
+                case "Easy":
+                    BasicDifficultyActions();
+                    picFive.Enabled = false;
+                    picFive.Visible = false;
+                    picSix.Enabled = false;
+                    picSix.Visible = false;
+                    lblPic5.Visible = false;
+                    lblPic6.Visible = false;
+                    break;
+
+                case "Medium":
+                    BasicDifficultyActions();
+                    picFive.Enabled = true;
+                    picFive.Visible = true;
+                    picSix.Enabled = false;
+                    picSix.Visible = false;
+                    lblPic5.Visible = true;
+                    lblPic6.Visible = false;
+                    break;
+
+                case "Hard":
+                    BasicDifficultyActions();
+                    picFive.Enabled = true;
+                    picFive.Visible = true;
+                    picSix.Enabled = true;
+                    picSix.Visible = true;
+                    lblPic5.Visible = true;
+                    lblPic6.Visible = true;
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+
+
+
+        /* Default action made regardless of selected difficulty
+         * Used when New Game button is selected due to VisibilityToggle method
+         * Turn ON + Visibility ON:
+         * 1st - 4th picture boxes
+         * 1st - 4th label
+         */
         private void BasicDifficultyActions()
         {
             picOne.Enabled = true;
@@ -539,12 +596,8 @@ namespace Mastermind_Game
             lblPic4.Visible = true;
             return;
         }
-
-        
-
-
-
         // End of fuction definitions... 
+
     }
 
 }
