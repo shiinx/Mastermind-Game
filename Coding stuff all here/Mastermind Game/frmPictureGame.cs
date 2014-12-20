@@ -17,24 +17,53 @@ namespace Mastermind_Game
             InitializeComponent();
         }
         
-
-
-        /* global declares
-         * string randNumber, time Elapsed
-         * int btnClickCount , ClickCount
-         * int Difficulty settings for Number of pictures
-         * new Stopwatch
-         * array for pictures
-         * End...
+        /* 
+         * To show Answer for error checking/debugging
+         * To be removed along with buttons when project is done
          */
-        const int easyPicsNum = 4, mediumPicsNum = 5, hardPicsNum = 6;
-        const int COUNT = 8;
-        Int32[] globalRandomNumber = new Int32[hardPicsNum];
+        private void btnShowAnswer_Click(object sender, EventArgs e)
+        {
+            lblAnswer.Text = "";
+            lblAnswer.Text = string.Join("", globalRandomNumber);        
+        }
+
+
+
+        /* 
+         * To close dialog / return to menu when btnMenu is clicked or redcross is clicked
+         */
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+        private void frmNumberGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
+
+        /* Global declares
+         * Constant for digit difficulties
+         * Constant for number of pictures to be used
+         * String for timeElapsed and  error
+         * btnCLickedCount to count the number of times check button has been clicked
+         * ClickCount variable for btnCLickedCount to be put into
+         * numOfPics variable to put in number of pictures depending on difficulty
+         */
+        const int EASY = 4, MEDIUM = 5, HARD = 6;
+        const int NUMBEROFPICTURES = 8;
         string timeElapsed, error;
-        int btnClickedCount = 0, ClickCount,numOfPics;
+        int btnClickedCount = 0, ClickCount, numOfPics;
         Stopwatch stpWatch = new Stopwatch();
 
-        Bitmap[] resourcePic = new Bitmap[COUNT]{Properties.Resources.Picture1,
+        /* Global array declares
+         * globalRandomNum array to put in the random number generated
+         * resourcePic array to put in the pictures from resource
+         * picName to use for checking and to be put in label
+         */
+        Int32[] globalRandomNumber = new Int32[HARD];
+
+        Bitmap[] resourcePic = new Bitmap[NUMBEROFPICTURES]{Properties.Resources.Picture1,
             Properties.Resources.Picture2,
             Properties.Resources.Picture3,
             Properties.Resources.Picture4,
@@ -43,7 +72,7 @@ namespace Mastermind_Game
             Properties.Resources.Picture7,
             Properties.Resources.Picture8};
 
-        String[] picName = new String[COUNT] 
+        String[] picName = new String[NUMBEROFPICTURES] 
         {
             "0.Danbooru",
             "1.JellyFish",
@@ -56,60 +85,41 @@ namespace Mastermind_Game
         };
 
 
-
-        // To show Answer for error checking
-        private void btnShowAnswer_Click(object sender, EventArgs e)
-        {
-            lblAnswer.Text = "";
-            lblAnswer.Text = string.Join("", globalRandomNumber);        
-        }
-
-
-
-        // To close dialog / return to menu when btnMenu is clicked or redcross is clicked
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
-        private void frmNumberGame_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
-
-
-
-        // To open instructions  
+        /* 
+         * To open instructions
+         */
         private void btnInstructions_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Click New Game to generate a new number.\nList below shows the number of digits per difficulty."
-                + "\nEasy:\t4 Pictures" 
-                + "\nMedium:\t5 Pictures" 
-                + "\nHard:\t6 Pictures");
+            MessageBox.Show("Click New Game to generate a new set of picture.\nList below shows the number of pictures per difficulty."
+                +   "\nEasy: "      +  EASY     +   " Pictures." 
+                +   "\nMedium: "    +  MEDIUM   +   " Pictures."
+                +   "\nHard: "      +  HARD     +   " Pictures.");
         }
 
 
 
         /* New Game button Click event
-         * To generate new random number depending on difficulty 
-         * If no difficulty selected show error message
-         * To clear items in listboxview
-         * To clear input textbox
-         * To reset time and lbltimer
-         * To reset Click Count number
-         * Enable check and hint button
-         * Disable difficulty buttons to prevent difficulty switching when game starts
-         * 
+         * Check what difficulty is selected
+         * To generate new set of array numbers
+         * If false is returned caused by no difficulty selected display error message
+         * Toggles visibilty of buttons/label/picture depending on what difficulty is selected
+         * Clears list
+         * Resets click count
+         * Resets stopwatch and restarts it
+         * Resets timer label
+         * Starts timer
+         * Enable/disables radio button/buttons.
          * End...
          */
         private void btnNewGame_Click(object sender, EventArgs e)
         {
+            DifficultyChecker();
             RandomNumber();
             if(error == "false")
             {
                 MessageBox.Show("Please select a difficulty before pressing New Game.");
                 return;
             }
-            DifficultyChecker();
             VisibilityToggle();
             lstvOutput.Items.Clear();
             btnClickedCount = 0;
@@ -118,15 +128,25 @@ namespace Mastermind_Game
             timTimer.Start();
             NewgameActions();
         }
-        // End of New Game Click button event code
 
 
 
-        // Give up button to reset button visibility to new game settings
+        /* Give Up button event
+         * Enables/Disables radio buttons/buttons
+         * Displays answer 
+         */
         private void btnGiveUp_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to give up?", "Confirmation", MessageBoxButtons.YesNo)==DialogResult.Yes)
             {
+                string displayAnswer="";
+                displayAnswer += String.Join("", picName[globalRandomNumber[0]]);
+                for(int a= 1 ; a<numOfPics ; a++)
+                {
+                    displayAnswer += ", ";
+                    displayAnswer += String.Join("",picName[globalRandomNumber[a]]);
+                }
+                MessageBox.Show(displayAnswer,"Answer",MessageBoxButtons.OK);
                 GiveupOrWinActions();
                 stpWatch.Stop();
                 timTimer.Stop();
@@ -291,17 +311,17 @@ namespace Mastermind_Game
         {
             if (rBtnEasy.Checked == true)
             {
-                numOfPics = easyPicsNum;
+                numOfPics = EASY;
                 return "Easy";
             }
             if (rBtnMedium.Checked == true)
             {
-                numOfPics = mediumPicsNum;
+                numOfPics = MEDIUM;
                 return "Medium";
             }
             if (rBtnHard.Checked == true)
             {
-                numOfPics = hardPicsNum;
+                numOfPics = HARD;
                 return "Hard";
             }
             else

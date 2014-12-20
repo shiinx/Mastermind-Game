@@ -33,6 +33,7 @@
             this.btnGiveUp = new System.Windows.Forms.Button();
             this.lstvOutput = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.rBtnHard = new System.Windows.Forms.RadioButton();
@@ -58,7 +59,6 @@
             this.lblPic5 = new System.Windows.Forms.Label();
             this.lblPic6 = new System.Windows.Forms.Label();
             this.lblAnswer = new System.Windows.Forms.Label();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.picOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSix)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFive)).BeginInit();
@@ -108,6 +108,12 @@
             // 
             this.columnHeader1.Text = "No.";
             // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Pictures";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 850;
+            // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "No. of Correct Pictures";
@@ -133,7 +139,7 @@
             // 
             // timTimer
             // 
-            this.timTimer.Interval = 10000;
+            this.timTimer.Interval = 1000;
             this.timTimer.Tick += new System.EventHandler(this.timTimer_Tick);
             // 
             // rBtnMedium
@@ -362,12 +368,6 @@
             this.lblAnswer.Name = "lblAnswer";
             this.lblAnswer.Size = new System.Drawing.Size(214, 35);
             this.lblAnswer.TabIndex = 108;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Pictures";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 850;
             // 
             // frmPictureGame
             // 
