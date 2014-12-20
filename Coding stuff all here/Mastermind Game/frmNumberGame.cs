@@ -18,7 +18,7 @@ namespace Mastermind_Game
         }
 
 
-        /* private declares
+        /* global declares
          * string randNumber, time Elapsed
          * int btnClickCount , ClickCount
          * int Difficulty settings for Number of digits

@@ -19,22 +19,47 @@ namespace Mastermind_Game
         
 
 
-         /* private declares
+        /* global declares
          * string randNumber, time Elapsed
          * int btnClickCount , ClickCount
-         * int Difficulty settings for Number of digits
+         * int Difficulty settings for Number of pictures
          * new Stopwatch
+         * array for pictures
          * End...
          */
         string randNumber,timeElapsed;
         int btnClickedCount = 0 ,  ClickCount;
+        int easyPicsNum = 4, mediumPicsNum = 5, hardPicsNum = 6;
         Stopwatch stpWatch = new Stopwatch();
+
+        Bitmap[] resourcePic = new Bitmap[8]{Properties.Resources.Picture1,
+            Properties.Resources.Picture2,
+            Properties.Resources.Picture3,
+            Properties.Resources.Picture4,
+            Properties.Resources.Picture5,
+            Properties.Resources.Picture6,
+            Properties.Resources.Picture7,
+            Properties.Resources.Picture8};
+
+        const int COUNT = 8;
+        String[] picName = new String[COUNT] 
+        {
+            "Danbooru",
+            "JellyFish",
+            "Shark",
+            "Hut",
+            "Boat",
+            "Mountain",
+            "Frog",
+            "Duckies"
+        };
+
 
 
         // To show Answer for error checking
         private void btnShowAnswer_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(randNumber);
+            MessageBox.Show();
         }
 
 
@@ -109,21 +134,29 @@ namespace Mastermind_Game
 
 
         /* Button Check Click event
-         * try catch to make sure only numbers have been input into the textbox
-         * switch case for different difficulty settings
-         * clear textbox after button click
-         * +1 to click count
-         * switch focus to textbox when checkbutton is pressed to ensure continuos input
-         * 
-         * if Win
-         * Stop time
-         * Display win message
          * 
          * End...
          */
         private void btnCheck_Click(object sender, EventArgs e)
         {
+            int correctlyPlacedPictures, correctPictures;
+            btnClickedCount++;
+            String winMessage = "Congratulations! You got it right!";
 
+            switch (DifficultyChecker())
+            {
+                case "Easy":
+
+                    
+                    break;
+                case "Medium":
+                    break;
+                case "Hard":
+                    break;
+                default:
+                    break;
+
+            }
         }
         // End of check click event code
 
@@ -141,15 +174,6 @@ namespace Mastermind_Game
          * Tedious as heck code
          * Try using more array to shorten
          */
-        Bitmap[] resourcePic = new Bitmap[8]{Properties.Resources.Picture1,
-        Properties.Resources.Picture2,
-        Properties.Resources.Picture3,
-        Properties.Resources.Picture4,
-        Properties.Resources.Picture5,
-        Properties.Resources.Picture6,
-        Properties.Resources.Picture7,
-        Properties.Resources.Picture8};
-
 
         int resourcePicCounter1 = 1;
         private void picOne_Click(object sender, EventArgs e)
@@ -160,6 +184,7 @@ namespace Mastermind_Game
             }
 
             picOne.Image = resourcePic[resourcePicCounter1];
+            lblPic1.Text = picName[resourcePicCounter1];
             resourcePicCounter1++;
         }
 
@@ -172,6 +197,7 @@ namespace Mastermind_Game
             }
 
             picTwo.Image = resourcePic[resourcePicCounter2];
+            lblPic2.Text = picName[resourcePicCounter2];
             resourcePicCounter2++;
         }
 
@@ -185,6 +211,7 @@ namespace Mastermind_Game
             }
 
             picThree.Image = resourcePic[resourcePicCounter3];
+            lblPic3.Text = picName[resourcePicCounter3];
             resourcePicCounter3++;
         }
 
@@ -197,6 +224,7 @@ namespace Mastermind_Game
             }
 
             picFour.Image = resourcePic[resourcePicCounter4];
+            lblPic4.Text = picName[resourcePicCounter4];
             resourcePicCounter4++;
         }
 
@@ -209,6 +237,7 @@ namespace Mastermind_Game
             }
 
             picFive.Image = resourcePic[resourcePicCounter5];
+            lblPic5.Text = picName[resourcePicCounter5];
             resourcePicCounter5++;
         }
 
@@ -221,6 +250,7 @@ namespace Mastermind_Game
             }
 
             picSix.Image = resourcePic[resourcePicCounter6];
+            lblPic6.Text = picName[resourcePicCounter6];
             resourcePicCounter6++;
         }
 
@@ -253,6 +283,8 @@ namespace Mastermind_Game
                 picFive.Visible = false;
                 picSix.Enabled = false;
                 picSix.Visible = false;
+                lblPic5.Visible = false;
+                lblPic6.Visible = false;
                 return "Easy";
             }
             if (rBtnMedium.Checked == true)
@@ -262,6 +294,8 @@ namespace Mastermind_Game
                 picFive.Visible = true;
                 picSix.Enabled = false;
                 picSix.Visible = false;
+                lblPic5.Visible = true;
+                lblPic6.Visible = false;
                 return "Medium";
             }
             if (rBtnHard.Checked == true)
@@ -271,6 +305,8 @@ namespace Mastermind_Game
                 picFive.Visible = true;
                 picSix.Enabled = true;
                 picSix.Visible = true;
+                lblPic5.Visible = true;
+                lblPic6.Visible = true;
                 return "Hard";
             }
             else
@@ -289,11 +325,11 @@ namespace Mastermind_Game
             string Difficulty = DifficultyChecker();
             switch (Difficulty)
             {
-                case "Easy":    randomNumber = strRandNumber(4);
+                case "Easy":    randomNumber = strRandNumber(easyPicsNum);
                     break;
-                case "Medium":  randomNumber = strRandNumber(5);
+                case "Medium":  randomNumber = strRandNumber(mediumPicsNum);
                     break;
-                case "Hard":    randomNumber = strRandNumber(6);
+                case "Hard":    randomNumber = strRandNumber(hardPicsNum);
                     break;
                 default:        randomNumber = "false";
                     break;
@@ -311,24 +347,22 @@ namespace Mastermind_Game
         private string strRandNumber(int difficultyDigits)
         {
             Random Randomnizer = new Random();
-            bool[] NumberIsUsed = new bool[10];
-            for (int i = 0; i < 10; i++)
+            bool[] NumberIsUsed = new bool[8];
+            for (int i = 0; i < 8; i++)
             {
                 NumberIsUsed[i] = false;
             }
 
-            //randomnize first digit in string outside to prevent first digit from being 0
             int digits = 0;
-            int numberToPick = Randomnizer.Next(1, 10);
-            String randNumber = numberToPick.ToString();
-            NumberIsUsed[numberToPick] = true;
+            int numberToPick;
+            String randNumber = "";
 
-            for (digits = 1; digits < difficultyDigits; digits++)
+            for (digits = 0; digits < difficultyDigits; digits++)
             {
-                numberToPick = Randomnizer.Next(0, 10);
+                numberToPick = Randomnizer.Next(0, 8);
                 while (NumberIsUsed[numberToPick])
                 {
-                    numberToPick = Randomnizer.Next(0, 10);
+                    numberToPick = Randomnizer.Next(0, 8);
                 }
                 NumberIsUsed[numberToPick] = true;
                 randNumber += numberToPick.ToString();
@@ -413,6 +447,12 @@ namespace Mastermind_Game
             picFour.Image = Properties.Resources.Picture1;
             picFive.Image = Properties.Resources.Picture1;
             picSix.Image = Properties.Resources.Picture1;
+            lblPic1.Text = picName[0];
+            lblPic2.Text = picName[0];
+            lblPic3.Text = picName[0];
+            lblPic4.Text = picName[0];
+            lblPic5.Text = picName[0];
+            lblPic6.Text = picName[0];
             resourcePicCounter1 = 1;
             resourcePicCounter2 = 1;
             resourcePicCounter3 = 1;
@@ -432,6 +472,10 @@ namespace Mastermind_Game
             picThree.Visible = true;
             picFour.Enabled = true;
             picFour.Visible = true;
+            lblPic1.Visible = true;
+            lblPic2.Visible = true;
+            lblPic3.Visible = true;
+            lblPic4.Visible = true;
             return;
         }
 

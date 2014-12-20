@@ -16,3 +16,4 @@ C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\Mastermind 
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\Mastermind Game\bin\Debug\Mastermind Game.exe
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\Mastermind Game\bin\Debug\Mastermind Game.pdb
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\Mastermind Game\obj\x86\Debug\Mastermind Game.pdb
+C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\Mastermind Game\obj\x86\Debug\Mastermind Game.csprojResolveAssemblyReference.cache
