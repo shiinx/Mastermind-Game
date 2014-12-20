@@ -18,17 +18,16 @@ namespace Mastermind_Game
         }
 
 
+        const int EASY = 4, MEDIUM = 5, HARD = 6, INSANE = 8;
         /* global declares
          * string randNumber, time Elapsed
          * int btnClickCount , ClickCount
-         * int Difficulty settings for Number of digits
          * new Stopwatch
          * End...
          */
         string randNumber, timeElapsed;
-        int btnClickedCount = 0, ClickCount;
+        int btnClickedCount = 0, ClickCount, numOfDigits;
         // Change number of digits per difficulty by changing numbers
-        int EasyDigits = 4, MediumDigits = 5, HardDigits = 6, InsaneDigits = 8;
         Stopwatch stpWatch = new Stopwatch();
 
 
@@ -57,10 +56,10 @@ namespace Mastermind_Game
         private void btnInstructions_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Click New Game to generate a new number.\nList below shows the number of digits per difficulty."
-                + "\nEasy:\t" + EasyDigits + " digits\t"
-                + "\nMedium:\t" + MediumDigits + " digits\t"
-                + "\nHard:\t" + HardDigits + " digits\t"
-                + "\nInsane:\t" + InsaneDigits + " digits\t");
+                + "\nEasy:\t" + EASY + " digits\t"
+                + "\nMedium:\t" + MEDIUM + " digits\t"
+                + "\nHard:\t" + HARD + " digits\t"
+                + "\nInsane:\t" + INSANE + " digits\t");
         }
 
 
@@ -79,7 +78,7 @@ namespace Mastermind_Game
          */
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-            randNumber = randomNumber();
+            randNumber = RandomNumber();
             if (randNumber == "false")
             {
                 MessageBox.Show("Please select a difficulty before pressing New Game.");
@@ -91,7 +90,7 @@ namespace Mastermind_Game
             stpWatch.Restart();
             lblTimer.Text = "00:00:00";
             timTimer.Start();
-            newgameActions();
+            NewgameActions();
         }
         // End of New Game Click button event code
 
@@ -102,7 +101,7 @@ namespace Mastermind_Game
         {
             if (MessageBox.Show("Are you sure you want to give up?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                giveupORwinActions();
+                GiveupORwinActions();
                 stpWatch.Stop();
                 timTimer.Stop();
             }
@@ -127,10 +126,10 @@ namespace Mastermind_Game
                 case "Medium": hint = "          First digit: \n\t" + randNumber[0];
                     break;
 
-                case "Hard": hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[HardDigits - 1];
+                case "Hard": hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[HARD - 1];
                     break;
 
-                case "Insane": hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[InsaneDigits - 1];
+                case "Insane": hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[INSANE - 1];
                     break;
 
                 default: hint = "You can't be here!...\n Whelp, must be the stupid coders mistake...";
@@ -194,65 +193,54 @@ namespace Mastermind_Game
             switch (DifficultyChecker())
             {
                 case "Easy":
-                    if (strInputNumber.Length != EasyDigits)
+                    if (strInputNumber.Length != EASY)
                     {
-                        MessageBox.Show("Please Enter " + EasyDigits + " Digits.");
+                        MessageBox.Show("Please Enter " + EASY + " Digits.");
                         btnClickedCount--;
                         txtDigitInput.Focus();
                         return;
                     }
-
-                    CorrectlyPlacedDigits = correctNumDigitsPlaced(EasyDigits);
-                    CorrectDigits = correctNumDigits(EasyDigits);
-                    lstvOutput.Items.Add(lviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
                     break;
 
                 case "Medium":
-                    if (strInputNumber.Length != MediumDigits)
+                    if (strInputNumber.Length != MEDIUM)
                     {
-                        MessageBox.Show("Please Enter " + MediumDigits + " Digits.");
+                        MessageBox.Show("Please Enter " + MEDIUM + " Digits.");
                         btnClickedCount--;
                         txtDigitInput.Focus();
                         return;
                     }
-
-                    CorrectlyPlacedDigits = correctNumDigitsPlaced(MediumDigits);
-                    CorrectDigits = correctNumDigits(MediumDigits);
-                    lstvOutput.Items.Add(lviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
                     break;
 
                 case "Hard":
-                    if (strInputNumber.Length != HardDigits)
+                    if (strInputNumber.Length != HARD)
                     {
-                        MessageBox.Show("Please Enter " + HardDigits + " Digits.");
+                        MessageBox.Show("Please Enter " + HARD + " Digits.");
                         btnClickedCount--;
                         txtDigitInput.Focus();
                         return;
                     }
-
-                    CorrectlyPlacedDigits = correctNumDigitsPlaced(HardDigits);
-                    CorrectDigits = correctNumDigits(HardDigits);
-                    lstvOutput.Items.Add(lviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
                     break;
 
                 case "Insane":
-                    if (strInputNumber.Length != InsaneDigits)
+                    if (strInputNumber.Length != INSANE)
                     {
-                        MessageBox.Show("Please Enter " + InsaneDigits + " Digits.");
+                        MessageBox.Show("Please Enter " + INSANE + " Digits.");
                         btnClickedCount--;
                         txtDigitInput.Focus();
                         return;
                     }
-
-                    CorrectlyPlacedDigits = correctNumDigitsPlaced(InsaneDigits);
-                    CorrectDigits = correctNumDigits(InsaneDigits);
-                    lstvOutput.Items.Add(lviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
                     break;
+
                 default:
-                    MessageBox.Show("You shouldn't be able to see this!...\nMust be the some stupid logic error again...");
+                    MessageBox.Show("You shouldn't be able to see this!...\nMust be the some stupid logic error again...")
                     break;
 
             }
+
+            CorrectlyPlacedDigits = CorrectNumDigitsPlaced(numOfDigits);
+            CorrectDigits = CorrectNumDigits(numOfDigits);
+            lstvOutput.Items.Add(LviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
 
             if (strInputNumber == randNumber)
             {
@@ -261,8 +249,8 @@ namespace Mastermind_Game
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
                 ClickCount = btnClickedCount;
-                MessageBox.Show(winMessage + "\n Tries Used:" + ClickCount + "\n Time Taken:" + timeElapsed);
-                giveupORwinActions();
+                MessageBox.Show(winMessage + "\n Tries Used: " + ClickCount + "\n Time Taken: " + timeElapsed);
+                GiveupORwinActions();
 
             }
 
@@ -305,18 +293,22 @@ namespace Mastermind_Game
         {
             if (rBtnEasy.Checked == true)
             {
+                numOfDigits = EASY;
                 return "Easy";
             }
             if (rBtnMedium.Checked == true)
             {
+                numOfDigits = MEDIUM;
                 return "Medium";
             }
             if (rBtnHard.Checked == true)
             {
+                numOfDigits = HARD;
                 return "Hard";
             }
             if (rBtnInsane.Checked == true)
             {
+                numOfDigits = INSANE;
                 return "Insane";
             }
             else
@@ -328,19 +320,17 @@ namespace Mastermind_Game
 
 
         // Returns Randomnized Number depending on difficulty
-        private string randomNumber()
+        private string RandomNumber()
         {
             string randomNumber;
             string Difficulty = DifficultyChecker();
             switch (Difficulty)
             {
-                case "Easy": randomNumber = strRandNumber(EasyDigits);
-                    break;
-                case "Medium": randomNumber = strRandNumber(MediumDigits);
-                    break;
-                case "Hard": randomNumber = strRandNumber(HardDigits);
-                    break;
-                case "Insane": randomNumber = strRandNumber(InsaneDigits);
+                case "Easy":
+                case "Medium":
+                case "Hard": 
+                case "Insane": 
+                    randomNumber = RandNumber(numOfDigits);
                     break;
                 default: randomNumber = "false";
                     break;
@@ -355,7 +345,7 @@ namespace Mastermind_Game
          * 
          * End...
          */
-        private string strRandNumber(int difficultyDigits)
+        private string RandNumber(int difficultyDigits)
         {
             Random Randomnizer = new Random();
             bool[] NumberIsUsed = new bool[10];
@@ -385,7 +375,7 @@ namespace Mastermind_Game
 
 
         // Return number of correctly placed digits
-        private int correctNumDigitsPlaced(int numOfDigits)
+        private int CorrectNumDigitsPlaced(int numOfDigits)
         {
             string strInputNumber = txtDigitInput.Text;
             int CorrectlyPlacedDigits = 0, n;
@@ -399,7 +389,7 @@ namespace Mastermind_Game
 
 
         // Return number of correct digits
-        private int correctNumDigits(int numOfDigits)
+        private int CorrectNumDigits(int numOfDigits)
         {
             string strInputNumber = txtDigitInput.Text;
             int i, a, n = 0;
@@ -419,7 +409,7 @@ namespace Mastermind_Game
 
 
         // Returns listviewitems
-        private ListViewItem lviOutput(int ClickCount, string InputNumber, int CorrectDigits, int CorrectlyPlacedDigits)
+        private ListViewItem LviOutput(int ClickCount, string InputNumber, int CorrectDigits, int CorrectlyPlacedDigits)
         {
             ListViewItem lviOutput = new ListViewItem(ClickCount.ToString());
             lviOutput.SubItems.Add(InputNumber);
@@ -428,7 +418,7 @@ namespace Mastermind_Game
             return lviOutput;
         }
 
-        private void giveupORwinActions()
+        private void GiveupORwinActions()
         {
             btnCheck.Enabled = false;
             btnHint.Enabled = false;
@@ -441,7 +431,7 @@ namespace Mastermind_Game
             return;
         }
 
-        private void newgameActions()
+        private void NewgameActions ()
         {
 
             btnCheck.Enabled = true;

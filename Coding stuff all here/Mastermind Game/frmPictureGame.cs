@@ -40,6 +40,7 @@ namespace Mastermind_Game
         }
 
 
+
         /* Global declares
          * Constant for digit difficulties
          * Constant for number of pictures to be used
@@ -53,6 +54,8 @@ namespace Mastermind_Game
         string timeElapsed, error;
         int btnClickedCount = 0, ClickCount, numOfPics;
         Stopwatch stpWatch = new Stopwatch();
+
+
 
         /* Global array declares
          * globalRandomNum array to put in the random number generated
@@ -81,6 +84,7 @@ namespace Mastermind_Game
             "6.Frog",
             "7.Duckies"
         };
+
 
 
         /* To open instructions
@@ -152,7 +156,6 @@ namespace Mastermind_Game
 
 
 
-
         /* Button Check Click event
          * Increase btnClickCount by one
          * Check if picture name from piclabals match with randomly generated number
@@ -196,6 +199,7 @@ namespace Mastermind_Game
         }
 
 
+
         /* Timer Event
          * Display elapsed time on label
          */
@@ -205,6 +209,7 @@ namespace Mastermind_Game
             lblTimer.Text = String.Format(String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds));
         }
         
+
 
         /* My picture change on click code
          * I'll shorten it when I have the dam time or know how
@@ -236,7 +241,6 @@ namespace Mastermind_Game
             lblPic2.Text = picName[resourcePicCounter2];
             resourcePicCounter2++;
         }
-
 
         int resourcePicCounter3 = 1;
         private void picThree_Click(object sender, EventArgs e)
@@ -596,7 +600,8 @@ namespace Mastermind_Game
             lblPic4.Visible = true;
             return;
         }
-        // End of fuction definitions... 
+
+        // End of method definitions... 
 
     }
 
