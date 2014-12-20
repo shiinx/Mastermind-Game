@@ -29,11 +29,9 @@ namespace Mastermind_Game
          */
         const int easyPicsNum = 4, mediumPicsNum = 5, hardPicsNum = 6;
         const int COUNT = 8;
-        Int32[] easyNum = new Int32[easyPicsNum];
-        Int32[] mediumNum = new Int32[mediumPicsNum];
-        Int32[] hardNum = new Int32[hardPicsNum];
-        string randNumber, timeElapsed, error;
-        int btnClickedCount = 0, ClickCount;
+        Int32[] globalRandomNumber = new Int32[hardPicsNum];
+        string timeElapsed, error;
+        int btnClickedCount = 0, ClickCount,numOfPics;
         Stopwatch stpWatch = new Stopwatch();
 
         Bitmap[] resourcePic = new Bitmap[COUNT]{Properties.Resources.Picture1,
@@ -47,14 +45,14 @@ namespace Mastermind_Game
 
         String[] picName = new String[COUNT] 
         {
-            "0. Danbooru",
-            "1. JellyFish",
-            "2. Shark",
-            "3. Hut",
-            "4. Boat",
-            "5. Mountain",
-            "6. Frog",
-            "7. Duckies"
+            "0.Danbooru",
+            "1.JellyFish",
+            "2.Shark",
+            "3.Hut",
+            "4.Boat",
+            "5.Mountain",
+            "6.Frog",
+            "7.Duckies"
         };
 
 
@@ -63,22 +61,7 @@ namespace Mastermind_Game
         private void btnShowAnswer_Click(object sender, EventArgs e)
         {
             lblAnswer.Text = "";
-            string difficulty = DifficultyChecker();
-            switch (difficulty)
-            {
-                case "Easy":
-                    lblAnswer.Text = string.Join("", easyNum);
-                    break;
-                case "Medium":
-                    lblAnswer.Text = string.Join("", mediumNum);
-                    break;
-                case "Hard":
-                    lblAnswer.Text = string.Join("", hardNum);
-                    break;
-                default:
-                    lblAnswer.Text = "";
-                    break;
-            }
+            lblAnswer.Text = string.Join("", globalRandomNumber);        
         }
 
 
@@ -159,57 +142,45 @@ namespace Mastermind_Game
          */
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            //int correctlyPlacedPictures, correctPictures;
             btnClickedCount++;
+            int correctlyPlacedPictures, correctPictures;
             String winMessage = "Congratulations! You got it right!";
+            string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
+            int n,i=0;
 
-            switch (DifficultyChecker())
+            correctlyPlacedPictures = CorrectNumDigitsPlaced(numOfPics);
+            correctPictures = CorrectNumDigits(numOfPics);
+            lstvOutput.Items.Add(LviOutput(btnClickedCount, correctPictures, correctlyPlacedPictures));
+            for (n = 0; n < numOfPics; n++)
             {
-                case "Easy":
-                    if (picName[easyNum[0]] == lblPic1.Text &&
-                        picName[easyNum[1]] == lblPic2.Text &&
-                        picName[easyNum[2]] == lblPic3.Text &&
-                        picName[easyNum[3]] == lblPic4.Text)
-                    {
-                        MessageBox.Show(winMessage);
-                    }
-                    break;
-                case "Medium":
-                    if (picName[mediumNum[0]] == lblPic1.Text &&
-                        picName[mediumNum[1]] == lblPic2.Text &&
-                        picName[mediumNum[2]] == lblPic3.Text &&
-                        picName[mediumNum[3]] == lblPic4.Text &&
-                        picName[mediumNum[4]] == lblPic5.Text)
-                    {
-                        MessageBox.Show(winMessage);
-                    }
-                    break;
-                case "Hard":
-                    if (picName[hardNum[0]] == lblPic1.Text &&
-                        picName[hardNum[1]] == lblPic2.Text &&
-                        picName[hardNum[2]] == lblPic3.Text &&
-                        picName[hardNum[3]] == lblPic4.Text &&
-                        picName[hardNum[4]] == lblPic5.Text &&
-                        picName[hardNum[5]] == lblPic6.Text)
-                    {
-                        MessageBox.Show(winMessage);
-                    }
-                    break;
-                default:
-                    break;
-
+                if (picName[globalRandomNumber[n]] == lblName[n])
+                {
+                    i++;
+                }
             }
+
+            if (i == n)
+            {
+                stpWatch.Stop();
+                timTimer.Stop();
+                TimeSpan ts = stpWatch.Elapsed;
+                timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
+                ClickCount = btnClickedCount;
+                MessageBox.Show(winMessage + "\n Tries Used:" + ClickCount + "\n Time Taken:" + timeElapsed);
+                GiveupOrWinActions();
+            }
+            
         }
         // End of check click event code
 
 
-        /*
+        
         private void timTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan ts = stpWatch.Elapsed;
             lblTimer.Text = String.Format(String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds));
         }
-        */
+        
 
         /* My picture change on click code
          * I'll shorten it when I have the dam time or know how
@@ -320,15 +291,17 @@ namespace Mastermind_Game
         {
             if (rBtnEasy.Checked == true)
             {
+                numOfPics = easyPicsNum;
                 return "Easy";
             }
             if (rBtnMedium.Checked == true)
             {
-                
+                numOfPics = mediumPicsNum;
                 return "Medium";
             }
             if (rBtnHard.Checked == true)
             {
+                numOfPics = hardPicsNum;
                 return "Hard";
             }
             else
@@ -385,13 +358,9 @@ namespace Mastermind_Game
             switch (Difficulty)
             {
                 case "Easy":
-                    easyNum = RandNumber(easyPicsNum);
-                    break;
                 case "Medium":
-                    mediumNum = RandNumber(mediumPicsNum);
-                    break;
                 case "Hard":
-                    hardNum = RandNumber(hardPicsNum);
+                    globalRandomNumber = RandNumber(numOfPics);
                     break;
                 default:
                     error = "false";
@@ -436,12 +405,13 @@ namespace Mastermind_Game
 
 
         // Return number of correctly placed digits
-        /*private int CorrectNumDigitsPlaced(int numOfDigits)
+        private int CorrectNumDigitsPlaced(int numOfDigits)
         {
+            string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
             int CorrectlyPlacedDigits = 0, n;
             for (n = 0; n < numOfDigits; n++)
             {
-                if (strInputNumber[n] == randNumber[n])
+                if (lblName[n] == picName[globalRandomNumber[n]])
                     CorrectlyPlacedDigits++;
             }
             return CorrectlyPlacedDigits;
@@ -451,28 +421,36 @@ namespace Mastermind_Game
         // Return number of correct digits
         private int CorrectNumDigits(int numOfDigits)
         {
-            int i, a, n = 0;
+            string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
+            int i, a, correctNumDigits = 0;
             for (i = 0; i < numOfDigits; i++)
             {
                 for (a = 0; a < numOfDigits; a++)
                 {
-                    if (strInputNumber[a] == randNumber[i])
+                    if (lblName[a] == picName[globalRandomNumber[i]])
                     {
-                        n++;
+                        correctNumDigits++;
                         break;
                     }
                 }
             }
-            return n;
+            return correctNumDigits;
         }
-         */
 
 
         // Returns listviewitems
-        private ListViewItem LviOutput(int ClickCount,string InputNumber,int CorrectDigits,int CorrectlyPlacedDigits)
+        private ListViewItem LviOutput(int ClickCount,int CorrectDigits,int CorrectlyPlacedDigits)
         {
+            string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
+            string inputPictures ="";
             ListViewItem lviOutput = new ListViewItem(ClickCount.ToString());
-            lviOutput.SubItems.Add(InputNumber);
+            inputPictures += String.Join("", lblName[0]);
+            for (int a = 1; a < numOfPics; a++)
+            {
+                inputPictures += ", ";
+                inputPictures += String.Join("",lblName[a]);
+            }
+            lviOutput.SubItems.Add(inputPictures);
             lviOutput.SubItems.Add(CorrectDigits.ToString());
             lviOutput.SubItems.Add(CorrectlyPlacedDigits.ToString());
             return lviOutput;

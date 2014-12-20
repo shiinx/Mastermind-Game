@@ -33,8 +33,8 @@
             this.btnGiveUp = new System.Windows.Forms.Button();
             this.lstvOutput = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.rBtnHard = new System.Windows.Forms.RadioButton();
             this.timTimer = new System.Windows.Forms.Timer(this.components);
             this.rBtnMedium = new System.Windows.Forms.RadioButton();
@@ -58,6 +58,7 @@
             this.lblPic5 = new System.Windows.Forms.Label();
             this.lblPic6 = new System.Windows.Forms.Label();
             this.lblAnswer = new System.Windows.Forms.Label();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.picOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSix)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFive)).BeginInit();
@@ -69,7 +70,7 @@
             // lblTimer
             // 
             this.lblTimer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTimer.Location = new System.Drawing.Point(929, 313);
+            this.lblTimer.Location = new System.Drawing.Point(1153, 313);
             this.lblTimer.Name = "lblTimer";
             this.lblTimer.Size = new System.Drawing.Size(138, 35);
             this.lblTimer.TabIndex = 95;
@@ -80,7 +81,7 @@
             // 
             this.btnGiveUp.AutoSize = true;
             this.btnGiveUp.Enabled = false;
-            this.btnGiveUp.Location = new System.Drawing.Point(67, 310);
+            this.btnGiveUp.Location = new System.Drawing.Point(291, 310);
             this.btnGiveUp.Name = "btnGiveUp";
             this.btnGiveUp.Size = new System.Drawing.Size(113, 35);
             this.btnGiveUp.TabIndex = 94;
@@ -93,11 +94,12 @@
             this.lstvOutput.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4});
             this.lstvOutput.GridLines = true;
-            this.lstvOutput.Location = new System.Drawing.Point(67, 351);
+            this.lstvOutput.Location = new System.Drawing.Point(41, 351);
             this.lstvOutput.Name = "lstvOutput";
-            this.lstvOutput.Size = new System.Drawing.Size(1000, 300);
+            this.lstvOutput.Size = new System.Drawing.Size(1500, 300);
             this.lstvOutput.TabIndex = 93;
             this.lstvOutput.UseCompatibleStateImageBehavior = false;
             this.lstvOutput.View = System.Windows.Forms.View.Details;
@@ -106,22 +108,22 @@
             // 
             this.columnHeader1.Text = "No.";
             // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "No. of Correct Pictures";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 460;
-            // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "No. of Correctly Placed Pictures";
+            this.columnHeader3.Text = "No. of Correct Pictures";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 460;
+            this.columnHeader3.Width = 245;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "No. of Correctly Placed Pictures";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Width = 330;
             // 
             // rBtnHard
             // 
             this.rBtnHard.AutoSize = true;
-            this.rBtnHard.Location = new System.Drawing.Point(621, 24);
+            this.rBtnHard.Location = new System.Drawing.Point(845, 24);
             this.rBtnHard.Name = "rBtnHard";
             this.rBtnHard.Size = new System.Drawing.Size(81, 29);
             this.rBtnHard.TabIndex = 92;
@@ -132,11 +134,12 @@
             // timTimer
             // 
             this.timTimer.Interval = 10000;
+            this.timTimer.Tick += new System.EventHandler(this.timTimer_Tick);
             // 
             // rBtnMedium
             // 
             this.rBtnMedium.AutoSize = true;
-            this.rBtnMedium.Location = new System.Drawing.Point(494, 24);
+            this.rBtnMedium.Location = new System.Drawing.Point(718, 24);
             this.rBtnMedium.Name = "rBtnMedium";
             this.rBtnMedium.Size = new System.Drawing.Size(112, 29);
             this.rBtnMedium.TabIndex = 91;
@@ -147,7 +150,7 @@
             // rBtnEasy
             // 
             this.rBtnEasy.AutoSize = true;
-            this.rBtnEasy.Location = new System.Drawing.Point(399, 24);
+            this.rBtnEasy.Location = new System.Drawing.Point(623, 24);
             this.rBtnEasy.Name = "rBtnEasy";
             this.rBtnEasy.Size = new System.Drawing.Size(80, 29);
             this.rBtnEasy.TabIndex = 90;
@@ -158,7 +161,7 @@
             // btnShowAnswer
             // 
             this.btnShowAnswer.AutoSize = true;
-            this.btnShowAnswer.Location = new System.Drawing.Point(488, 698);
+            this.btnShowAnswer.Location = new System.Drawing.Point(712, 698);
             this.btnShowAnswer.Name = "btnShowAnswer";
             this.btnShowAnswer.Size = new System.Drawing.Size(158, 35);
             this.btnShowAnswer.TabIndex = 89;
@@ -169,7 +172,7 @@
             // btnNewGame
             // 
             this.btnNewGame.AutoSize = true;
-            this.btnNewGame.Location = new System.Drawing.Point(722, 21);
+            this.btnNewGame.Location = new System.Drawing.Point(946, 21);
             this.btnNewGame.Name = "btnNewGame";
             this.btnNewGame.Size = new System.Drawing.Size(131, 35);
             this.btnNewGame.TabIndex = 88;
@@ -180,7 +183,7 @@
             // btnMenu
             // 
             this.btnMenu.AutoSize = true;
-            this.btnMenu.Location = new System.Drawing.Point(942, 698);
+            this.btnMenu.Location = new System.Drawing.Point(1166, 698);
             this.btnMenu.Name = "btnMenu";
             this.btnMenu.Size = new System.Drawing.Size(180, 35);
             this.btnMenu.TabIndex = 86;
@@ -191,7 +194,7 @@
             // btnInstructions
             // 
             this.btnInstructions.AutoSize = true;
-            this.btnInstructions.Location = new System.Drawing.Point(12, 698);
+            this.btnInstructions.Location = new System.Drawing.Point(236, 698);
             this.btnInstructions.Name = "btnInstructions";
             this.btnInstructions.Size = new System.Drawing.Size(142, 35);
             this.btnInstructions.TabIndex = 87;
@@ -203,7 +206,7 @@
             // 
             this.btnCheck.AutoSize = true;
             this.btnCheck.Enabled = false;
-            this.btnCheck.Location = new System.Drawing.Point(517, 313);
+            this.btnCheck.Location = new System.Drawing.Point(741, 313);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(101, 35);
             this.btnCheck.TabIndex = 85;
@@ -214,7 +217,7 @@
             // lblDifficulty
             // 
             this.lblDifficulty.AutoSize = true;
-            this.lblDifficulty.Location = new System.Drawing.Point(281, 26);
+            this.lblDifficulty.Location = new System.Drawing.Point(505, 26);
             this.lblDifficulty.Name = "lblDifficulty";
             this.lblDifficulty.Size = new System.Drawing.Size(118, 25);
             this.lblDifficulty.TabIndex = 84;
@@ -223,7 +226,7 @@
             // picOne
             // 
             this.picOne.Enabled = false;
-            this.picOne.Location = new System.Drawing.Point(67, 121);
+            this.picOne.Location = new System.Drawing.Point(291, 121);
             this.picOne.Name = "picOne";
             this.picOne.Size = new System.Drawing.Size(160, 120);
             this.picOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -235,7 +238,7 @@
             // picSix
             // 
             this.picSix.Enabled = false;
-            this.picSix.Location = new System.Drawing.Point(907, 121);
+            this.picSix.Location = new System.Drawing.Point(1131, 121);
             this.picSix.Name = "picSix";
             this.picSix.Size = new System.Drawing.Size(160, 120);
             this.picSix.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -247,7 +250,7 @@
             // picFive
             // 
             this.picFive.Enabled = false;
-            this.picFive.Location = new System.Drawing.Point(739, 121);
+            this.picFive.Location = new System.Drawing.Point(963, 121);
             this.picFive.Name = "picFive";
             this.picFive.Size = new System.Drawing.Size(160, 120);
             this.picFive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -259,7 +262,7 @@
             // picFour
             // 
             this.picFour.Enabled = false;
-            this.picFour.Location = new System.Drawing.Point(571, 121);
+            this.picFour.Location = new System.Drawing.Point(795, 121);
             this.picFour.Name = "picFour";
             this.picFour.Size = new System.Drawing.Size(160, 120);
             this.picFour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -271,7 +274,7 @@
             // picThree
             // 
             this.picThree.Enabled = false;
-            this.picThree.Location = new System.Drawing.Point(403, 121);
+            this.picThree.Location = new System.Drawing.Point(627, 121);
             this.picThree.Name = "picThree";
             this.picThree.Size = new System.Drawing.Size(160, 120);
             this.picThree.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -283,7 +286,7 @@
             // picTwo
             // 
             this.picTwo.Enabled = false;
-            this.picTwo.Location = new System.Drawing.Point(235, 121);
+            this.picTwo.Location = new System.Drawing.Point(461, 121);
             this.picTwo.Name = "picTwo";
             this.picTwo.Size = new System.Drawing.Size(160, 120);
             this.picTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -295,7 +298,7 @@
             // lblPic1
             // 
             this.lblPic1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic1.Location = new System.Drawing.Point(67, 244);
+            this.lblPic1.Location = new System.Drawing.Point(291, 244);
             this.lblPic1.Name = "lblPic1";
             this.lblPic1.Size = new System.Drawing.Size(160, 35);
             this.lblPic1.TabIndex = 102;
@@ -305,7 +308,7 @@
             // lblPic2
             // 
             this.lblPic2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic2.Location = new System.Drawing.Point(235, 244);
+            this.lblPic2.Location = new System.Drawing.Point(461, 244);
             this.lblPic2.Name = "lblPic2";
             this.lblPic2.Size = new System.Drawing.Size(160, 35);
             this.lblPic2.TabIndex = 103;
@@ -315,7 +318,7 @@
             // lblPic3
             // 
             this.lblPic3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic3.Location = new System.Drawing.Point(403, 244);
+            this.lblPic3.Location = new System.Drawing.Point(627, 244);
             this.lblPic3.Name = "lblPic3";
             this.lblPic3.Size = new System.Drawing.Size(160, 35);
             this.lblPic3.TabIndex = 104;
@@ -325,7 +328,7 @@
             // lblPic4
             // 
             this.lblPic4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic4.Location = new System.Drawing.Point(571, 244);
+            this.lblPic4.Location = new System.Drawing.Point(795, 244);
             this.lblPic4.Name = "lblPic4";
             this.lblPic4.Size = new System.Drawing.Size(160, 35);
             this.lblPic4.TabIndex = 105;
@@ -335,7 +338,7 @@
             // lblPic5
             // 
             this.lblPic5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic5.Location = new System.Drawing.Point(739, 244);
+            this.lblPic5.Location = new System.Drawing.Point(963, 244);
             this.lblPic5.Name = "lblPic5";
             this.lblPic5.Size = new System.Drawing.Size(160, 35);
             this.lblPic5.TabIndex = 106;
@@ -345,7 +348,7 @@
             // lblPic6
             // 
             this.lblPic6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic6.Location = new System.Drawing.Point(907, 244);
+            this.lblPic6.Location = new System.Drawing.Point(1131, 244);
             this.lblPic6.Name = "lblPic6";
             this.lblPic6.Size = new System.Drawing.Size(160, 35);
             this.lblPic6.TabIndex = 107;
@@ -355,16 +358,22 @@
             // lblAnswer
             // 
             this.lblAnswer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblAnswer.Location = new System.Drawing.Point(460, 660);
+            this.lblAnswer.Location = new System.Drawing.Point(684, 660);
             this.lblAnswer.Name = "lblAnswer";
             this.lblAnswer.Size = new System.Drawing.Size(214, 35);
             this.lblAnswer.TabIndex = 108;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Pictures";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 850;
             // 
             // frmPictureGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 745);
+            this.ClientSize = new System.Drawing.Size(1582, 745);
             this.Controls.Add(this.lblAnswer);
             this.Controls.Add(this.lblPic6);
             this.Controls.Add(this.lblPic5);
@@ -411,8 +420,8 @@
         private System.Windows.Forms.Button btnGiveUp;
         private System.Windows.Forms.ListView lstvOutput;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.RadioButton rBtnHard;
         private System.Windows.Forms.Timer timTimer;
         private System.Windows.Forms.RadioButton rBtnMedium;
@@ -436,5 +445,6 @@
         private System.Windows.Forms.Label lblPic5;
         private System.Windows.Forms.Label lblPic6;
         private System.Windows.Forms.Label lblAnswer;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }
