@@ -51,8 +51,10 @@ namespace Mastermind_Game
          */
         const int EASY = 4, MEDIUM = 5, HARD = 6;
         const int NUMBEROFPICTURES = 8;
+
         string timeElapsed, error;
         int btnClickedCount = 0, ClickCount, numOfPics;
+
         Stopwatch stpWatch = new Stopwatch();
 
 
@@ -75,14 +77,14 @@ namespace Mastermind_Game
 
         String[] picName = new String[NUMBEROFPICTURES] 
         {
-            "0.Danbooru",
-            "1.JellyFish",
-            "2.Shark",
-            "3.Hut",
-            "4.Boat",
-            "5.Mountain",
-            "6.Frog",
-            "7.Duckies"
+            "Danbooru",
+            "JellyFish",
+            "Shark",
+            "Hut",
+            "Boat",
+            "Mountain",
+            "Frog",
+            "Duckies"
         };
 
 
@@ -156,6 +158,16 @@ namespace Mastermind_Game
 
 
 
+        /* Hint button event
+         * Tells player what the first picture is
+         */
+        private void btnHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("First picture is "+picName[globalRandomNumber[0]],"Hint",MessageBoxButtons.OK);
+        }
+
+
+
         /* Button Check Click event
          * Increase btnClickCount by one
          * Check if picture name from piclabals match with randomly generated number
@@ -195,6 +207,8 @@ namespace Mastermind_Game
                 MessageBox.Show(winMessage + "\n Tries Used: " + ClickCount + "\n Time Taken: " + timeElapsed);
                 GiveupOrWinActions();
             }
+
+            lstvOutput.EnsureVisible(lstvOutput.Items.Count - 1);
             
         }
 
@@ -461,6 +475,7 @@ namespace Mastermind_Game
          * Turned OFF:
          * Check Button
          * Give up Button
+         * Hint Button
          * 
          * Turned ON:
          * New Game button
@@ -471,6 +486,7 @@ namespace Mastermind_Game
         {
             btnCheck.Enabled = false;
             btnGiveUp.Enabled = false;
+            btnHint.Enabled = false;
             btnNewGame.Enabled = true;
             rBtnEasy.Enabled = true;
             rBtnMedium.Enabled = true;
@@ -490,6 +506,7 @@ namespace Mastermind_Game
          * Turned ON:
          * Check Button
          * Give Up Button
+         * Hint Button
          * 
          * Turned OFF:
          * New Game button
@@ -505,6 +522,7 @@ namespace Mastermind_Game
 
             btnCheck.Enabled = true;
             btnGiveUp.Enabled = true;
+            btnHint.Enabled = true;
             btnNewGame.Enabled = false;
             rBtnEasy.Enabled = false;
             rBtnMedium.Enabled = false;
@@ -600,6 +618,7 @@ namespace Mastermind_Game
             lblPic4.Visible = true;
             return;
         }
+
 
         // End of method definitions... 
 

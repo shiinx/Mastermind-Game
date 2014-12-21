@@ -59,6 +59,7 @@
             this.lblPic5 = new System.Windows.Forms.Label();
             this.lblPic6 = new System.Windows.Forms.Label();
             this.lblAnswer = new System.Windows.Forms.Label();
+            this.btnHint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSix)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFive)).BeginInit();
@@ -139,7 +140,7 @@
             // 
             // timTimer
             // 
-            this.timTimer.Interval = 1000;
+            this.timTimer.Interval = 5000;
             this.timTimer.Tick += new System.EventHandler(this.timTimer_Tick);
             // 
             // rBtnMedium
@@ -189,7 +190,7 @@
             // btnMenu
             // 
             this.btnMenu.AutoSize = true;
-            this.btnMenu.Location = new System.Drawing.Point(1166, 698);
+            this.btnMenu.Location = new System.Drawing.Point(1390, 698);
             this.btnMenu.Name = "btnMenu";
             this.btnMenu.Size = new System.Drawing.Size(180, 35);
             this.btnMenu.TabIndex = 86;
@@ -200,7 +201,7 @@
             // btnInstructions
             // 
             this.btnInstructions.AutoSize = true;
-            this.btnInstructions.Location = new System.Drawing.Point(236, 698);
+            this.btnInstructions.Location = new System.Drawing.Point(12, 698);
             this.btnInstructions.Name = "btnInstructions";
             this.btnInstructions.Size = new System.Drawing.Size(142, 35);
             this.btnInstructions.TabIndex = 87;
@@ -212,7 +213,7 @@
             // 
             this.btnCheck.AutoSize = true;
             this.btnCheck.Enabled = false;
-            this.btnCheck.Location = new System.Drawing.Point(741, 313);
+            this.btnCheck.Location = new System.Drawing.Point(671, 313);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(101, 35);
             this.btnCheck.TabIndex = 85;
@@ -369,11 +370,24 @@
             this.lblAnswer.Size = new System.Drawing.Size(214, 35);
             this.lblAnswer.TabIndex = 108;
             // 
+            // btnHint
+            // 
+            this.btnHint.AutoSize = true;
+            this.btnHint.Enabled = false;
+            this.btnHint.Location = new System.Drawing.Point(810, 313);
+            this.btnHint.Name = "btnHint";
+            this.btnHint.Size = new System.Drawing.Size(101, 35);
+            this.btnHint.TabIndex = 109;
+            this.btnHint.Text = "Hint";
+            this.btnHint.UseVisualStyleBackColor = true;
+            this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
+            // 
             // frmPictureGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1582, 745);
+            this.Controls.Add(this.btnHint);
             this.Controls.Add(this.lblAnswer);
             this.Controls.Add(this.lblPic6);
             this.Controls.Add(this.lblPic5);
@@ -446,5 +460,6 @@
         private System.Windows.Forms.Label lblPic6;
         private System.Windows.Forms.Label lblAnswer;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Button btnHint;
     }
 }

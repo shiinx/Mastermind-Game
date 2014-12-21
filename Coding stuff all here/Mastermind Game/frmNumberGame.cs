@@ -18,21 +18,28 @@ namespace Mastermind_Game
         }
 
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+        private void frmNumberGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+
         const int EASY = 4, MEDIUM = 5, HARD = 6, INSANE = 8;
-        /* global declares
-         * string randNumber, time Elapsed
-         * int btnClickCount , ClickCount
-         * new Stopwatch
-         * End...
-         */
+
         string randNumber, timeElapsed;
         int btnClickedCount = 0, ClickCount, numOfDigits;
-        // Change number of digits per difficulty by changing numbers
+
+
         Stopwatch stpWatch = new Stopwatch();
 
 
 
-        // To show Answer for error checking
         private void btnShowAnswer_Click(object sender, EventArgs e)
         {
             MessageBox.Show(randNumber);
@@ -40,41 +47,18 @@ namespace Mastermind_Game
 
 
 
-        // To close dialog / return to menu when btnMenu is clicked or redcross is clicked
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
-        private void frmNumberGame_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
-
-
-
-        // To open instructions  
         private void btnInstructions_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Click New Game to generate a new number.\nList below shows the number of digits per difficulty."
-                + "\nEasy:\t" + EASY + " digits\t"
-                + "\nMedium:\t" + MEDIUM + " digits\t"
-                + "\nHard:\t" + HARD + " digits\t"
-                + "\nInsane:\t" + INSANE + " digits\t");
+                + "\nEasy: "    + EASY      +   " digits\t"
+                + "\nMedium: "  + MEDIUM    +   " digits\t"
+                + "\nHard: "    + HARD      +   " digits\t"
+                + "\nInsane: "  + INSANE    +   " digits\t");
         }
 
 
 
         /* New Game button Click event
-         * To generate new random number depending on difficulty 
-         * If no difficulty selected show error message
-         * To clear items in listboxview
-         * To clear input textbox
-         * To reset time and lbltimer
-         * To reset Click Count number
-         * Enable check and hint button
-         * Disable difficulty buttons to prevent difficulty switching when game starts
-         * 
-         * End...
          */
         private void btnNewGame_Click(object sender, EventArgs e)
         {
@@ -92,15 +76,14 @@ namespace Mastermind_Game
             timTimer.Start();
             NewgameActions();
         }
-        // End of New Game Click button event code
 
 
 
-        // Give up button to reset button visibility to new game settings
         private void btnGiveUp_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to give up?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+                MessageBox.Show(randNumber,"Answer",MessageBoxButtons.OK)
                 GiveupORwinActions();
                 stpWatch.Stop();
                 timTimer.Stop();
@@ -120,26 +103,24 @@ namespace Mastermind_Game
             String hint = "";
             switch (Difficulty)
             {
-                case "Easy": hint = "          First digit: \n\t" + randNumber[0];
+                case "Easy": 
+                case "Medium": 
+                    hint = "          First digit: \n\t" + randNumber[0];
                     break;
 
-                case "Medium": hint = "          First digit: \n\t" + randNumber[0];
+                case "Hard": 
+                case "Insane": 
+                    hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[INSANE - 1];
                     break;
 
-                case "Hard": hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[HARD - 1];
-                    break;
-
-                case "Insane": hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[INSANE - 1];
-                    break;
-
-                default: hint = "You can't be here!...\n Whelp, must be the stupid coders mistake...";
+                default: 
+                    hint = "You can't be here!...\n Whelp, must be the stupid coders mistake...";
                     break;
 
             }
 
             MessageBox.Show(hint, "Hint", MessageBoxButtons.OK);
         }
-        // End of hint click codes
 
 
 
@@ -183,12 +164,10 @@ namespace Mastermind_Game
                 return;
             }
 
-            // Rest of the freakin code
             string strInputNumber = txtDigitInput.Text, winMessage;
             int CorrectlyPlacedDigits, CorrectDigits;
             btnClickedCount++;
             winMessage = String.Format("Congratulations! You got it right!\n{0}", randNumber);
-
 
             switch (DifficultyChecker())
             {
@@ -431,7 +410,7 @@ namespace Mastermind_Game
             return;
         }
 
-        private void NewgameActions ()
+        private void NewgameActions()
         {
 
             btnCheck.Enabled = true;
