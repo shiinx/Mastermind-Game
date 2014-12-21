@@ -16,12 +16,12 @@ namespace Mastermind_Game
             InitializeComponent();
         }
 
-        frmNumberGame frmNumberGameVariable = new frmNumberGame();        //Number game's foorm variable creation
-        frmPictureGame frmPictureGamVariable = new frmPictureGame();    //Color game's form variable creation
+
 
         // Switch to NumberGame form
         private void btnNumberGame_Click(object sender, EventArgs e)
         {
+            frmNumberGame frmNumberGameVariable = new frmNumberGame();
             this.Hide();
             frmNumberGameVariable.ShowDialog();
 
@@ -35,6 +35,7 @@ namespace Mastermind_Game
         // Switch to PictureGame form
         private void btnPictureGame_Click(object sender, EventArgs e)
         {
+            frmPictureGame frmPictureGamVariable = new frmPictureGame();
             this.Hide();
             frmPictureGamVariable.ShowDialog();
 

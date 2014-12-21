@@ -240,7 +240,7 @@
             this.picOne.TabIndex = 96;
             this.picOne.TabStop = false;
             this.picOne.Visible = false;
-            this.picOne.Click += new System.EventHandler(this.picOne_Click);
+            this.picOne.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picOne_MouseDown);
             // 
             // picSix
             // 
@@ -252,7 +252,7 @@
             this.picSix.TabIndex = 97;
             this.picSix.TabStop = false;
             this.picSix.Visible = false;
-            this.picSix.Click += new System.EventHandler(this.picSix_Click);
+            this.picSix.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picSix_MouseDown);
             // 
             // picFive
             // 
@@ -264,7 +264,7 @@
             this.picFive.TabIndex = 98;
             this.picFive.TabStop = false;
             this.picFive.Visible = false;
-            this.picFive.Click += new System.EventHandler(this.picFive_Click);
+            this.picFive.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picFive_MouseDown);
             // 
             // picFour
             // 
@@ -276,7 +276,7 @@
             this.picFour.TabIndex = 99;
             this.picFour.TabStop = false;
             this.picFour.Visible = false;
-            this.picFour.Click += new System.EventHandler(this.picFour_Click);
+            this.picFour.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picFour_MouseDown);
             // 
             // picThree
             // 
@@ -288,7 +288,7 @@
             this.picThree.TabIndex = 100;
             this.picThree.TabStop = false;
             this.picThree.Visible = false;
-            this.picThree.Click += new System.EventHandler(this.picThree_Click);
+            this.picThree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picThree_MouseDown);
             // 
             // picTwo
             // 
@@ -300,7 +300,7 @@
             this.picTwo.TabIndex = 101;
             this.picTwo.TabStop = false;
             this.picTwo.Visible = false;
-            this.picTwo.Click += new System.EventHandler(this.picTwo_Click);
+            this.picTwo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picTwo_MouseDown);
             // 
             // lblPic1
             // 

@@ -33,6 +33,7 @@ namespace Mastermind_Game
         const int EASY = 4, MEDIUM = 5, HARD = 6, INSANE = 8;
 
         string randNumber, timeElapsed;
+        bool error;
         int btnClickedCount = 0, ClickCount, numOfDigits;
 
 
@@ -63,7 +64,7 @@ namespace Mastermind_Game
         private void btnNewGame_Click(object sender, EventArgs e)
         {
             randNumber = RandomNumber();
-            if (randNumber == "false")
+            if (error)
             {
                 MessageBox.Show("Please select a difficulty before pressing New Game.");
                 return;
@@ -83,7 +84,7 @@ namespace Mastermind_Game
         {
             if (MessageBox.Show("Are you sure you want to give up?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show(randNumber,"Answer",MessageBoxButtons.OK)
+                MessageBox.Show(randNumber, "Answer", MessageBoxButtons.OK);
                 GiveupORwinActions();
                 stpWatch.Stop();
                 timTimer.Stop();
@@ -212,7 +213,7 @@ namespace Mastermind_Game
                     break;
 
                 default:
-                    MessageBox.Show("You shouldn't be able to see this!...\nMust be the some stupid logic error again...")
+                    MessageBox.Show("You shouldn't be able to see this!...\nMust be the some stupid logic error again...");
                     break;
 
             }
@@ -310,8 +311,11 @@ namespace Mastermind_Game
                 case "Hard": 
                 case "Insane": 
                     randomNumber = RandNumber(numOfDigits);
+                    error = false;
                     break;
-                default: randomNumber = "false";
+                default:
+                    randomNumber = "";
+                    error = true;
                     break;
             }
             return randomNumber;
