@@ -48,7 +48,7 @@ namespace Mastermind_Game
         // Exit button (Self explanatory)
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
 
