@@ -125,7 +125,7 @@
             // 
             this.btnGiveUp.AutoSize = true;
             this.btnGiveUp.Enabled = false;
-            this.btnGiveUp.Location = new System.Drawing.Point(511, 493);
+            this.btnGiveUp.Location = new System.Drawing.Point(67, 135);
             this.btnGiveUp.Name = "btnGiveUp";
             this.btnGiveUp.Size = new System.Drawing.Size(113, 35);
             this.btnGiveUp.TabIndex = 70;
@@ -252,7 +252,6 @@
             // 
             // timTimer
             // 
-            this.timTimer.Interval = 5000;
             this.timTimer.Tick += new System.EventHandler(this.timTimer_Tick);
             // 
             // frmNumberGame

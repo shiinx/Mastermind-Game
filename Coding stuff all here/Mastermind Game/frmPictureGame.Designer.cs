@@ -71,7 +71,7 @@
             // lblTimer
             // 
             this.lblTimer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTimer.Location = new System.Drawing.Point(1153, 313);
+            this.lblTimer.Location = new System.Drawing.Point(1403, 313);
             this.lblTimer.Name = "lblTimer";
             this.lblTimer.Size = new System.Drawing.Size(138, 35);
             this.lblTimer.TabIndex = 95;
@@ -82,7 +82,7 @@
             // 
             this.btnGiveUp.AutoSize = true;
             this.btnGiveUp.Enabled = false;
-            this.btnGiveUp.Location = new System.Drawing.Point(291, 310);
+            this.btnGiveUp.Location = new System.Drawing.Point(41, 313);
             this.btnGiveUp.Name = "btnGiveUp";
             this.btnGiveUp.Size = new System.Drawing.Size(113, 35);
             this.btnGiveUp.TabIndex = 94;
@@ -140,7 +140,6 @@
             // 
             // timTimer
             // 
-            this.timTimer.Interval = 5000;
             this.timTimer.Tick += new System.EventHandler(this.timTimer_Tick);
             // 
             // rBtnMedium
