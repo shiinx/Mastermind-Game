@@ -44,13 +44,16 @@ namespace Mastermind_Game
         /* Global declares
          * Constant for digit difficulties
          * Constant for number of pictures to be used
-         * String for timeElapsed and  error
+         * Constant for number of pictureboxes
+         * String for timeElapsed
+         * boolean for error
          * btnCLickedCount to count the number of times check button has been clicked
          * ClickCount variable for btnCLickedCount to be put into
          * numOfPics variable to put in number of pictures depending on difficulty
          */
         const int EASY = 4, MEDIUM = 5, HARD = 6;
         const int NUMBEROFPICTURES = 8;
+        const int NUMBEROFPICTUREBOX = 6;
 
         string timeElapsed;
         bool error;
@@ -64,17 +67,20 @@ namespace Mastermind_Game
          * globalRandomNum array to put in the random number generated
          * resourcePic array to put in the pictures from resource
          * picName to use for checking and to be put in label
+         * Counter for the picture click event
          */
         Int32[] globalRandomNumber = new Int32[HARD];
 
-        Bitmap[] resourcePic = new Bitmap[NUMBEROFPICTURES]{Properties.Resources.Picture1,
+        Bitmap[] resourcePic = new Bitmap[NUMBEROFPICTURES]
+        {   Properties.Resources.Picture1,
             Properties.Resources.Picture2,
             Properties.Resources.Picture3,
             Properties.Resources.Picture4,
             Properties.Resources.Picture5,
             Properties.Resources.Picture6,
             Properties.Resources.Picture7,
-            Properties.Resources.Picture8};
+            Properties.Resources.Picture8
+        };
 
         String[] picName = new String[NUMBEROFPICTURES] 
         {
@@ -86,6 +92,16 @@ namespace Mastermind_Game
             "Mountain",
             "Frog",
             "Duckies"
+        };
+
+        int[] resourcePicCounter = new int[]
+        {
+            0,      //1
+            0,      //2
+            0,      //3
+            0,      //4
+            0,      //5
+            0       //6
         };
 
 
@@ -230,169 +246,53 @@ namespace Mastermind_Game
 
 
         /* My picture change on click code
-         * I'll shorten it when I have the dam time or know how
-         * Tedious as heck code
-         * Try using more array to shorten
+         * Used array so that I could stuff all mousedown event per picturebox into one event
          */
-        int resourcePicCounter1 = 0;
-        private void picOne_MouseDown(object sender, MouseEventArgs e)
+        private void Common_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            PictureBox[] picBox = new PictureBox[NUMBEROFPICTUREBOX]{
+            picOne,
+            picTwo,
+            picThree,   
+            picFour,
+            picFive,
+            picSix
+            };
+
+            Label[] lblPic = new Label[NUMBEROFPICTUREBOX]{
+            lblPic1,
+            lblPic2,
+            lblPic3,
+            lblPic4,
+            lblPic5,
+            lblPic6
+            };
+
+            int picBoxCounter = 0;
+            while (picBoxCounter < 6)
             {
-                resourcePicCounter1--;
-                if (resourcePicCounter1 == -1)
+                if (sender == picBox[picBoxCounter])
                 {
-                    resourcePicCounter1 = 7;
+                    if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                    {
+                        resourcePicCounter[picBoxCounter]--;
+                        if (resourcePicCounter[picBoxCounter] < 0)
+                        {
+                            resourcePicCounter[picBoxCounter] = 7;
+                        }
+                    }
+                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                    {
+                        resourcePicCounter[picBoxCounter]++;
+                        if (resourcePicCounter[picBoxCounter] == 8)
+                        {
+                            resourcePicCounter[picBoxCounter] = 0;
+                        }
+                   }
+                   picBox[picBoxCounter].Image = resourcePic[resourcePicCounter[picBoxCounter]];
+                   lblPic[picBoxCounter].Text = picName[resourcePicCounter[picBoxCounter]];
                 }
-
-                picOne.Image = resourcePic[resourcePicCounter1];
-                lblPic1.Text = picName[resourcePicCounter1];
-            }
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                resourcePicCounter1++;
-                if (resourcePicCounter1 == 8)
-                {
-                    resourcePicCounter1 = 0;
-                }
-
-                picOne.Image = resourcePic[resourcePicCounter1];
-                lblPic1.Text = picName[resourcePicCounter1];
-            }
-        }
-
-        int resourcePicCounter2 = 0;
-        private void picTwo_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                resourcePicCounter2--;
-                if (resourcePicCounter2 == -1)
-                {
-                    resourcePicCounter2 = 7;
-                }
-
-                picTwo.Image = resourcePic[resourcePicCounter2];
-                lblPic2.Text = picName[resourcePicCounter2];
-            }
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                resourcePicCounter2++;
-                if (resourcePicCounter2 == 8)
-                {
-                    resourcePicCounter2 = 0;
-                }
-
-                picTwo.Image = resourcePic[resourcePicCounter2];
-                lblPic2.Text = picName[resourcePicCounter2];
-            }
-        }
-
-        int resourcePicCounter3 = 0;
-        private void picThree_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                resourcePicCounter3--;
-                if (resourcePicCounter3 == -1)
-                {
-                    resourcePicCounter3 = 7;
-                }
-
-                picThree.Image = resourcePic[resourcePicCounter3];
-                lblPic3.Text = picName[resourcePicCounter3];
-            }
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                resourcePicCounter3++;
-                if (resourcePicCounter3 == 8)
-                {
-                    resourcePicCounter3 = 0;
-                }
-
-                picThree.Image = resourcePic[resourcePicCounter3];
-                lblPic3.Text = picName[resourcePicCounter3];
-            }
-        }
-
-        int resourcePicCounter4 = 0;
-        private void picFour_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                resourcePicCounter4--;
-                if (resourcePicCounter4 == -1)
-                {
-                    resourcePicCounter4 = 7;
-                }
-
-                picFour.Image = resourcePic[resourcePicCounter4];
-                lblPic4.Text = picName[resourcePicCounter4];
-            }
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                resourcePicCounter4++;
-                if (resourcePicCounter4 == 8)
-                {
-                    resourcePicCounter4 = 0;
-                }
-
-                picFour.Image = resourcePic[resourcePicCounter4];
-                lblPic4.Text = picName[resourcePicCounter4];
-            }
-        }
-
-        int resourcePicCounter5 = 0;
-        private void picFive_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                resourcePicCounter5--;
-                if (resourcePicCounter5 == -1)
-                {
-                    resourcePicCounter5 = 7;
-                }
-
-                picFive.Image = resourcePic[resourcePicCounter5];
-                lblPic5.Text = picName[resourcePicCounter5];
-            }
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                resourcePicCounter5++;
-                if (resourcePicCounter5 == 8)
-                {
-                    resourcePicCounter5 = 0;
-                }
-
-                picFive.Image = resourcePic[resourcePicCounter5];
-                lblPic5.Text = picName[resourcePicCounter5];
-            }
-        }
-
-        int resourcePicCounter6 = 0;
-        private void picSix_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                resourcePicCounter6--;
-                if (resourcePicCounter6 == -1)
-                {
-                    resourcePicCounter6 = 7;
-                }
-
-                picSix.Image = resourcePic[resourcePicCounter6];
-                lblPic6.Text = picName[resourcePicCounter6];
-            }
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                resourcePicCounter6++;
-                if (resourcePicCounter6 == 8)
-                {
-                    resourcePicCounter6 = 0;
-                }
-
-                picSix.Image = resourcePic[resourcePicCounter6];
-                lblPic6.Text = picName[resourcePicCounter6];
+                picBoxCounter++;
             }
         }
 
@@ -629,12 +529,12 @@ namespace Mastermind_Game
             lblPic4.Text = picName[0];
             lblPic5.Text = picName[0];
             lblPic6.Text = picName[0];
-            resourcePicCounter1 = 0;
-            resourcePicCounter2 = 0;
-            resourcePicCounter3 = 0;
-            resourcePicCounter4 = 0;
-            resourcePicCounter5 = 0;
-            resourcePicCounter6 = 0;
+            resourcePicCounter[0] = 0;
+            resourcePicCounter[1] = 0;
+            resourcePicCounter[2] = 0;
+            resourcePicCounter[3] = 0;
+            resourcePicCounter[4] = 0;
+            resourcePicCounter[5] = 0;
             return;
         }
 
@@ -708,7 +608,6 @@ namespace Mastermind_Game
             lblPic4.Visible = true;
             return;
         }
-
 
 
 
