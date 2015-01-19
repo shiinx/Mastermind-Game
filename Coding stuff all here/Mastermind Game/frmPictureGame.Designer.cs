@@ -54,15 +54,17 @@
             this.picFour = new System.Windows.Forms.PictureBox();
             this.picThree = new System.Windows.Forms.PictureBox();
             this.picTwo = new System.Windows.Forms.PictureBox();
-            this.lblPic1 = new System.Windows.Forms.Label();
-            this.lblPic2 = new System.Windows.Forms.Label();
-            this.lblPic3 = new System.Windows.Forms.Label();
-            this.lblPic4 = new System.Windows.Forms.Label();
             this.panelPicBox1to4 = new System.Windows.Forms.Panel();
             this.picSix = new System.Windows.Forms.PictureBox();
             this.picFive = new System.Windows.Forms.PictureBox();
             this.lblPic5 = new System.Windows.Forms.Label();
             this.lblPic6 = new System.Windows.Forms.Label();
+            this.lblTips = new System.Windows.Forms.Label();
+            this.timTips = new System.Windows.Forms.Timer(this.components);
+            this.lblPic4 = new System.Windows.Forms.Label();
+            this.lblPic3 = new System.Windows.Forms.Label();
+            this.lblPic2 = new System.Windows.Forms.Label();
+            this.lblPic1 = new System.Windows.Forms.Label();
             this.panelGameStart.SuspendLayout();
             this.panelNewGame.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picOne)).BeginInit();
@@ -128,7 +130,7 @@
             // btnShowAnswer
             // 
             this.btnShowAnswer.AutoSize = true;
-            this.btnShowAnswer.Location = new System.Drawing.Point(712, 698);
+            this.btnShowAnswer.Location = new System.Drawing.Point(1355, 197);
             this.btnShowAnswer.Name = "btnShowAnswer";
             this.btnShowAnswer.Size = new System.Drawing.Size(158, 35);
             this.btnShowAnswer.TabIndex = 89;
@@ -161,7 +163,7 @@
             // lblAnswer
             // 
             this.lblAnswer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblAnswer.Location = new System.Drawing.Point(684, 660);
+            this.lblAnswer.Location = new System.Drawing.Point(1327, 159);
             this.lblAnswer.Name = "lblAnswer";
             this.lblAnswer.Size = new System.Drawing.Size(214, 35);
             this.lblAnswer.TabIndex = 108;
@@ -179,7 +181,6 @@
             // btnGiveUp
             // 
             this.btnGiveUp.AutoSize = true;
-            this.btnGiveUp.Enabled = false;
             this.btnGiveUp.Location = new System.Drawing.Point(14, 7);
             this.btnGiveUp.Name = "btnGiveUp";
             this.btnGiveUp.Size = new System.Drawing.Size(113, 35);
@@ -191,7 +192,6 @@
             // btnHint
             // 
             this.btnHint.AutoSize = true;
-            this.btnHint.Enabled = false;
             this.btnHint.Location = new System.Drawing.Point(783, 7);
             this.btnHint.Name = "btnHint";
             this.btnHint.Size = new System.Drawing.Size(101, 35);
@@ -203,7 +203,6 @@
             // btnCheck
             // 
             this.btnCheck.AutoSize = true;
-            this.btnCheck.Enabled = false;
             this.btnCheck.Location = new System.Drawing.Point(644, 7);
             this.btnCheck.Name = "btnCheck";
             this.btnCheck.Size = new System.Drawing.Size(101, 35);
@@ -317,42 +316,6 @@
             this.picTwo.TabStop = false;
             this.picTwo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
             // 
-            // lblPic1
-            // 
-            this.lblPic1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic1.Location = new System.Drawing.Point(18, 138);
-            this.lblPic1.Name = "lblPic1";
-            this.lblPic1.Size = new System.Drawing.Size(160, 35);
-            this.lblPic1.TabIndex = 114;
-            this.lblPic1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPic2
-            // 
-            this.lblPic2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic2.Location = new System.Drawing.Point(186, 138);
-            this.lblPic2.Name = "lblPic2";
-            this.lblPic2.Size = new System.Drawing.Size(160, 35);
-            this.lblPic2.TabIndex = 115;
-            this.lblPic2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPic3
-            // 
-            this.lblPic3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic3.Location = new System.Drawing.Point(354, 138);
-            this.lblPic3.Name = "lblPic3";
-            this.lblPic3.Size = new System.Drawing.Size(160, 35);
-            this.lblPic3.TabIndex = 116;
-            this.lblPic3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblPic4
-            // 
-            this.lblPic4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic4.Location = new System.Drawing.Point(522, 138);
-            this.lblPic4.Name = "lblPic4";
-            this.lblPic4.Size = new System.Drawing.Size(160, 35);
-            this.lblPic4.TabIndex = 117;
-            this.lblPic4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // panelPicBox1to4
             // 
             this.panelPicBox1to4.Controls.Add(this.lblPic4);
@@ -414,11 +377,63 @@
             this.lblPic6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblPic6.Visible = false;
             // 
+            // lblTips
+            // 
+            this.lblTips.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTips.Location = new System.Drawing.Point(362, 654);
+            this.lblTips.Name = "lblTips";
+            this.lblTips.Size = new System.Drawing.Size(859, 34);
+            this.lblTips.TabIndex = 124;
+            this.lblTips.Text = "Click New Game to start";
+            this.lblTips.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timTips
+            // 
+            this.timTips.Interval = 30000;
+            this.timTips.Tick += new System.EventHandler(this.timTips_Tick);
+            // 
+            // lblPic4
+            // 
+            this.lblPic4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic4.Location = new System.Drawing.Point(522, 138);
+            this.lblPic4.Name = "lblPic4";
+            this.lblPic4.Size = new System.Drawing.Size(160, 35);
+            this.lblPic4.TabIndex = 121;
+            this.lblPic4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic3
+            // 
+            this.lblPic3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic3.Location = new System.Drawing.Point(354, 138);
+            this.lblPic3.Name = "lblPic3";
+            this.lblPic3.Size = new System.Drawing.Size(160, 35);
+            this.lblPic3.TabIndex = 120;
+            this.lblPic3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic2
+            // 
+            this.lblPic2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic2.Location = new System.Drawing.Point(186, 138);
+            this.lblPic2.Name = "lblPic2";
+            this.lblPic2.Size = new System.Drawing.Size(160, 35);
+            this.lblPic2.TabIndex = 119;
+            this.lblPic2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic1
+            // 
+            this.lblPic1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic1.Location = new System.Drawing.Point(18, 138);
+            this.lblPic1.Name = "lblPic1";
+            this.lblPic1.Size = new System.Drawing.Size(160, 35);
+            this.lblPic1.TabIndex = 118;
+            this.lblPic1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmPictureGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1582, 745);
+            this.Controls.Add(this.lblTips);
             this.Controls.Add(this.lblPic6);
             this.Controls.Add(this.lblPic5);
             this.Controls.Add(this.picFive);
@@ -480,14 +495,16 @@
         private System.Windows.Forms.PictureBox picFour;
         private System.Windows.Forms.PictureBox picThree;
         private System.Windows.Forms.PictureBox picTwo;
-        private System.Windows.Forms.Label lblPic1;
-        private System.Windows.Forms.Label lblPic2;
-        private System.Windows.Forms.Label lblPic3;
-        private System.Windows.Forms.Label lblPic4;
         private System.Windows.Forms.Panel panelPicBox1to4;
         private System.Windows.Forms.PictureBox picSix;
         private System.Windows.Forms.PictureBox picFive;
         private System.Windows.Forms.Label lblPic5;
         private System.Windows.Forms.Label lblPic6;
+        private System.Windows.Forms.Label lblTips;
+        private System.Windows.Forms.Timer timTips;
+        private System.Windows.Forms.Label lblPic4;
+        private System.Windows.Forms.Label lblPic3;
+        private System.Windows.Forms.Label lblPic2;
+        private System.Windows.Forms.Label lblPic1;
     }
 }

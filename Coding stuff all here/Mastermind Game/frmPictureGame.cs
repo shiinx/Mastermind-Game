@@ -33,6 +33,7 @@ namespace Mastermind_Game
         private void btnMenu_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+            this.Close();
         }
         private void frmPictureGame_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -49,10 +50,11 @@ namespace Mastermind_Game
         const int EASY = 4, MEDIUM = 5, HARD = 6;
         const int NUMBEROFPICTURES = 8;
         const int NUMBEROFPICTUREBOX = 6;
+        const int NUMBEROFTIPS = 6;
 
         string timeElapsed;
         bool error;
-        int btnClickedCount = 0, ClickCount, numOfPics;
+        int btnClickedCount = 0, counterTips = 0, clickCount, numOfPics;
 
         Stopwatch stpWatch = new Stopwatch();
 
@@ -63,6 +65,7 @@ namespace Mastermind_Game
          * resourcePic array to put in the pictures from resource so that I can cycle through it
          * picName to use for checking and to be put in label
          * Counter for the picture click event
+         * Array of strings to store tips
          */
         Int32[] globalRandomNumber = new Int32[HARD];
 
@@ -89,7 +92,7 @@ namespace Mastermind_Game
             "Duckies"
         };
 
-        int[] resourcePicCounter = new int[]
+        int[] resourcePicCounter = new int[NUMBEROFPICTUREBOX]
         {
             0,      //1
             0,      //2
@@ -98,6 +101,16 @@ namespace Mastermind_Game
             0,      //5
             0       //6
         };
+
+        String[] tips = new String[NUMBEROFTIPS]
+            {
+                "Tip : Left-Click for next picture, Right-Click for previous picture.",
+                "Tip : Read the instructions if you're not sure how to play this game.",
+                "Tip : There are actually only "+NUMBEROFPICTURES+" pictures in total.",
+                "Tip : Click on hints if you're stuck, there isn't any penalty.",
+                "Tip : Just give up if you're taking way to long.",
+                "Tick-Tock, Tick-Tock. Time is wasting away. :D",
+            };
 
 
 
@@ -136,9 +149,12 @@ namespace Mastermind_Game
             VisibilityToggle();
             lstvOutput.Items.Clear();
             btnClickedCount = 0;
+            counterTips = 0;
             stpWatch.Restart();
             lblTimer.Text = "00:00:00";
             timTimer.Start();
+            timTips.Start();
+            lblTips.Text = "Good Luck";
             NewgameActions();
         }
 
@@ -162,6 +178,7 @@ namespace Mastermind_Game
                 GiveupOrWinActions();
                 stpWatch.Stop();
                 timTimer.Stop();
+                timTips.Stop();
             }
         }
 
@@ -210,15 +227,30 @@ namespace Mastermind_Game
             {
                 stpWatch.Stop();
                 timTimer.Stop();
+                timTimer.Stop();
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
-                ClickCount = btnClickedCount;
-                MessageBox.Show(winMessage + "\n Tries Used: " + ClickCount + "\n Time Taken: " + timeElapsed);
+                clickCount = btnClickedCount;
+                MessageBox.Show(winMessage + "\n Tries Used: " + clickCount + "\n Time Taken: " + timeElapsed);
                 GiveupOrWinActions();
             }
 
             lstvOutput.EnsureVisible(lstvOutput.Items.Count - 1);
             
+        }
+
+
+        /* Timer Event for the tips
+         * Changes the tips every 30 secs or so
+         */
+        private void timTips_Tick(object sender, EventArgs e)
+        {
+            if (counterTips == NUMBEROFTIPS)
+            {
+                counterTips = 0;
+            }
+            lblTips.Text = tips[counterTips];
+            counterTips++;
         }
 
 
@@ -230,6 +262,7 @@ namespace Mastermind_Game
         {
             TimeSpan ts = stpWatch.Elapsed;
             lblTimer.Text = String.Format(String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds));
+
         }
         
 
@@ -457,7 +490,9 @@ namespace Mastermind_Game
             panelNewGame.Enabled = true;
             panelPicBox1to4.Enabled = false;
             picFive.Enabled = false;
+            lblPic5.Enabled = false;
             picSix.Enabled = false;
+            lblPic6.Enabled = false;
             return;
         }
 
@@ -513,6 +548,8 @@ namespace Mastermind_Game
                     picSix.Visible = false;
                     lblPic5.Visible = false;
                     lblPic6.Visible = false;
+                    lblPic5.Enabled = false;
+                    lblPic6.Enabled = false;
                     break;
 
                 case "Medium":
@@ -523,6 +560,8 @@ namespace Mastermind_Game
                     picSix.Visible = false;
                     lblPic5.Visible = true;
                     lblPic6.Visible = false;
+                    lblPic5.Enabled = true;
+                    lblPic6.Enabled = false;
                     break;
 
                 case "Hard":
@@ -533,6 +572,8 @@ namespace Mastermind_Game
                     picSix.Visible = true;
                     lblPic5.Visible = true;
                     lblPic6.Visible = true;
+                    lblPic5.Enabled = true;
+                    lblPic6.Enabled = true;
                     break;
 
                 default:
@@ -555,6 +596,7 @@ namespace Mastermind_Game
             panelPicBox1to4.Visible = true;
             return;
         }
+
 
         // End of method definitions... 
 

@@ -17,7 +17,15 @@ namespace Mastermind_Game
             InitializeComponent();
         }
 
+        /* For debugging purposes REMOVE BEFORE HANDING PROJECT IN
+         */
+        private void btnShowAnswer_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(randNumber);
+        }
 
+        /* Returns to menu when button or X is clicked
+         */
         private void btnMenu_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
@@ -26,26 +34,29 @@ namespace Mastermind_Game
         private void frmNumberGame_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            this.Close();
         }
 
-
+        // Global Variables
         const int EASY = 4, MEDIUM = 5, HARD = 6, INSANE = 8;
+        const int NUMBEROFTIPS = 7;
 
         string randNumber, timeElapsed;
         bool error;
-        int btnClickedCount = 0, ClickCount, numOfDigits;
-
+        int btnClickedCount = 0, counterTips = 0, clickCount, numOfDigits;
 
         Stopwatch stpWatch = new Stopwatch();
 
 
-
-        private void btnShowAnswer_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(randNumber);
-        }
-
+        String[] tips = new String[NUMBEROFTIPS]
+            {
+                "Tip : You can click enter after entering the numbers.",
+                "Tip : Read the instructions if you're not sure how to play this game.",
+                "Tip : Click on hints if you're stuck, there isn't any penalty.",
+                "Tip : Form a strategy, use a digit you know is wrong to check placement.",
+                "Tip : Just give up if you're taking way to long.",
+                "Tip : Start from an easier level if it's too hard.",
+                "Tick-Tock, Tick-Tock. Time is wasting away. :D",
+            };
 
 
         private void btnInstructions_Click(object sender, EventArgs e)
@@ -72,9 +83,12 @@ namespace Mastermind_Game
             lstvOutput.Items.Clear();
             txtDigitInput.Text = "";
             btnClickedCount = 0;
+            counterTips = 0;
             stpWatch.Restart();
             lblTimer.Text = "00:00:00";
             timTimer.Start();
+            timTips.Start();
+            lblTips.Text = "Good Luck";
             NewgameActions();
         }
 
@@ -88,6 +102,7 @@ namespace Mastermind_Game
                 GiveupORwinActions();
                 stpWatch.Stop();
                 timTimer.Stop();
+                timTips.Stop();
             }
         }
 
@@ -96,7 +111,6 @@ namespace Mastermind_Game
         /* Hints click event
          * Show first digit for Easy and Medium
          * Show first and last digit for Hard and Insane
-         * End...
          */
         private void btnHint_Click(object sender, EventArgs e)
         {
@@ -150,14 +164,13 @@ namespace Mastermind_Game
          * Stop time
          * Display win message
          * 
-         * End...
          */
         private void btnCheck_Click(object sender, EventArgs e)
         {
             // Check for only numbers is input by user and no blanks.
             try
             {
-                int intInputNumber = Convert.ToInt32(txtDigitInput.Text);
+                uint testConvert = UInt32.Parse(txtDigitInput.Text);
             }
             catch
             {
@@ -213,8 +226,8 @@ namespace Mastermind_Game
                     break;
 
                 default:
-                    MessageBox.Show("You shouldn't be able to see this!...\nMust be the some stupid logic error again...");
-                    break;
+                    MessageBox.Show("You shouldn't be able to see this! Error! \n");
+                    return;
 
             }
 
@@ -226,10 +239,11 @@ namespace Mastermind_Game
             {
                 stpWatch.Stop();
                 timTimer.Stop();
+                timTimer.Stop();
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
-                ClickCount = btnClickedCount;
-                MessageBox.Show(winMessage + "\n Tries Used: " + ClickCount + "\n Time Taken: " + timeElapsed);
+                clickCount = btnClickedCount;
+                MessageBox.Show(winMessage + "\n Tries Used: " + clickCount + "\n Time Taken: " + timeElapsed);
                 GiveupORwinActions();
 
             }
@@ -242,6 +256,17 @@ namespace Mastermind_Game
 
 
 
+        private void timTips_Tick(object sender, EventArgs e)
+        {
+            if (counterTips == NUMBEROFTIPS)
+            {
+                counterTips = 0;
+            }
+            lblTips.Text = tips[counterTips];
+            counterTips++;
+        }
+
+
 
         private void timTimer_Tick(object sender, EventArgs e)
         {
@@ -251,10 +276,7 @@ namespace Mastermind_Game
 
 
 
-
-
-
-        /* Code bellow are all function definition stuff...
+        /* Code bellow are all method
          * DifficultyChecker        -> Check which difficuly is checked
          * randomNumber             -> Random Number returned depending on difficulty
          * strRandNumber            -> Random Number with digits randomnized individually to prevent repeating numbers
@@ -263,8 +285,6 @@ namespace Mastermind_Game
          * lviOutput                -> Returns the items/subitems that is to be put into the listviewbox
          * newgameActions           -> Resets visibility for certain buttons
          * giveupORwinActions       -> Resets visibility for certain buttons
-         * 
-         * End...
          */
 
 
@@ -401,39 +421,24 @@ namespace Mastermind_Game
             return lviOutput;
         }
 
+        //
         private void GiveupORwinActions()
         {
-            btnCheck.Enabled = false;
-            btnHint.Enabled = false;
-            btnGiveUp.Enabled = false;
-            btnNewGame.Enabled = true;
-            rBtnEasy.Enabled = true;
-            rBtnMedium.Enabled = true;
-            rBtnHard.Enabled = true;
-            rBtnInsane.Enabled = true;
+            panelGameStart.Enabled = false;
+            panelNewGame.Enabled = true;
             return;
         }
 
+        //
         private void NewgameActions()
         {
-
-            btnCheck.Enabled = true;
-            btnHint.Enabled = true;
-            btnGiveUp.Enabled = true;
-            btnNewGame.Enabled = false;
-            rBtnEasy.Enabled = false;
-            rBtnMedium.Enabled = false;
-            rBtnHard.Enabled = false;
-            rBtnInsane.Enabled = false;
+            panelGameStart.Enabled = true;
+            panelNewGame.Enabled = false;
             return;
         }
 
 
-
-        // End of fuction definitions... 
-
-
-
+        // End of methods / function definitions
 
     }
 }
