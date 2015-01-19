@@ -34,7 +34,7 @@ namespace Mastermind_Game
         {
             this.DialogResult = DialogResult.OK;
         }
-        private void frmNumberGame_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmPictureGame_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.DialogResult = DialogResult.OK;
         }
@@ -42,11 +42,6 @@ namespace Mastermind_Game
 
 
         /* Global declares
-         * Constant for digit difficulties
-         * Constant for number of pictures to be used
-         * Constant for number of pictureboxes
-         * String for timeElapsed
-         * boolean for error
          * btnCLickedCount to count the number of times check button has been clicked
          * ClickCount variable for btnCLickedCount to be put into
          * numOfPics variable to put in number of pictures depending on difficulty
@@ -65,7 +60,7 @@ namespace Mastermind_Game
 
         /* Global array declares
          * globalRandomNum array to put in the random number generated
-         * resourcePic array to put in the pictures from resource
+         * resourcePic array to put in the pictures from resource so that I can cycle through it
          * picName to use for checking and to be put in label
          * Counter for the picture click event
          */
@@ -122,15 +117,10 @@ namespace Mastermind_Game
 
 
         /* New Game button Click event
-         * Check what difficulty is selected
-         * To generate new set of array numbers
-         * If false is returned caused by no difficulty selected display error message
+         * Check what difficulty is selected and depending on it generates a set of array numbers
+         * If error is true, user did not select a difficulty
          * Toggles visibilty of buttons/label/picture depending on what difficulty is selected
-         * Clears list
-         * Resets click count
-         * Resets stopwatch and restarts it
-         * Resets timer label
-         * Starts timer
+         * Resets click count ; stopwatch ; timer label's text
          * Enable/disables radio button/buttons.
          * End...
          */
@@ -155,8 +145,7 @@ namespace Mastermind_Game
 
 
         /* Give Up button event
-         * Enables/Disables radio buttons/buttons
-         * Displays answer 
+         * If user says yes to confirmation on giving up, answer will be displayed and game will end
          */
         private void btnGiveUp_Click(object sender, EventArgs e)
         {
@@ -313,7 +302,7 @@ namespace Mastermind_Game
          * BasicDifficultyActions
          */
 
-        /* Returns String Difficulty
+        /* Returns String Difficulty user selected
          */
         private string DifficultyChecker()
         {
@@ -342,7 +331,6 @@ namespace Mastermind_Game
 
 
         /* Puts generated number into global variable globalRandomNumber
-         * 
          */
         private void RandomNumber()
         {
@@ -367,7 +355,7 @@ namespace Mastermind_Game
 
         /* Returns string of randomned number
          * Fuction required to indiviudally randomnize digits
-         * To check and prevent repeat number within the random number string
+         * To check and prevent repeat number within the random number array
          */
         private Int32[] RandNumber(int difficultyDigits)
         {
@@ -462,29 +450,12 @@ namespace Mastermind_Game
 
 
         /* Actions made when give up or player win event happens
-         * Turned OFF:
-         * Check Button
-         * Give up Button
-         * Hint Button
-         * 
-         * Turned ON:
-         * New Game button
-         * Difficulty selection radio buttons
-         * Picture boxes 
          */
         private void GiveupOrWinActions()
         {
-            btnCheck.Enabled = false;
-            btnGiveUp.Enabled = false;
-            btnHint.Enabled = false;
-            btnNewGame.Enabled = true;
-            rBtnEasy.Enabled = true;
-            rBtnMedium.Enabled = true;
-            rBtnHard.Enabled = true;
-            picOne.Enabled = false;
-            picTwo.Enabled = false;
-            picThree.Enabled = false;
-            picFour.Enabled = false;
+            panelGameStart.Enabled = false;
+            panelNewGame.Enabled = true;
+            panelPicBox1to4.Enabled = false;
             picFive.Enabled = false;
             picSix.Enabled = false;
             return;
@@ -493,15 +464,6 @@ namespace Mastermind_Game
 
 
         /* Actions made when new game button is pressed
-         * Turned ON:
-         * Check Button
-         * Give Up Button
-         * Hint Button
-         * 
-         * Turned OFF:
-         * New Game button
-         * Difficulty selection radio button
-         * 
          * Reset:
          * Picture Boxes reset back to first picture
          * Label below Picture Box reset back to first name
@@ -509,14 +471,9 @@ namespace Mastermind_Game
          */
         private void NewgameActions()
         {
-
-            btnCheck.Enabled = true;
-            btnGiveUp.Enabled = true;
-            btnHint.Enabled = true;
-            btnNewGame.Enabled = false;
-            rBtnEasy.Enabled = false;
-            rBtnMedium.Enabled = false;
-            rBtnHard.Enabled = false;
+            panelGameStart.Enabled = true;
+            panelNewGame.Enabled = false;
+            VisibilityToggle();
             picOne.Image = Properties.Resources.Picture1;
             picTwo.Image = Properties.Resources.Picture1;
             picThree.Image = Properties.Resources.Picture1;
@@ -594,22 +551,10 @@ namespace Mastermind_Game
          */
         private void BasicDifficultyActions()
         {
-            picOne.Enabled = true;
-            picOne.Visible = true;
-            picTwo.Enabled = true;
-            picTwo.Visible = true;
-            picThree.Enabled = true;
-            picThree.Visible = true;
-            picFour.Enabled = true;
-            picFour.Visible = true;
-            lblPic1.Visible = true;
-            lblPic2.Visible = true;
-            lblPic3.Visible = true;
-            lblPic4.Visible = true;
+            panelPicBox1to4.Enabled = true;
+            panelPicBox1to4.Visible = true;
             return;
         }
-
-
 
         // End of method definitions... 
 

@@ -30,25 +30,27 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lblTimer = new System.Windows.Forms.Label();
-            this.btnGiveUp = new System.Windows.Forms.Button();
             this.lstvOutput = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.rBtnHard = new System.Windows.Forms.RadioButton();
             this.timTimer = new System.Windows.Forms.Timer(this.components);
-            this.rBtnMedium = new System.Windows.Forms.RadioButton();
-            this.rBtnEasy = new System.Windows.Forms.RadioButton();
             this.btnShowAnswer = new System.Windows.Forms.Button();
-            this.btnNewGame = new System.Windows.Forms.Button();
             this.btnMenu = new System.Windows.Forms.Button();
             this.btnInstructions = new System.Windows.Forms.Button();
+            this.lblAnswer = new System.Windows.Forms.Label();
+            this.panelGameStart = new System.Windows.Forms.Panel();
+            this.btnGiveUp = new System.Windows.Forms.Button();
+            this.btnHint = new System.Windows.Forms.Button();
             this.btnCheck = new System.Windows.Forms.Button();
+            this.panelNewGame = new System.Windows.Forms.Panel();
+            this.rBtnHard = new System.Windows.Forms.RadioButton();
+            this.rBtnMedium = new System.Windows.Forms.RadioButton();
+            this.rBtnEasy = new System.Windows.Forms.RadioButton();
+            this.btnNewGame = new System.Windows.Forms.Button();
             this.lblDifficulty = new System.Windows.Forms.Label();
             this.picOne = new System.Windows.Forms.PictureBox();
-            this.picSix = new System.Windows.Forms.PictureBox();
-            this.picFive = new System.Windows.Forms.PictureBox();
             this.picFour = new System.Windows.Forms.PictureBox();
             this.picThree = new System.Windows.Forms.PictureBox();
             this.picTwo = new System.Windows.Forms.PictureBox();
@@ -56,39 +58,31 @@
             this.lblPic2 = new System.Windows.Forms.Label();
             this.lblPic3 = new System.Windows.Forms.Label();
             this.lblPic4 = new System.Windows.Forms.Label();
+            this.panelPicBox1to4 = new System.Windows.Forms.Panel();
+            this.picSix = new System.Windows.Forms.PictureBox();
+            this.picFive = new System.Windows.Forms.PictureBox();
             this.lblPic5 = new System.Windows.Forms.Label();
             this.lblPic6 = new System.Windows.Forms.Label();
-            this.lblAnswer = new System.Windows.Forms.Label();
-            this.btnHint = new System.Windows.Forms.Button();
+            this.panelGameStart.SuspendLayout();
+            this.panelNewGame.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picOne)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSix)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFive)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picThree)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTwo)).BeginInit();
+            this.panelPicBox1to4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSix)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFive)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTimer
             // 
             this.lblTimer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTimer.Location = new System.Drawing.Point(1403, 313);
+            this.lblTimer.Location = new System.Drawing.Point(1403, 307);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(138, 35);
+            this.lblTimer.Size = new System.Drawing.Size(138, 34);
             this.lblTimer.TabIndex = 95;
             this.lblTimer.Text = "00:00:00";
             this.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnGiveUp
-            // 
-            this.btnGiveUp.AutoSize = true;
-            this.btnGiveUp.Enabled = false;
-            this.btnGiveUp.Location = new System.Drawing.Point(41, 313);
-            this.btnGiveUp.Name = "btnGiveUp";
-            this.btnGiveUp.Size = new System.Drawing.Size(113, 35);
-            this.btnGiveUp.TabIndex = 94;
-            this.btnGiveUp.Text = "Give Up";
-            this.btnGiveUp.UseVisualStyleBackColor = true;
-            this.btnGiveUp.Click += new System.EventHandler(this.btnGiveUp_Click);
             // 
             // lstvOutput
             // 
@@ -127,42 +121,9 @@
             this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader4.Width = 330;
             // 
-            // rBtnHard
-            // 
-            this.rBtnHard.AutoSize = true;
-            this.rBtnHard.Location = new System.Drawing.Point(845, 24);
-            this.rBtnHard.Name = "rBtnHard";
-            this.rBtnHard.Size = new System.Drawing.Size(81, 29);
-            this.rBtnHard.TabIndex = 92;
-            this.rBtnHard.TabStop = true;
-            this.rBtnHard.Text = "Hard";
-            this.rBtnHard.UseVisualStyleBackColor = true;
-            // 
             // timTimer
             // 
             this.timTimer.Tick += new System.EventHandler(this.timTimer_Tick);
-            // 
-            // rBtnMedium
-            // 
-            this.rBtnMedium.AutoSize = true;
-            this.rBtnMedium.Location = new System.Drawing.Point(718, 24);
-            this.rBtnMedium.Name = "rBtnMedium";
-            this.rBtnMedium.Size = new System.Drawing.Size(112, 29);
-            this.rBtnMedium.TabIndex = 91;
-            this.rBtnMedium.TabStop = true;
-            this.rBtnMedium.Text = "Medium";
-            this.rBtnMedium.UseVisualStyleBackColor = true;
-            // 
-            // rBtnEasy
-            // 
-            this.rBtnEasy.AutoSize = true;
-            this.rBtnEasy.Location = new System.Drawing.Point(623, 24);
-            this.rBtnEasy.Name = "rBtnEasy";
-            this.rBtnEasy.Size = new System.Drawing.Size(80, 29);
-            this.rBtnEasy.TabIndex = 90;
-            this.rBtnEasy.TabStop = true;
-            this.rBtnEasy.Text = "Easy";
-            this.rBtnEasy.UseVisualStyleBackColor = true;
             // 
             // btnShowAnswer
             // 
@@ -174,17 +135,6 @@
             this.btnShowAnswer.Text = "Show Answer";
             this.btnShowAnswer.UseVisualStyleBackColor = true;
             this.btnShowAnswer.Click += new System.EventHandler(this.btnShowAnswer_Click);
-            // 
-            // btnNewGame
-            // 
-            this.btnNewGame.AutoSize = true;
-            this.btnNewGame.Location = new System.Drawing.Point(946, 21);
-            this.btnNewGame.Name = "btnNewGame";
-            this.btnNewGame.Size = new System.Drawing.Size(131, 35);
-            this.btnNewGame.TabIndex = 88;
-            this.btnNewGame.Text = "New Game";
-            this.btnNewGame.UseVisualStyleBackColor = true;
-            this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
             // btnMenu
             // 
@@ -208,159 +158,6 @@
             this.btnInstructions.UseVisualStyleBackColor = true;
             this.btnInstructions.Click += new System.EventHandler(this.btnInstructions_Click);
             // 
-            // btnCheck
-            // 
-            this.btnCheck.AutoSize = true;
-            this.btnCheck.Enabled = false;
-            this.btnCheck.Location = new System.Drawing.Point(671, 313);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(101, 35);
-            this.btnCheck.TabIndex = 85;
-            this.btnCheck.Text = "Check";
-            this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
-            // 
-            // lblDifficulty
-            // 
-            this.lblDifficulty.AutoSize = true;
-            this.lblDifficulty.Location = new System.Drawing.Point(505, 26);
-            this.lblDifficulty.Name = "lblDifficulty";
-            this.lblDifficulty.Size = new System.Drawing.Size(118, 25);
-            this.lblDifficulty.TabIndex = 84;
-            this.lblDifficulty.Text = "Difficulty :";
-            // 
-            // picOne
-            // 
-            this.picOne.Enabled = false;
-            this.picOne.Location = new System.Drawing.Point(291, 121);
-            this.picOne.Name = "picOne";
-            this.picOne.Size = new System.Drawing.Size(160, 120);
-            this.picOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picOne.TabIndex = 96;
-            this.picOne.TabStop = false;
-            this.picOne.Visible = false;
-            this.picOne.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
-            // picSix
-            // 
-            this.picSix.Enabled = false;
-            this.picSix.Location = new System.Drawing.Point(1131, 121);
-            this.picSix.Name = "picSix";
-            this.picSix.Size = new System.Drawing.Size(160, 120);
-            this.picSix.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picSix.TabIndex = 97;
-            this.picSix.TabStop = false;
-            this.picSix.Visible = false;
-            this.picSix.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
-            // picFive
-            // 
-            this.picFive.Enabled = false;
-            this.picFive.Location = new System.Drawing.Point(963, 121);
-            this.picFive.Name = "picFive";
-            this.picFive.Size = new System.Drawing.Size(160, 120);
-            this.picFive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picFive.TabIndex = 98;
-            this.picFive.TabStop = false;
-            this.picFive.Visible = false;
-            this.picFive.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
-            // picFour
-            // 
-            this.picFour.Enabled = false;
-            this.picFour.Location = new System.Drawing.Point(795, 121);
-            this.picFour.Name = "picFour";
-            this.picFour.Size = new System.Drawing.Size(160, 120);
-            this.picFour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picFour.TabIndex = 99;
-            this.picFour.TabStop = false;
-            this.picFour.Visible = false;
-            this.picFour.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
-            // picThree
-            // 
-            this.picThree.Enabled = false;
-            this.picThree.Location = new System.Drawing.Point(627, 121);
-            this.picThree.Name = "picThree";
-            this.picThree.Size = new System.Drawing.Size(160, 120);
-            this.picThree.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picThree.TabIndex = 100;
-            this.picThree.TabStop = false;
-            this.picThree.Visible = false;
-            this.picThree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
-            // picTwo
-            // 
-            this.picTwo.Enabled = false;
-            this.picTwo.Location = new System.Drawing.Point(461, 121);
-            this.picTwo.Name = "picTwo";
-            this.picTwo.Size = new System.Drawing.Size(160, 120);
-            this.picTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picTwo.TabIndex = 101;
-            this.picTwo.TabStop = false;
-            this.picTwo.Visible = false;
-            this.picTwo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
-            // lblPic1
-            // 
-            this.lblPic1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic1.Location = new System.Drawing.Point(291, 244);
-            this.lblPic1.Name = "lblPic1";
-            this.lblPic1.Size = new System.Drawing.Size(160, 35);
-            this.lblPic1.TabIndex = 102;
-            this.lblPic1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPic1.Visible = false;
-            // 
-            // lblPic2
-            // 
-            this.lblPic2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic2.Location = new System.Drawing.Point(461, 244);
-            this.lblPic2.Name = "lblPic2";
-            this.lblPic2.Size = new System.Drawing.Size(160, 35);
-            this.lblPic2.TabIndex = 103;
-            this.lblPic2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPic2.Visible = false;
-            // 
-            // lblPic3
-            // 
-            this.lblPic3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic3.Location = new System.Drawing.Point(627, 244);
-            this.lblPic3.Name = "lblPic3";
-            this.lblPic3.Size = new System.Drawing.Size(160, 35);
-            this.lblPic3.TabIndex = 104;
-            this.lblPic3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPic3.Visible = false;
-            // 
-            // lblPic4
-            // 
-            this.lblPic4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic4.Location = new System.Drawing.Point(795, 244);
-            this.lblPic4.Name = "lblPic4";
-            this.lblPic4.Size = new System.Drawing.Size(160, 35);
-            this.lblPic4.TabIndex = 105;
-            this.lblPic4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPic4.Visible = false;
-            // 
-            // lblPic5
-            // 
-            this.lblPic5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic5.Location = new System.Drawing.Point(963, 244);
-            this.lblPic5.Name = "lblPic5";
-            this.lblPic5.Size = new System.Drawing.Size(160, 35);
-            this.lblPic5.TabIndex = 106;
-            this.lblPic5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPic5.Visible = false;
-            // 
-            // lblPic6
-            // 
-            this.lblPic6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPic6.Location = new System.Drawing.Point(1131, 244);
-            this.lblPic6.Name = "lblPic6";
-            this.lblPic6.Size = new System.Drawing.Size(160, 35);
-            this.lblPic6.TabIndex = 107;
-            this.lblPic6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblPic6.Visible = false;
-            // 
             // lblAnswer
             // 
             this.lblAnswer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -369,59 +166,288 @@
             this.lblAnswer.Size = new System.Drawing.Size(214, 35);
             this.lblAnswer.TabIndex = 108;
             // 
+            // panelGameStart
+            // 
+            this.panelGameStart.Controls.Add(this.btnGiveUp);
+            this.panelGameStart.Controls.Add(this.btnHint);
+            this.panelGameStart.Controls.Add(this.btnCheck);
+            this.panelGameStart.Location = new System.Drawing.Point(26, 307);
+            this.panelGameStart.Name = "panelGameStart";
+            this.panelGameStart.Size = new System.Drawing.Size(887, 48);
+            this.panelGameStart.TabIndex = 110;
+            // 
+            // btnGiveUp
+            // 
+            this.btnGiveUp.AutoSize = true;
+            this.btnGiveUp.Enabled = false;
+            this.btnGiveUp.Location = new System.Drawing.Point(14, 7);
+            this.btnGiveUp.Name = "btnGiveUp";
+            this.btnGiveUp.Size = new System.Drawing.Size(113, 35);
+            this.btnGiveUp.TabIndex = 111;
+            this.btnGiveUp.Text = "Give Up";
+            this.btnGiveUp.UseVisualStyleBackColor = true;
+            this.btnGiveUp.Click += new System.EventHandler(this.btnGiveUp_Click);
+            // 
             // btnHint
             // 
             this.btnHint.AutoSize = true;
             this.btnHint.Enabled = false;
-            this.btnHint.Location = new System.Drawing.Point(810, 313);
+            this.btnHint.Location = new System.Drawing.Point(783, 7);
             this.btnHint.Name = "btnHint";
             this.btnHint.Size = new System.Drawing.Size(101, 35);
-            this.btnHint.TabIndex = 109;
+            this.btnHint.TabIndex = 112;
             this.btnHint.Text = "Hint";
             this.btnHint.UseVisualStyleBackColor = true;
             this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.AutoSize = true;
+            this.btnCheck.Enabled = false;
+            this.btnCheck.Location = new System.Drawing.Point(644, 7);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(101, 35);
+            this.btnCheck.TabIndex = 110;
+            this.btnCheck.Text = "Check";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
+            // panelNewGame
+            // 
+            this.panelNewGame.Controls.Add(this.rBtnHard);
+            this.panelNewGame.Controls.Add(this.rBtnMedium);
+            this.panelNewGame.Controls.Add(this.rBtnEasy);
+            this.panelNewGame.Controls.Add(this.btnNewGame);
+            this.panelNewGame.Controls.Add(this.lblDifficulty);
+            this.panelNewGame.Location = new System.Drawing.Point(494, 12);
+            this.panelNewGame.Name = "panelNewGame";
+            this.panelNewGame.Size = new System.Drawing.Size(609, 52);
+            this.panelNewGame.TabIndex = 112;
+            // 
+            // rBtnHard
+            // 
+            this.rBtnHard.AutoSize = true;
+            this.rBtnHard.Location = new System.Drawing.Point(358, 12);
+            this.rBtnHard.Name = "rBtnHard";
+            this.rBtnHard.Size = new System.Drawing.Size(81, 29);
+            this.rBtnHard.TabIndex = 97;
+            this.rBtnHard.TabStop = true;
+            this.rBtnHard.Text = "Hard";
+            this.rBtnHard.UseVisualStyleBackColor = true;
+            // 
+            // rBtnMedium
+            // 
+            this.rBtnMedium.AutoSize = true;
+            this.rBtnMedium.Location = new System.Drawing.Point(231, 12);
+            this.rBtnMedium.Name = "rBtnMedium";
+            this.rBtnMedium.Size = new System.Drawing.Size(112, 29);
+            this.rBtnMedium.TabIndex = 96;
+            this.rBtnMedium.TabStop = true;
+            this.rBtnMedium.Text = "Medium";
+            this.rBtnMedium.UseVisualStyleBackColor = true;
+            // 
+            // rBtnEasy
+            // 
+            this.rBtnEasy.AutoSize = true;
+            this.rBtnEasy.Location = new System.Drawing.Point(136, 12);
+            this.rBtnEasy.Name = "rBtnEasy";
+            this.rBtnEasy.Size = new System.Drawing.Size(80, 29);
+            this.rBtnEasy.TabIndex = 95;
+            this.rBtnEasy.TabStop = true;
+            this.rBtnEasy.Text = "Easy";
+            this.rBtnEasy.UseVisualStyleBackColor = true;
+            // 
+            // btnNewGame
+            // 
+            this.btnNewGame.AutoSize = true;
+            this.btnNewGame.Location = new System.Drawing.Point(459, 9);
+            this.btnNewGame.Name = "btnNewGame";
+            this.btnNewGame.Size = new System.Drawing.Size(131, 35);
+            this.btnNewGame.TabIndex = 94;
+            this.btnNewGame.Text = "New Game";
+            this.btnNewGame.UseVisualStyleBackColor = true;
+            this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
+            // 
+            // lblDifficulty
+            // 
+            this.lblDifficulty.AutoSize = true;
+            this.lblDifficulty.Location = new System.Drawing.Point(18, 14);
+            this.lblDifficulty.Name = "lblDifficulty";
+            this.lblDifficulty.Size = new System.Drawing.Size(118, 25);
+            this.lblDifficulty.TabIndex = 93;
+            this.lblDifficulty.Text = "Difficulty :";
+            // 
+            // picOne
+            // 
+            this.picOne.Location = new System.Drawing.Point(18, 15);
+            this.picOne.Name = "picOne";
+            this.picOne.Size = new System.Drawing.Size(160, 120);
+            this.picOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picOne.TabIndex = 108;
+            this.picOne.TabStop = false;
+            this.picOne.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // picFour
+            // 
+            this.picFour.Location = new System.Drawing.Point(522, 15);
+            this.picFour.Name = "picFour";
+            this.picFour.Size = new System.Drawing.Size(160, 120);
+            this.picFour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFour.TabIndex = 111;
+            this.picFour.TabStop = false;
+            this.picFour.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // picThree
+            // 
+            this.picThree.Location = new System.Drawing.Point(354, 15);
+            this.picThree.Name = "picThree";
+            this.picThree.Size = new System.Drawing.Size(160, 120);
+            this.picThree.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picThree.TabIndex = 112;
+            this.picThree.TabStop = false;
+            this.picThree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // picTwo
+            // 
+            this.picTwo.Location = new System.Drawing.Point(186, 15);
+            this.picTwo.Name = "picTwo";
+            this.picTwo.Size = new System.Drawing.Size(160, 120);
+            this.picTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picTwo.TabIndex = 113;
+            this.picTwo.TabStop = false;
+            this.picTwo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // lblPic1
+            // 
+            this.lblPic1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic1.Location = new System.Drawing.Point(18, 138);
+            this.lblPic1.Name = "lblPic1";
+            this.lblPic1.Size = new System.Drawing.Size(160, 35);
+            this.lblPic1.TabIndex = 114;
+            this.lblPic1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic2
+            // 
+            this.lblPic2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic2.Location = new System.Drawing.Point(186, 138);
+            this.lblPic2.Name = "lblPic2";
+            this.lblPic2.Size = new System.Drawing.Size(160, 35);
+            this.lblPic2.TabIndex = 115;
+            this.lblPic2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic3
+            // 
+            this.lblPic3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic3.Location = new System.Drawing.Point(354, 138);
+            this.lblPic3.Name = "lblPic3";
+            this.lblPic3.Size = new System.Drawing.Size(160, 35);
+            this.lblPic3.TabIndex = 116;
+            this.lblPic3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblPic4
+            // 
+            this.lblPic4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic4.Location = new System.Drawing.Point(522, 138);
+            this.lblPic4.Name = "lblPic4";
+            this.lblPic4.Size = new System.Drawing.Size(160, 35);
+            this.lblPic4.TabIndex = 117;
+            this.lblPic4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelPicBox1to4
+            // 
+            this.panelPicBox1to4.Controls.Add(this.lblPic4);
+            this.panelPicBox1to4.Controls.Add(this.lblPic3);
+            this.panelPicBox1to4.Controls.Add(this.lblPic2);
+            this.panelPicBox1to4.Controls.Add(this.lblPic1);
+            this.panelPicBox1to4.Controls.Add(this.picTwo);
+            this.panelPicBox1to4.Controls.Add(this.picThree);
+            this.panelPicBox1to4.Controls.Add(this.picFour);
+            this.panelPicBox1to4.Controls.Add(this.picOne);
+            this.panelPicBox1to4.Enabled = false;
+            this.panelPicBox1to4.Location = new System.Drawing.Point(270, 102);
+            this.panelPicBox1to4.Name = "panelPicBox1to4";
+            this.panelPicBox1to4.Size = new System.Drawing.Size(684, 189);
+            this.panelPicBox1to4.TabIndex = 111;
+            this.panelPicBox1to4.Visible = false;
+            // 
+            // picSix
+            // 
+            this.picSix.Enabled = false;
+            this.picSix.Location = new System.Drawing.Point(1128, 117);
+            this.picSix.Name = "picSix";
+            this.picSix.Size = new System.Drawing.Size(160, 120);
+            this.picSix.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picSix.TabIndex = 120;
+            this.picSix.TabStop = false;
+            this.picSix.Visible = false;
+            this.picSix.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // picFive
+            // 
+            this.picFive.Enabled = false;
+            this.picFive.Location = new System.Drawing.Point(960, 117);
+            this.picFive.Name = "picFive";
+            this.picFive.Size = new System.Drawing.Size(160, 120);
+            this.picFive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFive.TabIndex = 121;
+            this.picFive.TabStop = false;
+            this.picFive.Visible = false;
+            this.picFive.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // lblPic5
+            // 
+            this.lblPic5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic5.Location = new System.Drawing.Point(960, 240);
+            this.lblPic5.Name = "lblPic5";
+            this.lblPic5.Size = new System.Drawing.Size(160, 35);
+            this.lblPic5.TabIndex = 122;
+            this.lblPic5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPic5.Visible = false;
+            // 
+            // lblPic6
+            // 
+            this.lblPic6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPic6.Location = new System.Drawing.Point(1128, 240);
+            this.lblPic6.Name = "lblPic6";
+            this.lblPic6.Size = new System.Drawing.Size(160, 35);
+            this.lblPic6.TabIndex = 123;
+            this.lblPic6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPic6.Visible = false;
             // 
             // frmPictureGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1582, 745);
-            this.Controls.Add(this.btnHint);
-            this.Controls.Add(this.lblAnswer);
             this.Controls.Add(this.lblPic6);
             this.Controls.Add(this.lblPic5);
-            this.Controls.Add(this.lblPic4);
-            this.Controls.Add(this.lblPic3);
-            this.Controls.Add(this.lblPic2);
-            this.Controls.Add(this.lblPic1);
-            this.Controls.Add(this.picTwo);
-            this.Controls.Add(this.picThree);
-            this.Controls.Add(this.picFour);
             this.Controls.Add(this.picFive);
             this.Controls.Add(this.picSix);
-            this.Controls.Add(this.picOne);
+            this.Controls.Add(this.lblAnswer);
             this.Controls.Add(this.lblTimer);
-            this.Controls.Add(this.btnGiveUp);
             this.Controls.Add(this.lstvOutput);
-            this.Controls.Add(this.rBtnHard);
-            this.Controls.Add(this.rBtnMedium);
-            this.Controls.Add(this.rBtnEasy);
             this.Controls.Add(this.btnShowAnswer);
-            this.Controls.Add(this.btnNewGame);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnInstructions);
-            this.Controls.Add(this.btnCheck);
-            this.Controls.Add(this.lblDifficulty);
+            this.Controls.Add(this.panelGameStart);
+            this.Controls.Add(this.panelNewGame);
+            this.Controls.Add(this.panelPicBox1to4);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmPictureGame";
             this.Text = "Picture Guessing Game";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPictureGame_FormClosed);
+            this.panelGameStart.ResumeLayout(false);
+            this.panelGameStart.PerformLayout();
+            this.panelNewGame.ResumeLayout(false);
+            this.panelNewGame.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picOne)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSix)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFive)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFour)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picThree)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTwo)).EndInit();
+            this.panelPicBox1to4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picSix)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFive)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -430,24 +456,27 @@
         #endregion
 
         private System.Windows.Forms.Label lblTimer;
-        private System.Windows.Forms.Button btnGiveUp;
         private System.Windows.Forms.ListView lstvOutput;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.RadioButton rBtnHard;
         private System.Windows.Forms.Timer timTimer;
-        private System.Windows.Forms.RadioButton rBtnMedium;
-        private System.Windows.Forms.RadioButton rBtnEasy;
         private System.Windows.Forms.Button btnShowAnswer;
-        private System.Windows.Forms.Button btnNewGame;
         private System.Windows.Forms.Button btnMenu;
         private System.Windows.Forms.Button btnInstructions;
+        private System.Windows.Forms.Label lblAnswer;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Panel panelGameStart;
+        private System.Windows.Forms.Button btnGiveUp;
+        private System.Windows.Forms.Button btnHint;
         private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Panel panelNewGame;
+        private System.Windows.Forms.RadioButton rBtnHard;
+        private System.Windows.Forms.RadioButton rBtnMedium;
+        private System.Windows.Forms.RadioButton rBtnEasy;
+        private System.Windows.Forms.Button btnNewGame;
         private System.Windows.Forms.Label lblDifficulty;
         private System.Windows.Forms.PictureBox picOne;
-        private System.Windows.Forms.PictureBox picSix;
-        private System.Windows.Forms.PictureBox picFive;
         private System.Windows.Forms.PictureBox picFour;
         private System.Windows.Forms.PictureBox picThree;
         private System.Windows.Forms.PictureBox picTwo;
@@ -455,10 +484,10 @@
         private System.Windows.Forms.Label lblPic2;
         private System.Windows.Forms.Label lblPic3;
         private System.Windows.Forms.Label lblPic4;
+        private System.Windows.Forms.Panel panelPicBox1to4;
+        private System.Windows.Forms.PictureBox picSix;
+        private System.Windows.Forms.PictureBox picFive;
         private System.Windows.Forms.Label lblPic5;
         private System.Windows.Forms.Label lblPic6;
-        private System.Windows.Forms.Label lblAnswer;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.Button btnHint;
     }
 }
