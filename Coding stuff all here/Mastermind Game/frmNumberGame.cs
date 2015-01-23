@@ -38,7 +38,8 @@ namespace Mastermind_Game
 
         // Global Variables
         const int EASY = 4, MEDIUM = 5, HARD = 6, INSANE = 8;
-        const int NUMBEROFTIPS = 7;
+        const int NUMBEROFTIPS = 8;
+        const int NUMBEROFTRIESALLOWED = 5;
 
         string randNumber, timeElapsed;
         bool error;
@@ -49,9 +50,10 @@ namespace Mastermind_Game
 
         String[] tips = new String[NUMBEROFTIPS]
             {
-                "Tip : You can click enter after entering the numbers.",
                 "Tip : Read the instructions if you're not sure how to play this game.",
+                "Tip : You can press enter on your keyboard instead of clicking check.",
                 "Tip : Click on hints if you're stuck, there isn't any penalty.",
+                "Tip : There are no repeat digits, eg. 2222, 5111, 0180",
                 "Tip : Form a strategy, use a digit you know is wrong to check placement.",
                 "Tip : Just give up if you're taking way to long.",
                 "Tip : Start from an easier level if it's too hard.",
@@ -61,11 +63,13 @@ namespace Mastermind_Game
 
         private void btnInstructions_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Click New Game to generate a new number.\nList below shows the number of digits per difficulty."
+            MessageBox.Show("List below shows the number of digits per difficulty."
                 + "\nEasy: "    + EASY      +   " digits\t"
                 + "\nMedium: "  + MEDIUM    +   " digits\t"
                 + "\nHard: "    + HARD      +   " digits\t"
-                + "\nInsane: "  + INSANE    +   " digits\t");
+                + "\nInsane: "  + INSANE    +   " digits\t"
+                + "You can only press check/enter once you've input the correct number of digits."
+                + "There are no repeat digits, eg 2233, 5111, 0980.");
         }
 
 
@@ -88,8 +92,9 @@ namespace Mastermind_Game
             lblTimer.Text = "00:00:00";
             timTimer.Start();
             timTips.Start();
-            lblTips.Text = "Good Luck";
+            lblTips.Text = "Good Luck! You only have "+NUMBEROFTRIESALLOWED+" tries to use.";
             NewgameActions();
+            btnCheck.Enabled = false;
         }
 
 
@@ -98,11 +103,12 @@ namespace Mastermind_Game
         {
             if (MessageBox.Show("Are you sure you want to give up?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show(randNumber, "Answer", MessageBoxButtons.OK);
+                MessageBox.Show("The correct digits were: "+randNumber, "Answer", MessageBoxButtons.OK);
                 GiveupORwinActions();
                 stpWatch.Stop();
                 timTimer.Stop();
                 timTips.Stop();
+                lblTips.Text = "Click New Game to start.";
             }
         }
 
@@ -153,9 +159,52 @@ namespace Mastermind_Game
 
 
 
+        // Prevents user from pressing check unless the correct number of digits are inside the text box input.
+        private void txtDigitInput_TextChanged(object sender, EventArgs e)
+        {
+            string strInputNumber = txtDigitInput.Text;
+            btnCheck.Enabled = false;
+            switch (DifficultyChecker())
+            {
+                case "Easy":
+                    if (strInputNumber.Length == EASY)
+                    {
+                        btnCheck.Enabled = true;
+                    }
+                    break;
+
+                case "Medium":
+                    if (strInputNumber.Length == MEDIUM)
+                    {
+                        btnCheck.Enabled = true;
+                    }
+                    break;
+
+                case "Hard":
+                    if (strInputNumber.Length == HARD)
+                    {
+                        btnCheck.Enabled = true;
+                    }
+                    break;
+
+                case "Insane":
+                    if (strInputNumber.Length == INSANE)
+                    {
+                        btnCheck.Enabled = true;
+                    }
+                    break;
+
+                default:
+                    MessageBox.Show("You shouldn't be able to see this! Error! \n");
+                    return;
+
+            }
+        }
+
+
+
         /* Button Check Click event
          * try catch to make sure only numbers have been input into the textbox
-         * switch case for different difficulty settings
          * clear textbox after button click
          * +1 to click count
          * switch focus to textbox when checkbutton is pressed to ensure continuos input
@@ -174,78 +223,45 @@ namespace Mastermind_Game
             }
             catch
             {
-                MessageBox.Show("Please input numbers.");
+                MessageBox.Show("Please input integer numbers.");
                 return;
             }
 
-            string strInputNumber = txtDigitInput.Text, winMessage;
+            string strInputNumber = txtDigitInput.Text, winMessage, loseMessage;
             int CorrectlyPlacedDigits, CorrectDigits;
             btnClickedCount++;
-            winMessage = String.Format("Congratulations! You got it right!\n{0}", randNumber);
-
-            switch (DifficultyChecker())
-            {
-                case "Easy":
-                    if (strInputNumber.Length != EASY)
-                    {
-                        MessageBox.Show("Please Enter " + EASY + " Digits.");
-                        btnClickedCount--;
-                        txtDigitInput.Focus();
-                        return;
-                    }
-                    break;
-
-                case "Medium":
-                    if (strInputNumber.Length != MEDIUM)
-                    {
-                        MessageBox.Show("Please Enter " + MEDIUM + " Digits.");
-                        btnClickedCount--;
-                        txtDigitInput.Focus();
-                        return;
-                    }
-                    break;
-
-                case "Hard":
-                    if (strInputNumber.Length != HARD)
-                    {
-                        MessageBox.Show("Please Enter " + HARD + " Digits.");
-                        btnClickedCount--;
-                        txtDigitInput.Focus();
-                        return;
-                    }
-                    break;
-
-                case "Insane":
-                    if (strInputNumber.Length != INSANE)
-                    {
-                        MessageBox.Show("Please Enter " + INSANE + " Digits.");
-                        btnClickedCount--;
-                        txtDigitInput.Focus();
-                        return;
-                    }
-                    break;
-
-                default:
-                    MessageBox.Show("You shouldn't be able to see this! Error! \n");
-                    return;
-
-            }
+            winMessage = "Congratulations! You got it right!";
+            loseMessage = "Sorry! You've ran out of tries and lost!";
 
             CorrectlyPlacedDigits = CorrectNumDigitsPlaced(numOfDigits);
             CorrectDigits = CorrectNumDigits(numOfDigits);
             lstvOutput.Items.Add(LviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
 
-            if (strInputNumber == randNumber)
+            if (strInputNumber == randNumber && btnClickedCount <= NUMBEROFTRIESALLOWED)
             {
                 stpWatch.Stop();
                 timTimer.Stop();
-                timTimer.Stop();
+                timTips.Stop();
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
                 clickCount = btnClickedCount;
                 MessageBox.Show(winMessage + "\n Tries Used: " + clickCount + "\n Time Taken: " + timeElapsed);
+                lblTips.Text = "Click New Game to start";
                 GiveupORwinActions();
 
+            }
+
+            else if (btnClickedCount == NUMBEROFTRIESALLOWED)
+            {
+                stpWatch.Stop();
+                timTimer.Stop();
+                timTips.Stop();
+                TimeSpan ts = stpWatch.Elapsed;
+                timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
+                clickCount = btnClickedCount;
+                MessageBox.Show(loseMessage + "\n Tries Used: " + clickCount + "\n Time Taken: " + timeElapsed + "\n The correct digits were: " + randNumber);
+                lblTips.Text = "Click New Game to start";
+                GiveupORwinActions();
             }
 
             lstvOutput.EnsureVisible(lstvOutput.Items.Count - 1);
@@ -294,21 +310,25 @@ namespace Mastermind_Game
             if (rBtnEasy.Checked == true)
             {
                 numOfDigits = EASY;
+                txtDigitInput.MaxLength = EASY;
                 return "Easy";
             }
             if (rBtnMedium.Checked == true)
             {
                 numOfDigits = MEDIUM;
+                txtDigitInput.MaxLength = MEDIUM;
                 return "Medium";
             }
             if (rBtnHard.Checked == true)
             {
                 numOfDigits = HARD;
+                txtDigitInput.MaxLength = HARD;
                 return "Hard";
             }
             if (rBtnInsane.Checked == true)
             {
                 numOfDigits = INSANE;
+                txtDigitInput.MaxLength = INSANE;
                 return "Insane";
             }
             else
@@ -436,6 +456,10 @@ namespace Mastermind_Game
             panelNewGame.Enabled = false;
             return;
         }
+
+
+
+        
 
 
         // End of methods / function definitions

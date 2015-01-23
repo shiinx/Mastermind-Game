@@ -40,18 +40,18 @@
             this.btnMenu = new System.Windows.Forms.Button();
             this.timTimer = new System.Windows.Forms.Timer(this.components);
             this.panelNewGame = new System.Windows.Forms.Panel();
-            this.panelGameStart = new System.Windows.Forms.Panel();
-            this.btnGiveUp = new System.Windows.Forms.Button();
-            this.btnHint = new System.Windows.Forms.Button();
-            this.btnCheck = new System.Windows.Forms.Button();
-            this.txtDigitInput = new System.Windows.Forms.TextBox();
-            this.lblDigits = new System.Windows.Forms.Label();
             this.rBtnHard = new System.Windows.Forms.RadioButton();
             this.rBtnInsane = new System.Windows.Forms.RadioButton();
             this.rBtnMedium = new System.Windows.Forms.RadioButton();
             this.rBtnEasy = new System.Windows.Forms.RadioButton();
             this.btnNewGame = new System.Windows.Forms.Button();
             this.lblDifficulty = new System.Windows.Forms.Label();
+            this.panelGameStart = new System.Windows.Forms.Panel();
+            this.btnGiveUp = new System.Windows.Forms.Button();
+            this.btnHint = new System.Windows.Forms.Button();
+            this.btnCheck = new System.Windows.Forms.Button();
+            this.txtDigitInput = new System.Windows.Forms.TextBox();
+            this.lblDigits = new System.Windows.Forms.Label();
             this.lblTips = new System.Windows.Forms.Label();
             this.timTips = new System.Windows.Forms.Timer(this.components);
             this.panelNewGame.SuspendLayout();
@@ -155,68 +155,6 @@
             this.panelNewGame.Size = new System.Drawing.Size(696, 45);
             this.panelNewGame.TabIndex = 72;
             // 
-            // panelGameStart
-            // 
-            this.panelGameStart.Controls.Add(this.btnGiveUp);
-            this.panelGameStart.Controls.Add(this.btnHint);
-            this.panelGameStart.Controls.Add(this.btnCheck);
-            this.panelGameStart.Controls.Add(this.txtDigitInput);
-            this.panelGameStart.Controls.Add(this.lblDigits);
-            this.panelGameStart.Location = new System.Drawing.Point(53, 100);
-            this.panelGameStart.Name = "panelGameStart";
-            this.panelGameStart.Size = new System.Drawing.Size(855, 81);
-            this.panelGameStart.TabIndex = 73;
-            // 
-            // btnGiveUp
-            // 
-            this.btnGiveUp.AutoSize = true;
-            this.btnGiveUp.Location = new System.Drawing.Point(16, 35);
-            this.btnGiveUp.Name = "btnGiveUp";
-            this.btnGiveUp.Size = new System.Drawing.Size(113, 35);
-            this.btnGiveUp.TabIndex = 75;
-            this.btnGiveUp.Text = "Give Up";
-            this.btnGiveUp.UseVisualStyleBackColor = true;
-            this.btnGiveUp.Click += new System.EventHandler(this.btnGiveUp_Click);
-            // 
-            // btnHint
-            // 
-            this.btnHint.AutoSize = true;
-            this.btnHint.Location = new System.Drawing.Point(737, 11);
-            this.btnHint.Name = "btnHint";
-            this.btnHint.Size = new System.Drawing.Size(101, 35);
-            this.btnHint.TabIndex = 74;
-            this.btnHint.Text = "Hint";
-            this.btnHint.UseVisualStyleBackColor = true;
-            this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
-            // 
-            // btnCheck
-            // 
-            this.btnCheck.AutoSize = true;
-            this.btnCheck.Location = new System.Drawing.Point(612, 11);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(101, 35);
-            this.btnCheck.TabIndex = 73;
-            this.btnCheck.Text = "Check";
-            this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
-            // 
-            // txtDigitInput
-            // 
-            this.txtDigitInput.Location = new System.Drawing.Point(298, 14);
-            this.txtDigitInput.Name = "txtDigitInput";
-            this.txtDigitInput.Size = new System.Drawing.Size(290, 32);
-            this.txtDigitInput.TabIndex = 72;
-            this.txtDigitInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblDigits
-            // 
-            this.lblDigits.AutoSize = true;
-            this.lblDigits.Location = new System.Drawing.Point(196, 17);
-            this.lblDigits.Name = "lblDigits";
-            this.lblDigits.Size = new System.Drawing.Size(85, 25);
-            this.lblDigits.TabIndex = 71;
-            this.lblDigits.Text = "Digits :";
-            // 
             // rBtnHard
             // 
             this.rBtnHard.AutoSize = true;
@@ -281,6 +219,71 @@
             this.lblDifficulty.TabIndex = 69;
             this.lblDifficulty.Text = "Difficulty :";
             // 
+            // panelGameStart
+            // 
+            this.panelGameStart.Controls.Add(this.btnCheck);
+            this.panelGameStart.Controls.Add(this.btnGiveUp);
+            this.panelGameStart.Controls.Add(this.btnHint);
+            this.panelGameStart.Controls.Add(this.txtDigitInput);
+            this.panelGameStart.Controls.Add(this.lblDigits);
+            this.panelGameStart.Enabled = false;
+            this.panelGameStart.Location = new System.Drawing.Point(53, 100);
+            this.panelGameStart.Name = "panelGameStart";
+            this.panelGameStart.Size = new System.Drawing.Size(855, 81);
+            this.panelGameStart.TabIndex = 73;
+            // 
+            // btnGiveUp
+            // 
+            this.btnGiveUp.AutoSize = true;
+            this.btnGiveUp.Location = new System.Drawing.Point(16, 35);
+            this.btnGiveUp.Name = "btnGiveUp";
+            this.btnGiveUp.Size = new System.Drawing.Size(113, 35);
+            this.btnGiveUp.TabIndex = 75;
+            this.btnGiveUp.Text = "Give Up";
+            this.btnGiveUp.UseVisualStyleBackColor = true;
+            this.btnGiveUp.Click += new System.EventHandler(this.btnGiveUp_Click);
+            // 
+            // btnHint
+            // 
+            this.btnHint.AutoSize = true;
+            this.btnHint.Location = new System.Drawing.Point(737, 11);
+            this.btnHint.Name = "btnHint";
+            this.btnHint.Size = new System.Drawing.Size(101, 35);
+            this.btnHint.TabIndex = 74;
+            this.btnHint.Text = "Hint";
+            this.btnHint.UseVisualStyleBackColor = true;
+            this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.AutoSize = true;
+            this.btnCheck.Location = new System.Drawing.Point(613, 12);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(101, 35);
+            this.btnCheck.TabIndex = 73;
+            this.btnCheck.Text = "Check";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
+            // txtDigitInput
+            // 
+            this.txtDigitInput.Location = new System.Drawing.Point(298, 14);
+            this.txtDigitInput.Name = "txtDigitInput";
+            this.txtDigitInput.Size = new System.Drawing.Size(290, 32);
+            this.txtDigitInput.TabIndex = 72;
+            this.txtDigitInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDigitInput.TextChanged += new System.EventHandler(this.txtDigitInput_TextChanged);
+            this.txtDigitInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDigitInput_KeyDown);
+            // 
+            // lblDigits
+            // 
+            this.lblDigits.AutoSize = true;
+            this.lblDigits.Location = new System.Drawing.Point(196, 17);
+            this.lblDigits.Name = "lblDigits";
+            this.lblDigits.Size = new System.Drawing.Size(85, 25);
+            this.lblDigits.TabIndex = 71;
+            this.lblDigits.Text = "Digits :";
+            // 
             // lblTips
             // 
             this.lblTips.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -288,7 +291,6 @@
             this.lblTips.Name = "lblTips";
             this.lblTips.Size = new System.Drawing.Size(859, 34);
             this.lblTips.TabIndex = 125;
-            this.lblTips.Text = "Click New Game to start";
             this.lblTips.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timTips
@@ -314,6 +316,7 @@
             this.Name = "frmNumberGame";
             this.Text = "Number Guessing Game";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmNumberGame_FormClosed);
+            this.Load += new System.EventHandler(this.frmNumberGame_Load);
             this.panelNewGame.ResumeLayout(false);
             this.panelNewGame.PerformLayout();
             this.panelGameStart.ResumeLayout(false);

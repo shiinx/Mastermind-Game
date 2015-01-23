@@ -51,6 +51,7 @@ namespace Mastermind_Game
         const int NUMBEROFPICTURES = 8;
         const int NUMBEROFPICTUREBOX = 6;
         const int NUMBEROFTIPS = 6;
+        const int NUMBEROFTRIESALLOWED = 20;
 
         string timeElapsed;
         bool error;
@@ -124,7 +125,8 @@ namespace Mastermind_Game
                 +   "\nHard: "      +  HARD     +   " Pictures."
                 +   "\n\nLeft click the picture for the next picture."
                 +   "\nRight click the picture for the previous picture."
-                +   "\nHint tells you what the first picture is.");
+                +   "\nHint tells you what the first picture is."
+                +   "You only have " +NUMBEROFTRIESALLOWED+" tries allowed regardless of difficulty.");
         }
 
 
@@ -154,7 +156,7 @@ namespace Mastermind_Game
             lblTimer.Text = "00:00:00";
             timTimer.Start();
             timTips.Start();
-            lblTips.Text = "Good Luck";
+            lblTips.Text = "Good Luck! You only have " + NUMBEROFTRIESALLOWED + " tries to use.";
             NewgameActions();
         }
 
@@ -174,11 +176,12 @@ namespace Mastermind_Game
                     displayAnswer += ", ";
                     displayAnswer += String.Join("",picName[globalRandomNumber[a]]);
                 }
-                MessageBox.Show(displayAnswer,"Answer",MessageBoxButtons.OK);
+                MessageBox.Show("The correct pictures were: "+displayAnswer,"Answer",MessageBoxButtons.OK);
                 GiveupOrWinActions();
                 stpWatch.Stop();
                 timTimer.Stop();
                 timTips.Stop();
+                lblTips.Text = "Click New Game to start";
             }
         }
 
@@ -209,6 +212,7 @@ namespace Mastermind_Game
             btnClickedCount++;
             int correctlyPlacedPictures, correctPictures;
             String winMessage = "Congratulations! You got it right!";
+            string loseMessage = " Sorry! You've ran out of tries and lost! ";
             string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
             int n,i=0;
 
@@ -223,15 +227,38 @@ namespace Mastermind_Game
                 }
             }
 
-            if (i == n)
+            if (i == n && btnClickedCount <= NUMBEROFTRIESALLOWED )
             {
                 stpWatch.Stop();
                 timTimer.Stop();
-                timTimer.Stop();
+                timTips.Stop();
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
                 clickCount = btnClickedCount;
                 MessageBox.Show(winMessage + "\n Tries Used: " + clickCount + "\n Time Taken: " + timeElapsed);
+                lblTips.Text = "Click New Game to start";
+                GiveupOrWinActions();
+            }
+            else if (btnClickedCount == NUMBEROFTRIESALLOWED)
+            {
+                stpWatch.Stop();
+                timTimer.Stop();
+                timTips.Stop();
+                TimeSpan ts = stpWatch.Elapsed;
+                timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
+                clickCount = btnClickedCount;
+                string displayAnswer="";
+                displayAnswer += String.Join("", picName[globalRandomNumber[0]]);
+                for(int a= 1 ; a<numOfPics ; a++)
+                {
+                    displayAnswer += ", ";
+                    displayAnswer += String.Join("",picName[globalRandomNumber[a]]);
+                }
+                MessageBox.Show(loseMessage +
+                    "\n Tries Used: " + clickCount + 
+                    "\n Time Taken: " + timeElapsed + 
+                    "\n The correct pictures were: " +displayAnswer);
+                lblTips.Text = "Click New Game to start";
                 GiveupOrWinActions();
             }
 
@@ -596,6 +623,7 @@ namespace Mastermind_Game
             panelPicBox1to4.Visible = true;
             return;
         }
+
 
 
         // End of method definitions... 
