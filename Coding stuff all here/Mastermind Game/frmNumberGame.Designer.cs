@@ -47,9 +47,9 @@
             this.btnNewGame = new System.Windows.Forms.Button();
             this.lblDifficulty = new System.Windows.Forms.Label();
             this.panelGameStart = new System.Windows.Forms.Panel();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.btnGiveUp = new System.Windows.Forms.Button();
             this.btnHint = new System.Windows.Forms.Button();
-            this.btnCheck = new System.Windows.Forms.Button();
             this.txtDigitInput = new System.Windows.Forms.TextBox();
             this.lblDigits = new System.Windows.Forms.Label();
             this.lblTips = new System.Windows.Forms.Label();
@@ -232,6 +232,17 @@
             this.panelGameStart.Size = new System.Drawing.Size(855, 81);
             this.panelGameStart.TabIndex = 73;
             // 
+            // btnCheck
+            // 
+            this.btnCheck.AutoSize = true;
+            this.btnCheck.Location = new System.Drawing.Point(613, 12);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(101, 35);
+            this.btnCheck.TabIndex = 73;
+            this.btnCheck.Text = "Check";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
             // btnGiveUp
             // 
             this.btnGiveUp.AutoSize = true;
@@ -253,17 +264,6 @@
             this.btnHint.Text = "Hint";
             this.btnHint.UseVisualStyleBackColor = true;
             this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
-            // 
-            // btnCheck
-            // 
-            this.btnCheck.AutoSize = true;
-            this.btnCheck.Location = new System.Drawing.Point(613, 12);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(101, 35);
-            this.btnCheck.TabIndex = 73;
-            this.btnCheck.Text = "Check";
-            this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // txtDigitInput
             // 
@@ -314,9 +314,9 @@
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmNumberGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Number Guessing Game";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmNumberGame_FormClosed);
-            this.Load += new System.EventHandler(this.frmNumberGame_Load);
             this.panelNewGame.ResumeLayout(false);
             this.panelNewGame.PerformLayout();
             this.panelGameStart.ResumeLayout(false);

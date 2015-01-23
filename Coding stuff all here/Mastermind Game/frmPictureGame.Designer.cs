@@ -449,9 +449,9 @@
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "frmPictureGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Picture Guessing Game";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmPictureGame_FormClosed);
-            this.Load += new System.EventHandler(this.frmPictureGame_Load);
             this.panelGameStart.ResumeLayout(false);
             this.panelGameStart.PerformLayout();
             this.panelNewGame.ResumeLayout(false);
