@@ -52,6 +52,7 @@ namespace Mastermind_Game
         const int NUMBEROFPICTUREBOX = 6;
         const int NUMBEROFTIPS = 6;
         const int NUMBEROFTRIESALLOWED = 20;
+        const int NUMBEROFDIFFICULTIES = 3;
 
         string timeElapsed;
         bool error;
@@ -346,7 +347,42 @@ namespace Mastermind_Game
             }
         }
 
-        
+
+
+        private void Common_MouseEnter(object sender, EventArgs e)
+        {
+            RadioButton[] rbtnDifficulty = new RadioButton[NUMBEROFDIFFICULTIES] 
+            {
+                rBtnEasy,
+                rBtnMedium,
+                rBtnHard
+            };
+
+            System.Windows.Forms.ToolTip tltipDifficulty = new System.Windows.Forms.ToolTip();
+            int counter = 0;
+            while (counter < NUMBEROFDIFFICULTIES)
+            {
+                if (sender == rbtnDifficulty[counter])
+                {
+                    switch (counter)
+                    {
+                        case 0:
+                            tltipDifficulty.SetToolTip(this.rBtnEasy, EASY + " picture boxes");
+                            break;
+                        case 1:
+                            tltipDifficulty.SetToolTip(this.rBtnMedium, MEDIUM + " picture boxes");
+                            break;
+                        case 2:
+                            tltipDifficulty.SetToolTip(this.rBtnHard, HARD + " picture boxes");
+                            break;
+                        default:
+                            MessageBox.Show("Error");
+                            break;
+                    }
+                }
+                counter++;
+            }
+        }
 
 
 

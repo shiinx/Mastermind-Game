@@ -233,6 +233,7 @@
             this.rBtnHard.TabStop = true;
             this.rBtnHard.Text = "Hard";
             this.rBtnHard.UseVisualStyleBackColor = true;
+            this.rBtnHard.MouseEnter += new System.EventHandler(this.Common_MouseEnter);
             // 
             // rBtnMedium
             // 
@@ -244,6 +245,7 @@
             this.rBtnMedium.TabStop = true;
             this.rBtnMedium.Text = "Medium";
             this.rBtnMedium.UseVisualStyleBackColor = true;
+            this.rBtnMedium.MouseEnter += new System.EventHandler(this.Common_MouseEnter);
             // 
             // rBtnEasy
             // 
@@ -255,6 +257,7 @@
             this.rBtnEasy.TabStop = true;
             this.rBtnEasy.Text = "Easy";
             this.rBtnEasy.UseVisualStyleBackColor = true;
+            this.rBtnEasy.MouseEnter += new System.EventHandler(this.Common_MouseEnter);
             // 
             // btnNewGame
             // 

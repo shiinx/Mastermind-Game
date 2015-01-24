@@ -40,6 +40,7 @@ namespace Mastermind_Game
         const int EASY = 4, MEDIUM = 5, HARD = 6, INSANE = 8;
         const int NUMBEROFTIPS = 8;
         const int NUMBEROFTRIESALLOWED = 25;
+        const int NUMBEROFDIFFICULTIES = 4;
 
         string randNumber, timeElapsed;
         bool error;
@@ -69,6 +70,7 @@ namespace Mastermind_Game
                 + "\nHard: "    + HARD      +   " digits\t"
                 + "\nInsane: "  + INSANE    +   " digits\t"
                 + "You can only press check/enter once you've input the correct number of digits."
+                + "You only have "+ NUMBEROFTRIESALLOWED + "tries regardless of difficulty."
                 + "There are no repeat digits, eg 2233, 5111, 0980.");
         }
 
@@ -272,6 +274,47 @@ namespace Mastermind_Game
         // End of check click event code
 
 
+        // tooltips to show number of digits per dificlty
+        private void Common_MouseEnter(object sender, EventArgs e)
+        {
+            RadioButton[] rbtnDifficulty = new RadioButton[NUMBEROFDIFFICULTIES] 
+            {
+                rBtnEasy,
+                rBtnMedium,
+                rBtnHard,
+                rBtnInsane
+            };
+
+            System.Windows.Forms.ToolTip tltipDifficulty = new System.Windows.Forms.ToolTip();
+            int counter = 0;
+            while (counter < NUMBEROFDIFFICULTIES)
+            {
+                if (sender == rbtnDifficulty[counter])
+                {
+                    switch (counter)
+                    {
+                        case 0:
+                            tltipDifficulty.SetToolTip(this.rBtnEasy, EASY + " digits");
+                            break;
+                        case 1:
+                            tltipDifficulty.SetToolTip(this.rBtnMedium, MEDIUM + " digits");
+                            break;
+                        case 2:
+                            tltipDifficulty.SetToolTip(this.rBtnHard, HARD + " digits");
+                            break;
+                        case 3:
+                            tltipDifficulty.SetToolTip(this.rBtnInsane, INSANE + " digits");
+                            break;
+                        default:
+                            MessageBox.Show("Error");
+                            break;
+                    }
+                }
+                counter++;
+            }
+        }
+
+
 
         private void timTips_Tick(object sender, EventArgs e)
         {
@@ -458,8 +501,7 @@ namespace Mastermind_Game
             return;
         }
 
-
-
+        
         
 
 
