@@ -420,6 +420,7 @@
             this.lblTips.Name = "lblTips";
             this.lblTips.Size = new System.Drawing.Size(859, 34);
             this.lblTips.TabIndex = 124;
+            this.lblTips.Text = "Click New Game to start.";
             this.lblTips.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timTips

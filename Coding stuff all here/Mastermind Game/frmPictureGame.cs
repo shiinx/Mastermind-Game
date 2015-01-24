@@ -219,6 +219,9 @@ namespace Mastermind_Game
             correctlyPlacedPictures = CorrectNumDPicturesPlaced(numOfPics);
             correctPictures = CorrectNumPictures(numOfPics);
             lstvOutput.Items.Add(LviOutput(btnClickedCount, correctPictures, correctlyPlacedPictures));
+
+            lstvOutput.EnsureVisible(lstvOutput.Items.Count - 1);
+
             for (n = 0; n < numOfPics; n++)
             {
                 if (picName[globalRandomNumber[n]] == lblName[n])
@@ -261,8 +264,6 @@ namespace Mastermind_Game
                 lblTips.Text = "Click New Game to start";
                 GiveupOrWinActions();
             }
-
-            lstvOutput.EnsureVisible(lstvOutput.Items.Count - 1);
             
         }
 

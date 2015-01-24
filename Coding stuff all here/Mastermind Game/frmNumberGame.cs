@@ -39,7 +39,7 @@ namespace Mastermind_Game
         // Global Variables
         const int EASY = 4, MEDIUM = 5, HARD = 6, INSANE = 8;
         const int NUMBEROFTIPS = 8;
-        const int NUMBEROFTRIESALLOWED = 5;
+        const int NUMBEROFTRIESALLOWED = 25;
 
         string randNumber, timeElapsed;
         bool error;
@@ -237,6 +237,8 @@ namespace Mastermind_Game
             CorrectDigits = CorrectNumDigits(numOfDigits);
             lstvOutput.Items.Add(LviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
 
+            lstvOutput.EnsureVisible(lstvOutput.Items.Count - 1);
+
             if (strInputNumber == randNumber && btnClickedCount <= NUMBEROFTRIESALLOWED)
             {
                 stpWatch.Stop();
@@ -264,7 +266,6 @@ namespace Mastermind_Game
                 GiveupORwinActions();
             }
 
-            lstvOutput.EnsureVisible(lstvOutput.Items.Count - 1);
             txtDigitInput.Text = "";
             txtDigitInput.Focus();
         }
