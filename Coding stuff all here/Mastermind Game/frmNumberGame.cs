@@ -69,9 +69,9 @@ namespace Mastermind_Game
                 + "\nMedium: "  + MEDIUM    +   " digits\t"
                 + "\nHard: "    + HARD      +   " digits\t"
                 + "\nInsane: "  + INSANE    +   " digits\t"
-                + "You can only press check/enter once you've input the correct number of digits."
-                + "You only have "+ NUMBEROFTRIESALLOWED + "tries regardless of difficulty."
-                + "There are no repeat digits, eg 2233, 5111, 0980.");
+                + "\nYou can only press check/enter once you've input the correct number of digits."
+                + "\nYou only have "+ NUMBEROFTRIESALLOWED + "tries regardless of difficulty."
+                + "\nThere are no repeat digits, eg 2233, 5111, 0980.");
         }
 
 
@@ -249,7 +249,7 @@ namespace Mastermind_Game
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
                 clickCount = btnClickedCount;
-                MessageBox.Show(winMessage + "\n Tries Used: " + clickCount + "\n Time Taken: " + timeElapsed);
+                MessageBox.Show(winMessage + "\nTries Used: " + clickCount + "\nTime Taken: " + timeElapsed);
                 lblTips.Text = "Click New Game to start";
                 GiveupORwinActions();
 
@@ -263,7 +263,7 @@ namespace Mastermind_Game
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
                 clickCount = btnClickedCount;
-                MessageBox.Show(loseMessage + "\n Tries Used: " + clickCount + "\n Time Taken: " + timeElapsed + "\n The correct digits were: " + randNumber);
+                MessageBox.Show(loseMessage + "\nTries Used: " + clickCount + "\nTime Taken: " + timeElapsed + "\nThe correct digits were: " + randNumber);
                 lblTips.Text = "Click New Game to start";
                 GiveupORwinActions();
             }

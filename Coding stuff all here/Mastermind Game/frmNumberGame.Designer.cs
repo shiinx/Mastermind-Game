@@ -300,7 +300,7 @@
             // 
             // timTips
             // 
-            this.timTips.Interval = 30000;
+            this.timTips.Interval = 20000;
             this.timTips.Tick += new System.EventHandler(this.timTips_Tick);
             // 
             // frmNumberGame

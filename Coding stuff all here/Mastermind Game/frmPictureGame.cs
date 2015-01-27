@@ -71,7 +71,7 @@ namespace Mastermind_Game
          */
         Int32[] globalRandomNumber = new Int32[HARD];
 
-        Bitmap[] resourcePic = new Bitmap[NUMBEROFPICTURES]
+        Image[] resourcePic = new Image[NUMBEROFPICTURES]
         {   Properties.Resources.Picture1,
             Properties.Resources.Picture2,
             Properties.Resources.Picture3,
@@ -127,7 +127,7 @@ namespace Mastermind_Game
                 +   "\n\nLeft click the picture for the next picture."
                 +   "\nRight click the picture for the previous picture."
                 +   "\nHint tells you what the first picture is."
-                +   "You only have " +NUMBEROFTRIESALLOWED+" tries allowed regardless of difficulty.");
+                +   "\nYou only have " +NUMBEROFTRIESALLOWED+" tries allowed regardless of difficulty.");
         }
 
 
@@ -213,7 +213,7 @@ namespace Mastermind_Game
             btnClickedCount++;
             int correctlyPlacedPictures, correctPictures;
             String winMessage = "Congratulations! You got it right!";
-            string loseMessage = " Sorry! You've ran out of tries and lost! ";
+            string loseMessage = "Sorry! You've ran out of tries and lost! ";
             string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
             int n,i=0;
 
@@ -239,7 +239,7 @@ namespace Mastermind_Game
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
                 clickCount = btnClickedCount;
-                MessageBox.Show(winMessage + "\n Tries Used: " + clickCount + "\n Time Taken: " + timeElapsed);
+                MessageBox.Show(winMessage + "\nTries Used: " + clickCount + "\nTime Taken: " + timeElapsed);
                 lblTips.Text = "Click New Game to start";
                 GiveupOrWinActions();
             }
@@ -259,9 +259,9 @@ namespace Mastermind_Game
                     displayAnswer += String.Join("",picName[globalRandomNumber[a]]);
                 }
                 MessageBox.Show(loseMessage +
-                    "\n Tries Used: " + clickCount + 
-                    "\n Time Taken: " + timeElapsed + 
-                    "\n The correct pictures were: " +displayAnswer);
+                    "\nTries Used: " + clickCount + 
+                    "\nTime Taken: " + timeElapsed + 
+                    "\nThe correct pictures were: " +displayAnswer);
                 lblTips.Text = "Click New Game to start";
                 GiveupOrWinActions();
             }

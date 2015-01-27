@@ -387,6 +387,7 @@
             // picFive
             // 
             this.picFive.Enabled = false;
+            this.picFive.InitialImage = null;
             this.picFive.Location = new System.Drawing.Point(960, 117);
             this.picFive.Name = "picFive";
             this.picFive.Size = new System.Drawing.Size(160, 120);
@@ -428,7 +429,7 @@
             // 
             // timTips
             // 
-            this.timTips.Interval = 30000;
+            this.timTips.Interval = 20000;
             this.timTips.Tick += new System.EventHandler(this.timTips_Tick);
             // 
             // frmPictureGame
