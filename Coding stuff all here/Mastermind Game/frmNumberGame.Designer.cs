@@ -54,6 +54,7 @@
             this.lblDigits = new System.Windows.Forms.Label();
             this.lblTips = new System.Windows.Forms.Label();
             this.timTips = new System.Windows.Forms.Timer(this.components);
+            this.btnRecordBoard = new System.Windows.Forms.Button();
             this.panelNewGame.SuspendLayout();
             this.panelGameStart.SuspendLayout();
             this.SuspendLayout();
@@ -303,11 +304,23 @@
             this.timTips.Interval = 20000;
             this.timTips.Tick += new System.EventHandler(this.timTips_Tick);
             // 
+            // btnRecordBoard
+            // 
+            this.btnRecordBoard.AutoSize = true;
+            this.btnRecordBoard.Location = new System.Drawing.Point(490, 513);
+            this.btnRecordBoard.Name = "btnRecordBoard";
+            this.btnRecordBoard.Size = new System.Drawing.Size(158, 35);
+            this.btnRecordBoard.TabIndex = 126;
+            this.btnRecordBoard.Text = "RecordBoard";
+            this.btnRecordBoard.UseVisualStyleBackColor = true;
+            this.btnRecordBoard.Click += new System.EventHandler(this.btnRecordBoard_Click);
+            // 
             // frmNumberGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1134, 601);
+            this.Controls.Add(this.btnRecordBoard);
             this.Controls.Add(this.lblTips);
             this.Controls.Add(this.panelNewGame);
             this.Controls.Add(this.lblTimer);
@@ -359,5 +372,6 @@
         private System.Windows.Forms.Label lblDigits;
         private System.Windows.Forms.Label lblTips;
         private System.Windows.Forms.Timer timTips;
+        private System.Windows.Forms.Button btnRecordBoard;
     }
 }

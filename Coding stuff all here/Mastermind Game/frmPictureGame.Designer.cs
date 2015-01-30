@@ -65,6 +65,7 @@
             this.timTips = new System.Windows.Forms.Timer(this.components);
             this.picFive = new System.Windows.Forms.PictureBox();
             this.picSix = new System.Windows.Forms.PictureBox();
+            this.btnRecordBoard = new System.Windows.Forms.Button();
             this.panelGameStart.SuspendLayout();
             this.panelNewGame.SuspendLayout();
             this.panelPicBox1to4.SuspendLayout();
@@ -433,11 +434,23 @@
             this.picSix.Visible = false;
             this.picSix.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
             // 
+            // btnRecordBoard
+            // 
+            this.btnRecordBoard.AutoSize = true;
+            this.btnRecordBoard.Location = new System.Drawing.Point(712, 698);
+            this.btnRecordBoard.Name = "btnRecordBoard";
+            this.btnRecordBoard.Size = new System.Drawing.Size(158, 35);
+            this.btnRecordBoard.TabIndex = 127;
+            this.btnRecordBoard.Text = "RecordBoard";
+            this.btnRecordBoard.UseVisualStyleBackColor = true;
+            this.btnRecordBoard.Click += new System.EventHandler(this.btnRecordBoard_Click);
+            // 
             // frmPictureGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1582, 745);
+            this.Controls.Add(this.btnRecordBoard);
             this.Controls.Add(this.lblTips);
             this.Controls.Add(this.lblPic6);
             this.Controls.Add(this.lblPic5);
@@ -513,5 +526,6 @@
         private System.Windows.Forms.Label lblPic3;
         private System.Windows.Forms.Label lblPic2;
         private System.Windows.Forms.Label lblPic1;
+        private System.Windows.Forms.Button btnRecordBoard;
     }
 }

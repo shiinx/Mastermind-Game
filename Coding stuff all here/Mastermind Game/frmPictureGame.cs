@@ -17,6 +17,24 @@ namespace Mastermind_Game
             InitializeComponent();
         }
 
+        //To close dialog / return to menu when btnMenu is clicked or redcross is clicked
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+        private void frmPictureGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
+        //Open RecordBoard
+        private void btnRecordBoard_Click(object sender, EventArgs e)
+        {
+            frmRecordBoard recordBoard = new frmRecordBoard();
+            recordBoard.ShowDialog();
+        }
+
         /* Global declares
          */
         const int EASY = 4, MEDIUM = 5, HARD = 6;
@@ -27,8 +45,8 @@ namespace Mastermind_Game
         const int NUMBEROFDIFFICULTIES = 3;
 
         string pathToPublicDocumentsFolder = @"C:\Users\Public\Documents\MastermindGame";
-        string pathToPictureGameRecordsText = @"C:\Users\Public\Documents\MastermindGame\NumberGameRecords.txt";
-        string pathToPictureGameNumberText = @"C:\Users\Public\Documents\MastermindGame\NumberGameNumber.txt";
+        string pathToPictureGameRecordsText = @"C:\Users\Public\Documents\MastermindGame\PictureGameRecords.txt";
+        string pathToPictureGameNumberText = @"C:\Users\Public\Documents\MastermindGame\PictureGameNumber.txt";
 
         string timeElapsed;
         bool error;
@@ -139,20 +157,6 @@ namespace Mastermind_Game
         {
             lblAnswer.Text = "";
             lblAnswer.Text = string.Join("", globalRandomNumber);
-        }
-
-
-
-        /* To close dialog / return to menu when btnMenu is clicked or redcross is clicked
-         */
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-        private void frmPictureGame_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
         }
         
 
@@ -274,7 +278,7 @@ namespace Mastermind_Game
                 System.IO.File.WriteAllText(pathToPictureGameNumberText,gameNumberToSave);
                 using (System.IO.StreamWriter scoreToStore = new System.IO.StreamWriter(pathToPictureGameRecordsText, true))
                 {
-                    scoreToStore.WriteLine(gameNumber.ToString() + "\t" + DifficultyChecker() + "\t" + clickCount + "\t" + timeElapsed);
+                    scoreToStore.WriteLine(gameNumber.ToString() + "\t" + DifficultyChecker() + "\t\t" + clickCount + "\t" + timeElapsed);
                 }
             }
             else if (btnClickedCount == NUMBEROFTRIESALLOWED)
@@ -693,6 +697,7 @@ namespace Mastermind_Game
             panelPicBox1to4.Visible = true;
             return;
         }
+
 
 
 

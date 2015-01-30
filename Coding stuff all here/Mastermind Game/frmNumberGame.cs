@@ -17,6 +17,23 @@ namespace Mastermind_Game
             InitializeComponent();
         }
 
+        // Returns to menu when button or X is clicked
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+        private void frmNumberGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
+        // Opens RecordBoard
+        private void btnRecordBoard_Click(object sender, EventArgs e)
+        {
+            frmRecordBoard recordBoard = new frmRecordBoard();
+            recordBoard.ShowDialog();
+        }
 
         // Global Variables
         const int EASY = 4, MEDIUM = 5, HARD = 6, INSANE = 8;
@@ -31,8 +48,8 @@ namespace Mastermind_Game
         Stopwatch stpWatch = new Stopwatch();
 
         string pathToPublicDocumentsFolder = @"C:\Users\Public\Documents\MastermindGame";
-        string pathToNumberGameRecordsText = @"C:\Users\Public\Documents\MastermindGame\PictureGameRecords.txt";
-        string pathToNumberGameNumberText = @"C:\Users\Public\Documents\MastermindGame\PictureGameNumber.txt";
+        string pathToNumberGameRecordsText = @"C:\Users\Public\Documents\MastermindGame\NumberGameRecords.txt";
+        string pathToNumberGameNumberText = @"C:\Users\Public\Documents\MastermindGame\NumberGameNumber.txt";
 
 
         String[] tips = new String[NUMBEROFTIPS]
@@ -53,7 +70,7 @@ namespace Mastermind_Game
         /* Creates files and folders when game loads
          * Creates a folder MastermindGame
          * If an existing text file called PictureGameRecords and PictureGameNumber doesn't exist, creates one
-         * Takes a value from the Picture Game Value to maintain the count of number of times game has been played and won
+         * Takes a value from the Number Game Value to maintain the count of number of times game has been played and won
          */
         private void frmNumberGame_Load(object sender, EventArgs e)
         {
@@ -92,19 +109,6 @@ namespace Mastermind_Game
             MessageBox.Show(randNumber);
         }
 
-
-
-        /* Returns to menu when button or X is clicked
-         */
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-        private void frmNumberGame_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
 
         
 
@@ -199,43 +203,9 @@ namespace Mastermind_Game
         // Prevents user from pressing check unless the correct number of digits are inside the text box input.
         private void txtDigitInput_TextChanged(object sender, EventArgs e)
         {
-            string strInputNumber = txtDigitInput.Text;
+            string InputNumber = txtDigitInput.Text;
             btnCheck.Enabled = false;
-            switch (DifficultyChecker())
-            {
-                case "Easy":
-                    if (strInputNumber.Length == EASY)
-                    {
-                        btnCheck.Enabled = true;
-                    }
-                    break;
-
-                case "Medium":
-                    if (strInputNumber.Length == MEDIUM)
-                    {
-                        btnCheck.Enabled = true;
-                    }
-                    break;
-
-                case "Hard":
-                    if (strInputNumber.Length == HARD)
-                    {
-                        btnCheck.Enabled = true;
-                    }
-                    break;
-
-                case "Insane":
-                    if (strInputNumber.Length == INSANE)
-                    {
-                        btnCheck.Enabled = true;
-                    }
-                    break;
-
-                default:
-                    MessageBox.Show("You shouldn't be able to see this! Error! \n");
-                    return;
-
-            }
+            CheckLength(InputNumber);
         }
 
 
@@ -287,6 +257,13 @@ namespace Mastermind_Game
                 MessageBox.Show(winMessage + "\nTries Used: " + clickCount + "\nTime Taken: " + timeElapsed);
                 lblTips.Text = "Click New Game to start";
                 GiveupORwinActions();
+                gameNumber++;
+                string gameNumberToSave = gameNumber.ToString();
+                System.IO.File.WriteAllText(pathToNumberGameNumberText, gameNumberToSave);
+                using (System.IO.StreamWriter scoreToStore = new System.IO.StreamWriter(pathToNumberGameRecordsText, true))
+                {
+                    scoreToStore.WriteLine(gameNumber.ToString() + "\t" + DifficultyChecker() + "\t\t" + clickCount + "\t" + timeElapsed);
+                }
 
             }
 
@@ -380,6 +357,7 @@ namespace Mastermind_Game
          * lviOutput                -> Returns the items/subitems that is to be put into the listviewbox
          * newgameActions           -> Resets visibility for certain buttons
          * giveupORwinActions       -> Resets visibility for certain buttons
+         * CheckLength              -> Checks the number of digits in the input against required digits and allows player to click check if equal
          */
 
 
@@ -535,6 +513,46 @@ namespace Mastermind_Game
             panelNewGame.Enabled = false;
             return;
         }
+
+        private void CheckLength(string InputNumber)
+        {
+            switch (DifficultyChecker())
+            {
+                case "Easy":
+                    if (InputNumber.Length == EASY)
+                    {
+                        btnCheck.Enabled = true;
+                    }
+                    break;
+
+                case "Medium":
+                    if (InputNumber.Length == MEDIUM)
+                    {
+                        btnCheck.Enabled = true;
+                    }
+                    break;
+
+                case "Hard":
+                    if (InputNumber.Length == HARD)
+                    {
+                        btnCheck.Enabled = true;
+                    }
+                    break;
+
+                case "Insane":
+                    if (InputNumber.Length == INSANE)
+                    {
+                        btnCheck.Enabled = true;
+                    }
+                    break;
+
+                default:
+                    MessageBox.Show("You shouldn't be able to see this! Error! (Error Caused in txtDigitInput_TextChanged Event) \n");
+                    break;
+
+            }
+        }
+
 
 
         
