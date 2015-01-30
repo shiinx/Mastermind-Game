@@ -17,24 +17,6 @@ namespace Mastermind_Game
             InitializeComponent();
         }
 
-        /* For debugging purposes REMOVE BEFORE HANDING PROJECT IN
-         */
-        private void btnShowAnswer_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(randNumber);
-        }
-
-        /* Returns to menu when button or X is clicked
-         */
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-        private void frmNumberGame_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
 
         // Global Variables
         const int EASY = 4, MEDIUM = 5, HARD = 6, INSANE = 8;
@@ -44,9 +26,13 @@ namespace Mastermind_Game
 
         string randNumber, timeElapsed;
         bool error;
-        int btnClickedCount = 0, counterTips = 0, clickCount, numOfDigits;
+        int btnClickedCount = 0, counterTips = 0, clickCount, numOfDigits, gameNumber;
 
         Stopwatch stpWatch = new Stopwatch();
+
+        string pathToPublicDocumentsFolder = @"C:\Users\Public\Documents\MastermindGame";
+        string pathToNumberGameRecordsText = @"C:\Users\Public\Documents\MastermindGame\PictureGameRecords.txt";
+        string pathToNumberGameNumberText = @"C:\Users\Public\Documents\MastermindGame\PictureGameNumber.txt";
 
 
         String[] tips = new String[NUMBEROFTIPS]
@@ -60,6 +46,29 @@ namespace Mastermind_Game
                 "Tip : Start from an easier level if it's too hard.",
                 "Tick-Tock, Tick-Tock. Time is wasting away. :D",
             };
+
+        // Global Declare End
+
+
+        /* Creates files and folders when game loads
+         * Creates a folder MastermindGame
+         * If an existing text file called PictureGameRecords and PictureGameNumber doesn't exist, creates one
+         * Takes a value from the Picture Game Value to maintain the count of number of times game has been played and won
+         */
+        private void frmNumberGame_Load(object sender, EventArgs e)
+        {
+            System.IO.Directory.CreateDirectory(pathToPublicDocumentsFolder);
+            if (!System.IO.File.Exists(pathToNumberGameNumberText))
+            {
+                System.IO.File.WriteAllText(pathToNumberGameNumberText, "0");
+            }
+            if (!System.IO.File.Exists(pathToNumberGameRecordsText))
+            {
+                System.IO.File.WriteAllText(pathToNumberGameRecordsText, "");
+            }
+            gameNumber = Int32.Parse(System.IO.File.ReadAllText(pathToNumberGameNumberText));
+        }
+
 
 
         private void btnInstructions_Click(object sender, EventArgs e)
@@ -76,6 +85,29 @@ namespace Mastermind_Game
 
 
 
+        /* For debugging purposes REMOVE BEFORE HANDING PROJECT IN
+         */
+        private void btnShowAnswer_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(randNumber);
+        }
+
+
+
+        /* Returns to menu when button or X is clicked
+         */
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+        private void frmNumberGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
+        
+
         /* New Game button Click event
          */
         private void btnNewGame_Click(object sender, EventArgs e)
@@ -91,7 +123,7 @@ namespace Mastermind_Game
             btnClickedCount = 0;
             counterTips = 0;
             stpWatch.Restart();
-            lblTimer.Text = "00:00:00";
+            lblTimer.Text = "00:00";
             timTimer.Start();
             timTips.Start();
             lblTips.Text = "Good Luck! You only have "+NUMBEROFTRIESALLOWED+" tries to use.";
@@ -250,7 +282,7 @@ namespace Mastermind_Game
                 timTimer.Stop();
                 timTips.Stop();
                 TimeSpan ts = stpWatch.Elapsed;
-                timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
+                timeElapsed = String.Format("{0:00}:{1:00}",ts.Minutes, ts.Seconds);
                 clickCount = btnClickedCount;
                 MessageBox.Show(winMessage + "\nTries Used: " + clickCount + "\nTime Taken: " + timeElapsed);
                 lblTips.Text = "Click New Game to start";
@@ -264,7 +296,7 @@ namespace Mastermind_Game
                 timTimer.Stop();
                 timTips.Stop();
                 TimeSpan ts = stpWatch.Elapsed;
-                timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
+                timeElapsed = String.Format("{0:00}:{1:00}",ts.Minutes, ts.Seconds);
                 clickCount = btnClickedCount;
                 MessageBox.Show(loseMessage + "\nTries Used: " + clickCount + "\nTime Taken: " + timeElapsed + "\nThe correct digits were: " + randNumber);
                 lblTips.Text = "Click New Game to start";
@@ -334,7 +366,7 @@ namespace Mastermind_Game
         private void timTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan ts = stpWatch.Elapsed;
-            lblTimer.Text = String.Format(String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds));
+            lblTimer.Text = String.Format(String.Format("{0:00}:{1:00}",ts.Minutes, ts.Seconds));
         }
 
 
@@ -503,6 +535,7 @@ namespace Mastermind_Game
             panelNewGame.Enabled = false;
             return;
         }
+
 
         
         

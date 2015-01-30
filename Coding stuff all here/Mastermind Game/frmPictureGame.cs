@@ -16,36 +16,8 @@ namespace Mastermind_Game
         {
             InitializeComponent();
         }
-        
-        /* To show Answer for error checking/debugging
-         * To be removed along with buttons when project is done
-         */
-        private void btnShowAnswer_Click(object sender, EventArgs e)
-        {
-            lblAnswer.Text = "";
-            lblAnswer.Text = string.Join("", globalRandomNumber);        
-        }
-
-
-
-        /* To close dialog / return to menu when btnMenu is clicked or redcross is clicked
-         */
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-        private void frmPictureGame_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
-
-
 
         /* Global declares
-         * btnCLickedCount to count the number of times check button has been clicked
-         * ClickCount variable for btnCLickedCount to be put into
-         * numOfPics variable to put in number of pictures depending on difficulty
          */
         const int EASY = 4, MEDIUM = 5, HARD = 6;
         const int NUMBEROFPICTURES = 8;
@@ -54,12 +26,16 @@ namespace Mastermind_Game
         const int NUMBEROFTRIESALLOWED = 20;
         const int NUMBEROFDIFFICULTIES = 3;
 
+        string pathToPublicDocumentsFolder = @"C:\Users\Public\Documents\MastermindGame";
+        string pathToPictureGameRecordsText = @"C:\Users\Public\Documents\MastermindGame\NumberGameRecords.txt";
+        string pathToPictureGameNumberText = @"C:\Users\Public\Documents\MastermindGame\NumberGameNumber.txt";
+
         string timeElapsed;
         bool error;
-        int btnClickedCount = 0, counterTips = 0, clickCount, numOfPics;
+        int btnClickedCount = 0, counterTips = 0, numOfPics, gameNumber;
+
 
         Stopwatch stpWatch = new Stopwatch();
-
 
 
         /* Global array declares
@@ -105,15 +81,39 @@ namespace Mastermind_Game
         };
 
         String[] tips = new String[NUMBEROFTIPS]
-            {
-                "Tip : Left-Click for next picture, Right-Click for previous picture.",
-                "Tip : Read the instructions if you're not sure how to play this game.",
-                "Tip : There are actually only "+NUMBEROFPICTURES+" pictures in total.",
-                "Tip : Click on hints if you're stuck, there isn't any penalty.",
-                "Tip : Just give up if you're taking way to long.",
-                "Tick-Tock, Tick-Tock. Time is wasting away. :D",
-            };
+        {
+            "Tip : Left-Click for next picture, Right-Click for previous picture.",
+            "Tip : Read the instructions if you're not sure how to play this game.",
+            "Tip : There are actually only "+NUMBEROFPICTURES+" pictures in total.",
+            "Tip : Click on hints if you're stuck, there isn't any penalty.",
+            "Tip : Just give up if you're taking way to long.",
+            "Tick-Tock, Tick-Tock. Time is wasting away. :D",
+        };
 
+        // Global Declare End
+
+        
+
+        /* Creates files and folders when game loads
+         * Creates a folder MastermindGame
+         * If an existing text file called PictureGameRecords and PictureGameNumber doesn't exist, creates one
+         * Takes a value from the Picture Game Value to maintain the count of number of times game has been played and won
+         */
+        private void frmPictureGame_Load(object sender, EventArgs e)
+        {
+            System.IO.Directory.CreateDirectory(pathToPublicDocumentsFolder);
+            if (!System.IO.File.Exists(pathToPictureGameNumberText))
+            {
+                System.IO.File.WriteAllText(pathToPictureGameNumberText, "0");
+            }
+            if (!System.IO.File.Exists(pathToPictureGameRecordsText))
+            {
+                System.IO.File.WriteAllText(pathToPictureGameRecordsText, "");
+            }
+            gameNumber = Int32.Parse(System.IO.File.ReadAllText(pathToPictureGameNumberText));
+
+        }
+        
 
 
         /* To open instructions
@@ -130,6 +130,31 @@ namespace Mastermind_Game
                 +   "\nYou only have " +NUMBEROFTRIESALLOWED+" tries allowed regardless of difficulty.");
         }
 
+
+
+        /* To show Answer for error checking/debugging
+         * To be removed along with buttons when project is done
+         */
+        private void btnShowAnswer_Click(object sender, EventArgs e)
+        {
+            lblAnswer.Text = "";
+            lblAnswer.Text = string.Join("", globalRandomNumber);
+        }
+
+
+
+        /* To close dialog / return to menu when btnMenu is clicked or redcross is clicked
+         */
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+        private void frmPictureGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+        
 
 
         /* New Game button Click event
@@ -154,7 +179,7 @@ namespace Mastermind_Game
             btnClickedCount = 0;
             counterTips = 0;
             stpWatch.Restart();
-            lblTimer.Text = "00:00:00";
+            lblTimer.Text = "00:00";
             timTimer.Start();
             timTips.Start();
             lblTips.Text = "Good Luck! You only have " + NUMBEROFTRIESALLOWED + " tries to use.";
@@ -212,9 +237,11 @@ namespace Mastermind_Game
         {
             btnClickedCount++;
             int correctlyPlacedPictures, correctPictures;
-            String winMessage = "Congratulations! You got it right!";
+            string clickCount;
+            string winMessage = "Congratulations! You got it right!";
             string loseMessage = "Sorry! You've ran out of tries and lost! ";
-            string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
+            String[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
+            string displayAnswer = "";
             int n,i=0;
 
             correctlyPlacedPictures = CorrectNumDPicturesPlaced(numOfPics);
@@ -231,17 +258,24 @@ namespace Mastermind_Game
                 }
             }
 
-            if (i == n && btnClickedCount <= NUMBEROFTRIESALLOWED )
+            if (i == n && btnClickedCount <= NUMBEROFTRIESALLOWED)
             {
                 stpWatch.Stop();
                 timTimer.Stop();
                 timTips.Stop();
                 TimeSpan ts = stpWatch.Elapsed;
-                timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
-                clickCount = btnClickedCount;
+                timeElapsed = String.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
+                clickCount = btnClickedCount.ToString();
                 MessageBox.Show(winMessage + "\nTries Used: " + clickCount + "\nTime Taken: " + timeElapsed);
                 lblTips.Text = "Click New Game to start";
                 GiveupOrWinActions();
+                gameNumber++;
+                string gameNumberToSave = gameNumber.ToString();
+                System.IO.File.WriteAllText(pathToPictureGameNumberText,gameNumberToSave);
+                using (System.IO.StreamWriter scoreToStore = new System.IO.StreamWriter(pathToPictureGameRecordsText, true))
+                {
+                    scoreToStore.WriteLine(gameNumber.ToString() + "\t" + DifficultyChecker() + "\t" + clickCount + "\t" + timeElapsed);
+                }
             }
             else if (btnClickedCount == NUMBEROFTRIESALLOWED)
             {
@@ -249,19 +283,18 @@ namespace Mastermind_Game
                 timTimer.Stop();
                 timTips.Stop();
                 TimeSpan ts = stpWatch.Elapsed;
-                timeElapsed = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
-                clickCount = btnClickedCount;
-                string displayAnswer="";
+                timeElapsed = String.Format("{0:00}:{1:00}",ts.Minutes, ts.Seconds);
+                clickCount = btnClickedCount.ToString();
                 displayAnswer += String.Join("", picName[globalRandomNumber[0]]);
-                for(int a= 1 ; a<numOfPics ; a++)
+                for (int a = 1; a < numOfPics; a++)
                 {
                     displayAnswer += ", ";
-                    displayAnswer += String.Join("",picName[globalRandomNumber[a]]);
+                    displayAnswer += String.Join("", picName[globalRandomNumber[a]]);
                 }
                 MessageBox.Show(loseMessage +
-                    "\nTries Used: " + clickCount + 
-                    "\nTime Taken: " + timeElapsed + 
-                    "\nThe correct pictures were: " +displayAnswer);
+                    "\nTries Used: " + clickCount +
+                    "\nTime Taken: " + timeElapsed +
+                    "\nThe correct pictures were: " + displayAnswer);
                 lblTips.Text = "Click New Game to start";
                 GiveupOrWinActions();
             }
@@ -290,7 +323,7 @@ namespace Mastermind_Game
         private void timTimer_Tick(object sender, EventArgs e)
         {
             TimeSpan ts = stpWatch.Elapsed;
-            lblTimer.Text = String.Format(String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds));
+            lblTimer.Text = String.Format(String.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds));
 
         }
         
@@ -660,6 +693,7 @@ namespace Mastermind_Game
             panelPicBox1to4.Visible = true;
             return;
         }
+
 
 
 

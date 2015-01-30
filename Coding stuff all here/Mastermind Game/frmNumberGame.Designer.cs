@@ -61,11 +61,11 @@
             // lblTimer
             // 
             this.lblTimer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTimer.Location = new System.Drawing.Point(929, 135);
+            this.lblTimer.Location = new System.Drawing.Point(967, 135);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(138, 35);
+            this.lblTimer.Size = new System.Drawing.Size(100, 35);
             this.lblTimer.TabIndex = 71;
-            this.lblTimer.Text = "00:00:00";
+            this.lblTimer.Text = "00:00";
             this.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lstvOutput
@@ -322,6 +322,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Number Guessing Game";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmNumberGame_FormClosed);
+            this.Load += new System.EventHandler(this.frmNumberGame_Load);
             this.panelNewGame.ResumeLayout(false);
             this.panelNewGame.PerformLayout();
             this.panelGameStart.ResumeLayout(false);
