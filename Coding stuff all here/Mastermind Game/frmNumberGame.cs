@@ -131,7 +131,10 @@ namespace Mastermind_Game
                     hint = "          First digit: \n\t" + randNumber[0];
                     break;
 
-                case "Hard": 
+                case "Hard":
+                    hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[HARD - 1];
+                    break;
+
                 case "Insane": 
                     hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[INSANE - 1];
                     break;

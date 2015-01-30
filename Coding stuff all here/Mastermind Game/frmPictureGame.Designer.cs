@@ -50,30 +50,30 @@
             this.rBtnEasy = new System.Windows.Forms.RadioButton();
             this.btnNewGame = new System.Windows.Forms.Button();
             this.lblDifficulty = new System.Windows.Forms.Label();
-            this.picOne = new System.Windows.Forms.PictureBox();
-            this.picFour = new System.Windows.Forms.PictureBox();
-            this.picThree = new System.Windows.Forms.PictureBox();
-            this.picTwo = new System.Windows.Forms.PictureBox();
             this.panelPicBox1to4 = new System.Windows.Forms.Panel();
             this.lblPic4 = new System.Windows.Forms.Label();
             this.lblPic3 = new System.Windows.Forms.Label();
             this.lblPic2 = new System.Windows.Forms.Label();
             this.lblPic1 = new System.Windows.Forms.Label();
-            this.picSix = new System.Windows.Forms.PictureBox();
-            this.picFive = new System.Windows.Forms.PictureBox();
             this.lblPic5 = new System.Windows.Forms.Label();
             this.lblPic6 = new System.Windows.Forms.Label();
             this.lblTips = new System.Windows.Forms.Label();
             this.timTips = new System.Windows.Forms.Timer(this.components);
+            this.picFive = new System.Windows.Forms.PictureBox();
+            this.picSix = new System.Windows.Forms.PictureBox();
+            this.picTwo = new System.Windows.Forms.PictureBox();
+            this.picThree = new System.Windows.Forms.PictureBox();
+            this.picFour = new System.Windows.Forms.PictureBox();
+            this.picOne = new System.Windows.Forms.PictureBox();
             this.panelGameStart.SuspendLayout();
             this.panelNewGame.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picOne)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFour)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picThree)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTwo)).BeginInit();
             this.panelPicBox1to4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSix)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFive)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSix)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picTwo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picThree)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFour)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picOne)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTimer
@@ -173,6 +173,7 @@
             this.panelGameStart.Controls.Add(this.btnGiveUp);
             this.panelGameStart.Controls.Add(this.btnHint);
             this.panelGameStart.Controls.Add(this.btnCheck);
+            this.panelGameStart.Enabled = false;
             this.panelGameStart.Location = new System.Drawing.Point(26, 307);
             this.panelGameStart.Name = "panelGameStart";
             this.panelGameStart.Size = new System.Drawing.Size(887, 48);
@@ -279,46 +280,6 @@
             this.lblDifficulty.TabIndex = 93;
             this.lblDifficulty.Text = "Difficulty :";
             // 
-            // picOne
-            // 
-            this.picOne.Location = new System.Drawing.Point(18, 15);
-            this.picOne.Name = "picOne";
-            this.picOne.Size = new System.Drawing.Size(160, 120);
-            this.picOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picOne.TabIndex = 108;
-            this.picOne.TabStop = false;
-            this.picOne.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
-            // picFour
-            // 
-            this.picFour.Location = new System.Drawing.Point(522, 15);
-            this.picFour.Name = "picFour";
-            this.picFour.Size = new System.Drawing.Size(160, 120);
-            this.picFour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picFour.TabIndex = 111;
-            this.picFour.TabStop = false;
-            this.picFour.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
-            // picThree
-            // 
-            this.picThree.Location = new System.Drawing.Point(354, 15);
-            this.picThree.Name = "picThree";
-            this.picThree.Size = new System.Drawing.Size(160, 120);
-            this.picThree.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picThree.TabIndex = 112;
-            this.picThree.TabStop = false;
-            this.picThree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
-            // picTwo
-            // 
-            this.picTwo.Location = new System.Drawing.Point(186, 15);
-            this.picTwo.Name = "picTwo";
-            this.picTwo.Size = new System.Drawing.Size(160, 120);
-            this.picTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picTwo.TabIndex = 113;
-            this.picTwo.TabStop = false;
-            this.picTwo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
             // panelPicBox1to4
             // 
             this.panelPicBox1to4.Controls.Add(this.lblPic4);
@@ -372,31 +333,6 @@
             this.lblPic1.TabIndex = 118;
             this.lblPic1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // picSix
-            // 
-            this.picSix.Enabled = false;
-            this.picSix.Location = new System.Drawing.Point(1128, 117);
-            this.picSix.Name = "picSix";
-            this.picSix.Size = new System.Drawing.Size(160, 120);
-            this.picSix.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picSix.TabIndex = 120;
-            this.picSix.TabStop = false;
-            this.picSix.Visible = false;
-            this.picSix.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
-            // picFive
-            // 
-            this.picFive.Enabled = false;
-            this.picFive.InitialImage = null;
-            this.picFive.Location = new System.Drawing.Point(960, 117);
-            this.picFive.Name = "picFive";
-            this.picFive.Size = new System.Drawing.Size(160, 120);
-            this.picFive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picFive.TabIndex = 121;
-            this.picFive.TabStop = false;
-            this.picFive.Visible = false;
-            this.picFive.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
-            // 
             // lblPic5
             // 
             this.lblPic5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -432,6 +368,71 @@
             this.timTips.Interval = 20000;
             this.timTips.Tick += new System.EventHandler(this.timTips_Tick);
             // 
+            // picFive
+            // 
+            this.picFive.Enabled = false;
+            this.picFive.InitialImage = null;
+            this.picFive.Location = new System.Drawing.Point(960, 117);
+            this.picFive.Name = "picFive";
+            this.picFive.Size = new System.Drawing.Size(160, 120);
+            this.picFive.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFive.TabIndex = 121;
+            this.picFive.TabStop = false;
+            this.picFive.Visible = false;
+            this.picFive.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // picSix
+            // 
+            this.picSix.Enabled = false;
+            this.picSix.Location = new System.Drawing.Point(1128, 117);
+            this.picSix.Name = "picSix";
+            this.picSix.Size = new System.Drawing.Size(160, 120);
+            this.picSix.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picSix.TabIndex = 120;
+            this.picSix.TabStop = false;
+            this.picSix.Visible = false;
+            this.picSix.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // picTwo
+            // 
+            this.picTwo.Location = new System.Drawing.Point(186, 15);
+            this.picTwo.Name = "picTwo";
+            this.picTwo.Size = new System.Drawing.Size(160, 120);
+            this.picTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picTwo.TabIndex = 113;
+            this.picTwo.TabStop = false;
+            this.picTwo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // picThree
+            // 
+            this.picThree.Location = new System.Drawing.Point(354, 15);
+            this.picThree.Name = "picThree";
+            this.picThree.Size = new System.Drawing.Size(160, 120);
+            this.picThree.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picThree.TabIndex = 112;
+            this.picThree.TabStop = false;
+            this.picThree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // picFour
+            // 
+            this.picFour.Location = new System.Drawing.Point(522, 15);
+            this.picFour.Name = "picFour";
+            this.picFour.Size = new System.Drawing.Size(160, 120);
+            this.picFour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFour.TabIndex = 111;
+            this.picFour.TabStop = false;
+            this.picFour.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
+            // picOne
+            // 
+            this.picOne.Location = new System.Drawing.Point(18, 15);
+            this.picOne.Name = "picOne";
+            this.picOne.Size = new System.Drawing.Size(160, 120);
+            this.picOne.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picOne.TabIndex = 108;
+            this.picOne.TabStop = false;
+            this.picOne.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Common_MouseDown);
+            // 
             // frmPictureGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
@@ -461,13 +462,13 @@
             this.panelGameStart.PerformLayout();
             this.panelNewGame.ResumeLayout(false);
             this.panelNewGame.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picOne)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFour)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picThree)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTwo)).EndInit();
             this.panelPicBox1to4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picSix)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFive)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSix)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picTwo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picThree)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFour)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picOne)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
