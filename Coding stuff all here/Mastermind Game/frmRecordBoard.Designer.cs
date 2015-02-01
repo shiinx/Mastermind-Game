@@ -38,14 +38,14 @@
             // 
             this.lstRecords.FormattingEnabled = true;
             this.lstRecords.ItemHeight = 25;
-            this.lstRecords.Location = new System.Drawing.Point(24, 84);
+            this.lstRecords.Location = new System.Drawing.Point(21, 90);
             this.lstRecords.Name = "lstRecords";
-            this.lstRecords.Size = new System.Drawing.Size(506, 479);
+            this.lstRecords.Size = new System.Drawing.Size(563, 479);
             this.lstRecords.TabIndex = 0;
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(452, 575);
+            this.btnExit.Location = new System.Drawing.Point(494, 575);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(90, 36);
             this.btnExit.TabIndex = 1;
@@ -56,7 +56,7 @@
             // rBtnPictureRecord
             // 
             this.rBtnPictureRecord.AutoSize = true;
-            this.rBtnPictureRecord.Location = new System.Drawing.Point(285, 38);
+            this.rBtnPictureRecord.Location = new System.Drawing.Point(339, 38);
             this.rBtnPictureRecord.Name = "rBtnPictureRecord";
             this.rBtnPictureRecord.Size = new System.Drawing.Size(245, 29);
             this.rBtnPictureRecord.TabIndex = 2;
@@ -79,7 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 623);
+            this.ClientSize = new System.Drawing.Size(605, 623);
             this.Controls.Add(this.rBtnNumberRecord);
             this.Controls.Add(this.rBtnPictureRecord);
             this.Controls.Add(this.btnExit);

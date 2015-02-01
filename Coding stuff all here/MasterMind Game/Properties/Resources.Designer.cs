@@ -139,14 +139,5 @@ namespace Mastermind_Game.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string PictureGameScores {
-            get {
-                return ResourceManager.GetString("PictureGameScores", resourceCulture);
-            }
-        }
     }
 }

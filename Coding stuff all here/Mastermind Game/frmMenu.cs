@@ -17,15 +17,24 @@ namespace Mastermind_Game
         }
 
 
-
         // Switch to NumberGame form
-        private void btnNumberGame_Click(object sender, EventArgs e)
+        public void btnNumberGame_Click(object sender, EventArgs e)
         {
-            frmNumberGame frmNumberGameVariable = new frmNumberGame();
+            frmNumberGame numberGame = new frmNumberGame();
+            if (rBtnClassic.Checked)
+            {
+                numberGame.classicMode = true;
+                numberGame.visualMode = false;
+            }
+            if (rBtnVisual.Checked)
+            {
+                numberGame.visualMode = true;
+                numberGame.classicMode = false;
+            }
             this.Hide();
-            frmNumberGameVariable.ShowDialog();
+            numberGame.ShowDialog();
 
-            if (frmNumberGameVariable.DialogResult == DialogResult.OK)
+            if (numberGame.DialogResult == DialogResult.OK)
             {
                 this.Show();
             }
@@ -33,13 +42,24 @@ namespace Mastermind_Game
 
 
         // Switch to PictureGame form
-        private void btnPictureGame_Click(object sender, EventArgs e)
+        public void btnPictureGame_Click(object sender, EventArgs e)
         {
-            frmPictureGame frmPictureGamVariable = new frmPictureGame();
-            this.Hide();
-            frmPictureGamVariable.ShowDialog();
+            frmPictureGame pictureGame = new frmPictureGame();
+            if (rBtnClassic.Checked)
+            {
+                pictureGame.classicMode = true;
+                pictureGame.visualMode = false;
+            }
+            if (rBtnVisual.Checked)
+            {
+                pictureGame.visualMode = true;
+                pictureGame.classicMode = false;
+            }
 
-            if (frmPictureGamVariable.DialogResult == DialogResult.OK)
+            this.Hide();
+            pictureGame.ShowDialog();
+
+            if (pictureGame.DialogResult == DialogResult.OK)
             {
                 this.Show();
             }

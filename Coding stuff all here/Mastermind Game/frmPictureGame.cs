@@ -35,11 +35,10 @@ namespace Mastermind_Game
             recordBoard.ShowDialog();
         }
 
-        /* Global declares
-         */
+        // Global Declares
         const int EASY = 4, MEDIUM = 5, HARD = 6;
         const int NUMBEROFPICTURES = 8;
-        const int NUMBEROFPICTUREBOX = 6;
+        const int NUMBEROFPICTUREBOXINFORM = 6;
         const int NUMBEROFTIPS = 6;
         const int NUMBEROFTRIESALLOWED = 20;
         const int NUMBEROFDIFFICULTIES = 3;
@@ -49,20 +48,15 @@ namespace Mastermind_Game
         string pathToPictureGameNumberText = @"C:\Users\Public\Documents\MastermindGame\PictureGameNumber.txt";
 
         string timeElapsed;
-        bool error;
-        int btnClickedCount = 0, counterTips = 0, numOfPics, gameNumber;
+        bool error; 
+        public bool classicMode, visualMode;
+        int btnClickedCount = 0, counterTips = 0, numOfPicsBoxUsed, gameNumber;
 
 
         Stopwatch stpWatch = new Stopwatch();
 
 
-        /* Global array declares
-         * globalRandomNum array to put in the random number generated
-         * resourcePic array to put in the pictures from resource so that I can cycle through it
-         * picName to use for checking and to be put in label
-         * Counter for the picture click event
-         * Array of strings to store tips
-         */
+        // Global array declares
         Int32[] globalRandomNumber = new Int32[HARD];
 
         Image[] resourcePic = new Image[NUMBEROFPICTURES]
@@ -88,7 +82,7 @@ namespace Mastermind_Game
             "Duckies"
         };
 
-        int[] resourcePicCounter = new int[NUMBEROFPICTUREBOX]
+        int[] resourcePicCounter = new int[NUMBEROFPICTUREBOXINFORM]
         {
             0,      //1
             0,      //2
@@ -129,9 +123,17 @@ namespace Mastermind_Game
                 System.IO.File.WriteAllText(pathToPictureGameRecordsText, "");
             }
             gameNumber = Int32.Parse(System.IO.File.ReadAllText(pathToPictureGameNumberText));
+            if (visualMode)
+            {
+                lblLegend.Visible = true;
+            }
+            else
+            {
+                lblLegend.Visible = false;
+            }
 
         }
-        
+
 
 
         /* To open instructions
@@ -167,15 +169,17 @@ namespace Mastermind_Game
          * Toggles visibilty of buttons/label/picture depending on what difficulty is selected
          * Resets click count ; stopwatch ; timer label's text
          * Enable/disables radio button/buttons.
+         * Change columns according to classic or visual mode
          * End...
          */
         private void btnNewGame_Click(object sender, EventArgs e)
         {
             DifficultyChecker();
-            RandomNumber();
+            globalRandomNumber = RandomNumberGenerator(numOfPicsBoxUsed);
             if(error)
             {
                 MessageBox.Show("Please select a difficulty before pressing New Game.");
+                error = false;
                 return;
             }
             VisibilityToggle();
@@ -188,6 +192,14 @@ namespace Mastermind_Game
             timTips.Start();
             lblTips.Text = "Good Luck! You only have " + NUMBEROFTRIESALLOWED + " tries to use.";
             NewgameActions();
+            if (classicMode)
+            {
+                lstvOutputClassicSettings();
+            }
+            if (visualMode)
+            {
+                lstvOutputVisualSettings();
+            }
         }
 
 
@@ -201,7 +213,7 @@ namespace Mastermind_Game
             {
                 string displayAnswer="";
                 displayAnswer += String.Join("", picName[globalRandomNumber[0]]);
-                for(int a= 1 ; a<numOfPics ; a++)
+                for(int a= 1 ; a<numOfPicsBoxUsed ; a++)
                 {
                     displayAnswer += ", ";
                     displayAnswer += String.Join("",picName[globalRandomNumber[a]]);
@@ -211,7 +223,6 @@ namespace Mastermind_Game
                 stpWatch.Stop();
                 timTimer.Stop();
                 timTips.Stop();
-                lblTips.Text = "Click New Game to start";
             }
         }
 
@@ -235,6 +246,7 @@ namespace Mastermind_Game
          * stop stopwatch and timer
          * get elapsed time
          * enable/disable radio buttons/buttons
+         * if win, send gameplay details to txt file
          * End...
          */
         private void btnCheck_Click(object sender, EventArgs e)
@@ -248,13 +260,20 @@ namespace Mastermind_Game
             string displayAnswer = "";
             int n,i=0;
 
-            correctlyPlacedPictures = CorrectNumDPicturesPlaced(numOfPics);
-            correctPictures = CorrectNumPictures(numOfPics);
-            lstvOutput.Items.Add(LviOutput(btnClickedCount, correctPictures, correctlyPlacedPictures));
+            if (classicMode)
+            {
+                correctlyPlacedPictures = CorrectNumDPicturesPlaced(numOfPicsBoxUsed);
+                correctPictures = CorrectNumPictures(numOfPicsBoxUsed);
+                LstvOutputClassic(btnClickedCount, correctPictures, correctlyPlacedPictures);
+            }
+            if (visualMode)
+            {
+                LstvOutputVisual(btnClickedCount);
+            }
 
-            lstvOutput.EnsureVisible(lstvOutput.Items.Count - 1);
+            lstvOutput.EnsureVisible(lstvOutput.Items.Count-1);
 
-            for (n = 0; n < numOfPics; n++)
+            for (n = 0; n < numOfPicsBoxUsed; n++)
             {
                 if (picName[globalRandomNumber[n]] == lblName[n])
                 {
@@ -266,13 +285,14 @@ namespace Mastermind_Game
             {
                 stpWatch.Stop();
                 timTimer.Stop();
-                timTips.Stop();
+                timTips.Stop(); 
+                GiveupOrWinActions();
+
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}", ts.Minutes, ts.Seconds);
                 clickCount = btnClickedCount.ToString();
                 MessageBox.Show(winMessage + "\nTries Used: " + clickCount + "\nTime Taken: " + timeElapsed);
-                lblTips.Text = "Click New Game to start";
-                GiveupOrWinActions();
+
                 gameNumber++;
                 string gameNumberToSave = gameNumber.ToString();
                 System.IO.File.WriteAllText(pathToPictureGameNumberText,gameNumberToSave);
@@ -280,6 +300,7 @@ namespace Mastermind_Game
                 {
                     scoreToStore.WriteLine(gameNumber.ToString() + "\t" + DifficultyChecker() + "\t\t" + clickCount + "\t" + timeElapsed);
                 }
+
             }
             else if (btnClickedCount == NUMBEROFTRIESALLOWED)
             {
@@ -290,7 +311,7 @@ namespace Mastermind_Game
                 timeElapsed = String.Format("{0:00}:{1:00}",ts.Minutes, ts.Seconds);
                 clickCount = btnClickedCount.ToString();
                 displayAnswer += String.Join("", picName[globalRandomNumber[0]]);
-                for (int a = 1; a < numOfPics; a++)
+                for (int a = 1; a < numOfPicsBoxUsed; a++)
                 {
                     displayAnswer += ", ";
                     displayAnswer += String.Join("", picName[globalRandomNumber[a]]);
@@ -304,6 +325,8 @@ namespace Mastermind_Game
             }
             
         }
+        // End of button check Event
+
 
 
         /* Timer Event for the tips
@@ -338,7 +361,7 @@ namespace Mastermind_Game
          */
         private void Common_MouseDown(object sender, MouseEventArgs e)
         {
-            PictureBox[] picBox = new PictureBox[NUMBEROFPICTUREBOX]{
+            PictureBox[] picBox = new PictureBox[NUMBEROFPICTUREBOXINFORM]{
             picOne,
             picTwo,
             picThree,   
@@ -347,7 +370,7 @@ namespace Mastermind_Game
             picSix
             };
 
-            Label[] lblPic = new Label[NUMBEROFPICTUREBOX]{
+            Label[] lblPic = new Label[NUMBEROFPICTUREBOXINFORM]{
             lblPic1,
             lblPic2,
             lblPic3,
@@ -385,7 +408,7 @@ namespace Mastermind_Game
         }
 
 
-
+        // Picture click event left click for next right click for previous 
         private void Common_MouseEnter(object sender, EventArgs e)
         {
             RadioButton[] rbtnDifficulty = new RadioButton[NUMBEROFDIFFICULTIES] 
@@ -422,19 +445,7 @@ namespace Mastermind_Game
         }
 
 
-
-        /* Method definition below...
-         * DifficultyChecker        
-         * RandomNumber             
-         * RandNumber            
-         * CorrectNumDPicturesPlaced
-         * CorrectNumPictures   
-         * LviOutput
-         * GiveupORwinActions
-         * NewgameActions    
-         * VisibilityToggle
-         * BasicDifficultyActions
-         */
+        // Method definition below
 
         /* Returns String Difficulty user selected
          */
@@ -442,47 +453,25 @@ namespace Mastermind_Game
         {
             if (rBtnEasy.Checked == true)
             {
-                numOfPics = EASY;
+                numOfPicsBoxUsed = EASY;
                 return "Easy";
             }
             if (rBtnMedium.Checked == true)
             {
-                numOfPics = MEDIUM;
+                numOfPicsBoxUsed = MEDIUM;
                 return "Medium";
             }
             if (rBtnHard.Checked == true)
             {
-                numOfPics = HARD;
+                numOfPicsBoxUsed = HARD;
                 return "Hard";
             }
             else
             {
+                error = true;
                 return null;
             }
 
-        }
-
-
-
-        /* Puts generated number into global variable globalRandomNumber
-         */
-        private void RandomNumber()
-        {
-            string Difficulty = DifficultyChecker();
-            switch (Difficulty)
-            {
-                case "Easy":
-                case "Medium":
-                case "Hard":
-                    globalRandomNumber = RandNumber(numOfPics);
-                    error = false;
-                    break;
-                default:
-                    error = true;
-                    break;
-            }
-            
-            return ;
         }
 
 
@@ -491,7 +480,7 @@ namespace Mastermind_Game
          * Fuction required to indiviudally randomnize digits
          * To check and prevent repeat number within the random number array
          */
-        private Int32[] RandNumber(int difficultyDigits)
+        private Int32[] RandomNumberGenerator(int difficultyDigits)
         {
             Random Randomnizer = new Random();
             bool[] NumberIsUsed = new bool[8];
@@ -522,16 +511,16 @@ namespace Mastermind_Game
         /* Returns number of correctly placed pictures
          * Uses crap variables, need better names?
          */
-        private int CorrectNumDPicturesPlaced(int numOfDigits)
+        private int CorrectNumDPicturesPlaced(int numOfPictures)
         {
             string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
-            int CorrectlyPlacedDigits = 0, n;
-            for (n = 0; n < numOfDigits; n++)
+            int CorrectlyPlacedPictures = 0, n;
+            for (n = 0; n < numOfPictures; n++)
             {
                 if (lblName[n] == picName[globalRandomNumber[n]])
-                    CorrectlyPlacedDigits++;
+                    CorrectlyPlacedPictures++;
             }
-            return CorrectlyPlacedDigits;
+            return CorrectlyPlacedPictures;
         }
 
 
@@ -539,38 +528,37 @@ namespace Mastermind_Game
         /* Returns number of correct pictures
          * Uses crap variables too
          */
-        private int CorrectNumPictures(int numOfDigits)
+        private int CorrectNumPictures(int numOfPictures)
         {
             string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
-            int i, a, correctNumDigits = 0;
-            for (i = 0; i < numOfDigits; i++)
+            int i, a, correctNumPictures = 0;
+            for (i = 0; i < numOfPictures; i++)
             {
-                for (a = 0; a < numOfDigits; a++)
+                for (a = 0; a < numOfPictures; a++)
                 {
                     if (lblName[a] == picName[globalRandomNumber[i]])
                     {
-                        correctNumDigits++;
+                        correctNumPictures++;
                         break;
                     }
                 }
             }
-            return correctNumDigits;
+            return correctNumPictures;
         }
 
 
 
-        /* Returns listviewitems
-         * Gets clickcount, number of correct pictures and correctly placed pictures
+        /* Gets clickcount, number of correct pictures and correctly placed pictures
          * returns the items to be added to listview 
          * : Number of tries, Pictures selected , Number of correct pictures, number of correctly placed pictures
          */
-        private ListViewItem LviOutput(int ClickCount,int CorrectPicture,int CorrectlyPlacedPictures)
+        private void LstvOutputClassic(int ClickCount,int CorrectPicture,int CorrectlyPlacedPictures)
         {
-            string[] lblName = new string[6] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
+            string[] lblName = new string[NUMBEROFPICTUREBOXINFORM] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
             string inputPictures ="";
             ListViewItem lviOutput = new ListViewItem(ClickCount.ToString());
             inputPictures += String.Join("", lblName[0]);
-            for (int a = 1; a < numOfPics; a++)
+            for (int a = 1; a < numOfPicsBoxUsed; a++)
             {
                 inputPictures += ", ";
                 inputPictures += String.Join("",lblName[a]);
@@ -578,7 +566,74 @@ namespace Mastermind_Game
             lviOutput.SubItems.Add(inputPictures);
             lviOutput.SubItems.Add(CorrectPicture.ToString());
             lviOutput.SubItems.Add(CorrectlyPlacedPictures.ToString());
-            return lviOutput;
+            lstvOutput.Items.Add(lviOutput);
+            return;
+        }
+
+
+        /* Code for the basic/visual mode
+         * Assigned X to all the output as a default
+         * if equal to randomnumber change to O
+         * using for loop, compare those that arent equal to randomnumber to look for P
+         * if neither O or P X will be the output
+         * usedPorO will turn into true when O or P has been assigned to prevent repeat Ps
+         */
+        private void LstvOutputVisual(int ClickCount)
+        {
+            String[] lblName = new String[NUMBEROFPICTUREBOXINFORM] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
+            ListViewItem lviOutputName = new ListViewItem(ClickCount.ToString());
+            ListViewItem lviOutputXOP = new ListViewItem();
+            lviOutputXOP.ForeColor = Color.Red;
+            String[] outputArray = new String[numOfPicsBoxUsed];
+            Boolean[] usedPorO = new Boolean[numOfPicsBoxUsed];
+            for (int k = 0; k < numOfPicsBoxUsed; k++)
+            {
+                usedPorO[k] = false;
+                outputArray[k] = "X";
+            }
+            for (int j = 0; j < numOfPicsBoxUsed; j++)
+            {
+                if (lblName[j] == picName[globalRandomNumber[j]])
+                {
+                    outputArray[j] = "O";
+                }
+            }
+
+            for (int counterInput = 0; counterInput < numOfPicsBoxUsed; counterInput++)
+            {
+                if (outputArray[counterInput] != "O")
+                {
+                    for (int counterAns = 0; counterAns < numOfPicsBoxUsed; counterAns++)
+                    {
+                        if (outputArray[counterAns] != "O" && !usedPorO[counterAns] && lblName[counterInput] == picName[globalRandomNumber[counterAns]])
+                        {
+                            outputArray[counterInput] = "P";
+                            usedPorO[counterAns] = true;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < numOfPicsBoxUsed; i++)
+            {
+                lviOutputName.SubItems.Add(lblName[i]);
+                lviOutputXOP.SubItems.Add(outputArray[i]);
+                if (outputArray[i] == "O")
+                {
+                    lviOutputXOP.SubItems[i + 1].ForeColor = Color.Green;
+                }
+                if (outputArray[i] == "X")
+                {
+                    lviOutputXOP.SubItems[i + 1].ForeColor = Color.Red;
+                }
+                if (outputArray[i] == "P")
+                {
+                    lviOutputXOP.SubItems[i + 1].ForeColor = Color.Orange;
+                }
+            }
+            lstvOutput.Items.Add(lviOutputName);
+            lstvOutput.Items.Add(lviOutputXOP);
+            return;
         }
 
 
@@ -587,6 +642,7 @@ namespace Mastermind_Game
          */
         private void GiveupOrWinActions()
         {
+            lblTips.Text = "Click New Game to start";
             panelGameStart.Enabled = false;
             panelNewGame.Enabled = true;
             panelPicBox1to4.Enabled = false;
@@ -628,7 +684,6 @@ namespace Mastermind_Game
             resourcePicCounter[3] = 0;
             resourcePicCounter[4] = 0;
             resourcePicCounter[5] = 0;
-            return;
         }
 
 
@@ -699,8 +754,37 @@ namespace Mastermind_Game
         }
 
 
+        // Columns to add when classic is selected in the menu
+        private void lstvOutputClassicSettings()
+        {
+            lstvOutput.Columns.Clear();
+            lstvOutput.Columns.Add("No.", 60, HorizontalAlignment.Center);
+            lstvOutput.Columns.Add("Pictures", 675, HorizontalAlignment.Center);
+            lstvOutput.Columns.Add("Correct Pictures", 230, HorizontalAlignment.Center);
+            lstvOutput.Columns.Add("Correctly Placed Pictures", 320, HorizontalAlignment.Center);
+            return;
+        }
 
-
+        // Columns to add when Visual is selected in the menu
+        private void lstvOutputVisualSettings()
+        {
+            String[] columnName = new String[HARD]
+            {
+                "1st Picture",
+                "2nd Picture",
+                "3rd Picture",
+                "4th Picture",
+                "5th Picture",
+                "6th Picture"
+            };
+            lstvOutput.Columns.Clear();
+            lstvOutput.Columns.Add("No.", 60, HorizontalAlignment.Center);
+            for (int i = 0; i < numOfPicsBoxUsed; i++)
+            {
+                lstvOutput.Columns.Add(columnName[i], 200, HorizontalAlignment.Center);
+            }
+            return;
+        }
 
         // End of method definitions... 
 

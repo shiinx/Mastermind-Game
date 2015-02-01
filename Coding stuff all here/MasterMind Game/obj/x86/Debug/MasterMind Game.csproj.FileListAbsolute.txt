@@ -18,3 +18,14 @@ C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\Mastermind 
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\Mastermind Game\obj\x86\Debug\Mastermind Game.pdb
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\Mastermind Game\obj\x86\Debug\Mastermind Game.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\GitHub\Mastermind-Game\Coding stuff all here\Mastermind Game\obj\x86\Debug\Mastermind_Game.frmRecordBoard.resources
+C:\Users\User\Desktop\Test\Mastermind Game\obj\x86\Debug\Mastermind Game.exe
+C:\Users\User\Desktop\Test\Mastermind Game\obj\x86\Debug\Mastermind Game.pdb
+C:\Users\User\Desktop\Test\Mastermind Game\bin\Debug\Mastermind Game.exe
+C:\Users\User\Desktop\Test\Mastermind Game\bin\Debug\Mastermind Game.pdb
+C:\Users\User\Desktop\Test\Mastermind Game\obj\x86\Debug\Mastermind Game.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\Test\Mastermind Game\obj\x86\Debug\Mastermind_Game.frmPictureGame.resources
+C:\Users\User\Desktop\Test\Mastermind Game\obj\x86\Debug\Mastermind_Game.frmMenu.resources
+C:\Users\User\Desktop\Test\Mastermind Game\obj\x86\Debug\Mastermind_Game.frmNumberGame.resources
+C:\Users\User\Desktop\Test\Mastermind Game\obj\x86\Debug\Mastermind_Game.Properties.Resources.resources
+C:\Users\User\Desktop\Test\Mastermind Game\obj\x86\Debug\Mastermind_Game.frmRecordBoard.resources
+C:\Users\User\Desktop\Test\Mastermind Game\obj\x86\Debug\Mastermind Game.csproj.GenerateResource.Cache

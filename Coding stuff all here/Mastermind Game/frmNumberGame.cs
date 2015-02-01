@@ -38,10 +38,11 @@ namespace Mastermind_Game
         // Global Variables
         const int EASY = 4, MEDIUM = 5, HARD = 6, INSANE = 8;
         const int NUMBEROFTIPS = 8;
-        const int NUMBEROFTRIESALLOWED = 25;
+        const int NUMBEROFTRIESALLOWED = 20;
         const int NUMBEROFDIFFICULTIES = 4;
 
-        string randNumber, timeElapsed;
+        public bool classicMode, visualMode;
+        string timeElapsed;
         bool error;
         int btnClickedCount = 0, counterTips = 0, clickCount, numOfDigits, gameNumber;
 
@@ -51,7 +52,7 @@ namespace Mastermind_Game
         string pathToNumberGameRecordsText = @"C:\Users\Public\Documents\MastermindGame\NumberGameRecords.txt";
         string pathToNumberGameNumberText = @"C:\Users\Public\Documents\MastermindGame\NumberGameNumber.txt";
 
-
+        Int32[] globalRandNumber = new Int32[INSANE];
         String[] tips = new String[NUMBEROFTIPS]
             {
                 "Tip : Read the instructions if you're not sure how to play this game.",
@@ -84,6 +85,14 @@ namespace Mastermind_Game
                 System.IO.File.WriteAllText(pathToNumberGameRecordsText, "");
             }
             gameNumber = Int32.Parse(System.IO.File.ReadAllText(pathToNumberGameNumberText));
+            if (visualMode)
+            {
+                lblLegend.Visible = true;
+            }
+            else
+            {
+                lblLegend.Visible = false;
+            }
         }
 
 
@@ -106,7 +115,7 @@ namespace Mastermind_Game
          */
         private void btnShowAnswer_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(randNumber);
+            MessageBox.Show(string.Join("", globalRandNumber));
         }
 
 
@@ -116,10 +125,12 @@ namespace Mastermind_Game
          */
         private void btnNewGame_Click(object sender, EventArgs e)
         {
-            randNumber = RandomNumber();
+            DifficultyChecker();
+            globalRandNumber = RandomNumberGenerator(numOfDigits);
             if (error)
             {
                 MessageBox.Show("Please select a difficulty before pressing New Game.");
+                error = false;
                 return;
             }
             lstvOutput.Items.Clear();
@@ -133,6 +144,14 @@ namespace Mastermind_Game
             lblTips.Text = "Good Luck! You only have "+NUMBEROFTRIESALLOWED+" tries to use.";
             NewgameActions();
             btnCheck.Enabled = false;
+            if (classicMode)
+            {
+                lstvOutputClassicSettings();
+            }
+            if (visualMode)
+            {
+                lstvOutputVisualSettings();
+            }
         }
 
 
@@ -141,7 +160,7 @@ namespace Mastermind_Game
         {
             if (MessageBox.Show("Are you sure you want to give up?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show("The correct digits were: "+randNumber, "Answer", MessageBoxButtons.OK);
+                MessageBox.Show("The correct digits were: " + string.Join("", globalRandNumber), "Answer", MessageBoxButtons.OK);
                 GiveupORwinActions();
                 stpWatch.Stop();
                 timTimer.Stop();
@@ -164,15 +183,15 @@ namespace Mastermind_Game
             {
                 case "Easy": 
                 case "Medium": 
-                    hint = "          First digit: \n\t" + randNumber[0];
+                    hint = "          First digit: \n\t" + globalRandNumber[0];
                     break;
 
                 case "Hard":
-                    hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[HARD - 1];
+                    hint = "          First digit: \n\t" + globalRandNumber[0] + "\n          Last digit: \n\t" + globalRandNumber[HARD - 1];
                     break;
 
                 case "Insane": 
-                    hint = "          First digit: \n\t" + randNumber[0] + "\n          Last digit: \n\t" + randNumber[INSANE - 1];
+                    hint = "          First digit: \n\t" + globalRandNumber[0] + "\n          Last digit: \n\t" + globalRandNumber[INSANE - 1];
                     break;
 
                 default: 
@@ -240,13 +259,20 @@ namespace Mastermind_Game
             winMessage = "Congratulations! You got it right!";
             loseMessage = "Sorry! You've ran out of tries and lost!";
 
-            CorrectlyPlacedDigits = CorrectNumDigitsPlaced(numOfDigits);
-            CorrectDigits = CorrectNumDigits(numOfDigits);
-            lstvOutput.Items.Add(LviOutput(btnClickedCount, strInputNumber, CorrectDigits, CorrectlyPlacedDigits));
+            if (classicMode)
+            {
+                CorrectlyPlacedDigits = CorrectNumDigitsPlaced(numOfDigits);
+                CorrectDigits = CorrectNumDigits(numOfDigits);
+                LstvOutputClassic(btnClickedCount,strInputNumber ,CorrectDigits, CorrectlyPlacedDigits);
+            }
+            if (visualMode)
+            {
+                LstvOutputVisual(btnClickedCount, strInputNumber);
+            }
 
             lstvOutput.EnsureVisible(lstvOutput.Items.Count - 1);
 
-            if (strInputNumber == randNumber && btnClickedCount <= NUMBEROFTRIESALLOWED)
+            if (strInputNumber == String.Join("",globalRandNumber) && btnClickedCount <= NUMBEROFTRIESALLOWED)
             {
                 stpWatch.Stop();
                 timTimer.Stop();
@@ -275,7 +301,7 @@ namespace Mastermind_Game
                 TimeSpan ts = stpWatch.Elapsed;
                 timeElapsed = String.Format("{0:00}:{1:00}",ts.Minutes, ts.Seconds);
                 clickCount = btnClickedCount;
-                MessageBox.Show(loseMessage + "\nTries Used: " + clickCount + "\nTime Taken: " + timeElapsed + "\nThe correct digits were: " + randNumber);
+                MessageBox.Show(loseMessage + "\nTries Used: " + clickCount + "\nTime Taken: " + timeElapsed + "\nThe correct digits were: " + globalRandNumber);
                 lblTips.Text = "Click New Game to start";
                 GiveupORwinActions();
             }
@@ -283,6 +309,7 @@ namespace Mastermind_Game
             txtDigitInput.Text = "";
             txtDigitInput.Focus();
         }
+
         // End of check click event code
 
 
@@ -348,18 +375,8 @@ namespace Mastermind_Game
 
 
 
-        /* Code bellow are all method
-         * DifficultyChecker        -> Check which difficuly is checked
-         * randomNumber             -> Random Number returned depending on difficulty
-         * strRandNumber            -> Random Number with digits randomnized individually to prevent repeating numbers
-         * correctNumDigitsPlaced   -> Return number of digits correctly placed
-         * correctNumDigits         -> Return number of correct digits
-         * lviOutput                -> Returns the items/subitems that is to be put into the listviewbox
-         * newgameActions           -> Resets visibility for certain buttons
-         * giveupORwinActions       -> Resets visibility for certain buttons
-         * CheckLength              -> Checks the number of digits in the input against required digits and allows player to click check if equal
-         */
-
+        
+        // Method definition below
 
         // Returns Difficulty
         private string DifficultyChecker()
@@ -390,33 +407,12 @@ namespace Mastermind_Game
             }
             else
             {
+                error = true;
                 return null;
             }
 
         }
 
-
-        // Returns Randomnized Number depending on difficulty
-        private string RandomNumber()
-        {
-            string randomNumber;
-            string Difficulty = DifficultyChecker();
-            switch (Difficulty)
-            {
-                case "Easy":
-                case "Medium":
-                case "Hard": 
-                case "Insane": 
-                    randomNumber = RandNumber(numOfDigits);
-                    error = false;
-                    break;
-                default:
-                    randomNumber = "";
-                    error = true;
-                    break;
-            }
-            return randomNumber;
-        }
 
 
         /* Returns string of randomned number
@@ -425,7 +421,7 @@ namespace Mastermind_Game
          * 
          * End...
          */
-        private string RandNumber(int difficultyDigits)
+        private Int32[] RandomNumberGenerator(int difficultyDigits)
         {
             Random Randomnizer = new Random();
             bool[] NumberIsUsed = new bool[10];
@@ -437,7 +433,8 @@ namespace Mastermind_Game
             //randomnize first digit in string outside to prevent first digit from being 0
             int digits = 0;
             int numberToPick = Randomnizer.Next(1, 10);
-            String randNumber = numberToPick.ToString();
+            Int32[] randNumber = new Int32[difficultyDigits];
+            randNumber[0] = numberToPick;
             NumberIsUsed[numberToPick] = true;
 
             for (digits = 1; digits < difficultyDigits; digits++)
@@ -448,7 +445,7 @@ namespace Mastermind_Game
                     numberToPick = Randomnizer.Next(0, 10);
                 }
                 NumberIsUsed[numberToPick] = true;
-                randNumber += numberToPick.ToString();
+                randNumber[digits] = numberToPick;
             }
             return randNumber;
         }
@@ -457,11 +454,11 @@ namespace Mastermind_Game
         // Return number of correctly placed digits
         private int CorrectNumDigitsPlaced(int numOfDigits)
         {
-            string strInputNumber = txtDigitInput.Text;
+            string InputNumber = txtDigitInput.Text;
             int CorrectlyPlacedDigits = 0, n;
             for (n = 0; n < numOfDigits; n++)
             {
-                if (strInputNumber[n] == randNumber[n])
+                if (InputNumber[n] == globalRandNumber[n])
                     CorrectlyPlacedDigits++;
             }
             return CorrectlyPlacedDigits;
@@ -477,7 +474,7 @@ namespace Mastermind_Game
             {
                 for (a = 0; a < numOfDigits; a++)
                 {
-                    if (strInputNumber[a] == randNumber[i])
+                    if (strInputNumber[a] == globalRandNumber[i])
                     {
                         n++;
                         break;
@@ -489,13 +486,71 @@ namespace Mastermind_Game
 
 
         // Returns listviewitems
-        private ListViewItem LviOutput(int ClickCount, string InputNumber, int CorrectDigits, int CorrectlyPlacedDigits)
+        private void LstvOutputClassic(int ClickCount, string InputNumber, int CorrectDigits, int CorrectlyPlacedDigits)
         {
             ListViewItem lviOutput = new ListViewItem(ClickCount.ToString());
             lviOutput.SubItems.Add(InputNumber);
             lviOutput.SubItems.Add(CorrectDigits.ToString());
             lviOutput.SubItems.Add(CorrectlyPlacedDigits.ToString());
-            return lviOutput;
+            lstvOutput.Items.Add(lviOutput);
+            return;
+        }
+
+        private void LstvOutputVisual(int ClickCount, string InputNumber)
+        {
+            ListViewItem lviOutputName = new ListViewItem(ClickCount.ToString());
+            ListViewItem lviOutputXOP = new ListViewItem();
+            lviOutputXOP.UseItemStyleForSubItems = false;
+            String[] outputArray = new String[numOfDigits];
+            Boolean[] usedPorO = new Boolean[numOfDigits];
+            for (int k = 0; k < numOfDigits; k++)
+            {
+                usedPorO[k] = false;
+                outputArray[k] = "X";
+            }
+            string answer = String.Join("",globalRandNumber);
+            for (int j = 0; j < numOfDigits; j++)
+            {
+                if (InputNumber[j] == answer[j])
+                {
+                    outputArray[j] = "O";
+                }
+            }
+
+            for (int counterInput = 0; counterInput < numOfDigits; counterInput++)
+            {
+                if (outputArray[counterInput] != "O")
+                {
+                    for (int counterAns = 0; counterAns < numOfDigits; counterAns++)
+                    {
+                        if (outputArray[counterAns] != "O" && !usedPorO[counterAns] && InputNumber[counterInput] == answer[counterAns])
+                        {
+                            outputArray[counterInput] = "P";
+                            usedPorO[counterAns] = true;
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < numOfDigits; i++)
+            {
+                lviOutputName.SubItems.Add(InputNumber[i].ToString());
+                lviOutputXOP.SubItems.Add(outputArray[i]);
+                if(outputArray[i] == "O")
+                {
+                    lviOutputXOP.SubItems[i+1].ForeColor = Color.Green;
+                }
+                if (outputArray[i] == "X")
+                {
+                    lviOutputXOP.SubItems[i+1].ForeColor = Color.Red;
+                }
+                if (outputArray[i] == "P")
+                {
+                    lviOutputXOP.SubItems[i+1].ForeColor = Color.Orange;
+                }
+            }
+            lstvOutput.Items.Add(lviOutputName);
+            lstvOutput.Items.Add(lviOutputXOP);
         }
 
         //
@@ -553,6 +608,39 @@ namespace Mastermind_Game
             }
         }
 
+        // Columns to add when classic is selected in the menu
+        private void lstvOutputClassicSettings()
+        {
+            lstvOutput.Columns.Clear();
+            lstvOutput.Columns.Add("No.", 60, HorizontalAlignment.Center);
+            lstvOutput.Columns.Add("InputNumber", 400, HorizontalAlignment.Center);
+            lstvOutput.Columns.Add("No. of Correct Digits", 350, HorizontalAlignment.Center);
+            lstvOutput.Columns.Add("No. of Correctly Placed Digits", 350, HorizontalAlignment.Center);
+            return;
+        }
+
+        // Columns to add when Visual is selected in the menu
+        private void lstvOutputVisualSettings()
+        {
+            String[] columnName = new String[INSANE]
+            {
+                "1st Digit",
+                "2nd Digit",
+                "3rd Digit",
+                "4th Digit",
+                "5th Digit",
+                "6th Digit",
+                "7th Digit",
+                "8th Digit",
+            };
+            lstvOutput.Columns.Clear();
+            lstvOutput.Columns.Add("No.", 60, HorizontalAlignment.Center);
+            for (int i = 0; i < numOfDigits; i++)
+            {
+                lstvOutput.Columns.Add(columnName[i], 150, HorizontalAlignment.Center);
+            }
+            return;
+        }
 
 
         

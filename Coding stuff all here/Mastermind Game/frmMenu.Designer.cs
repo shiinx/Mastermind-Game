@@ -32,6 +32,8 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnPictureGame = new System.Windows.Forms.Button();
             this.btnNumberGame = new System.Windows.Forms.Button();
+            this.rBtnVisual = new System.Windows.Forms.RadioButton();
+            this.rBtnClassic = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // lblDoneBy
@@ -80,11 +82,35 @@
             this.btnNumberGame.UseVisualStyleBackColor = true;
             this.btnNumberGame.Click += new System.EventHandler(this.btnNumberGame_Click);
             // 
+            // rBtnVisual
+            // 
+            this.rBtnVisual.AutoSize = true;
+            this.rBtnVisual.Location = new System.Drawing.Point(23, 12);
+            this.rBtnVisual.Name = "rBtnVisual";
+            this.rBtnVisual.Size = new System.Drawing.Size(322, 29);
+            this.rBtnVisual.TabIndex = 1;
+            this.rBtnVisual.TabStop = true;
+            this.rBtnVisual.Text = "Visual Mode - Uses O, X or P";
+            this.rBtnVisual.UseVisualStyleBackColor = true;
+            // 
+            // rBtnClassic
+            // 
+            this.rBtnClassic.AutoSize = true;
+            this.rBtnClassic.Location = new System.Drawing.Point(23, 47);
+            this.rBtnClassic.Name = "rBtnClassic";
+            this.rBtnClassic.Size = new System.Drawing.Size(383, 29);
+            this.rBtnClassic.TabIndex = 12;
+            this.rBtnClassic.TabStop = true;
+            this.rBtnClassic.Text = "Classic Mode - Tells you how many";
+            this.rBtnClassic.UseVisualStyleBackColor = true;
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 313);
+            this.Controls.Add(this.rBtnClassic);
+            this.Controls.Add(this.rBtnVisual);
             this.Controls.Add(this.lblDoneBy);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnPictureGame);
@@ -105,6 +131,8 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnPictureGame;
         private System.Windows.Forms.Button btnNumberGame;
+        private System.Windows.Forms.RadioButton rBtnVisual;
+        private System.Windows.Forms.RadioButton rBtnClassic;
     }
 }
 
