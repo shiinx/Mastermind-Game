@@ -134,35 +134,6 @@ namespace Mastermind_Game
 
         }
 
-
-
-        /* To open instructions
-         */
-        private void btnInstructions_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Click New Game to generate a new set of picture.\nList below shows the number of pictures per difficulty."
-                +   "\n\nEasy: "      +  EASY     +   " Pictures." 
-                +   "\nMedium: "    +  MEDIUM   +   " Pictures."
-                +   "\nHard: "      +  HARD     +   " Pictures."
-                +   "\n\nLeft click the picture for the next picture."
-                +   "\nRight click the picture for the previous picture."
-                +   "\nHint tells you what the first picture is."
-                +   "\nYou only have " +NUMBEROFTRIESALLOWED+" tries allowed regardless of difficulty.");
-        }
-
-
-
-        /* To show Answer for error checking/debugging
-         * To be removed along with buttons when project is done
-         */
-        private void btnShowAnswer_Click(object sender, EventArgs e)
-        {
-            lblAnswer.Text = "";
-            lblAnswer.Text = string.Join("", globalRandomNumber);
-        }
-        
-
-
         /* New Game button Click event
          * Check what difficulty is selected and depending on it generates a set of array numbers
          * If error is true, user did not select a difficulty
@@ -173,7 +144,7 @@ namespace Mastermind_Game
          * End...
          */
         private void btnNewGame_Click(object sender, EventArgs e)
-        {
+        {   
             DifficultyChecker();
             globalRandomNumber = RandomNumberGenerator(numOfPicsBoxUsed);
             if(error)
@@ -202,6 +173,34 @@ namespace Mastermind_Game
             }
         }
 
+
+
+        /* To open instructions
+         */
+        private void btnInstructions_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Click New Game to generate a new set of picture.\nList below shows the number of pictures per difficulty."
+                +   "\n\nEasy: "      +  EASY     +   " Pictures." 
+                +   "\nMedium: "    +  MEDIUM   +   " Pictures."
+                +   "\nHard: "      +  HARD     +   " Pictures."
+                +   "\n\nLeft click the picture for the next picture."
+                +   "\nRight click the picture for the previous picture."
+                +   "\nHint tells you what the first picture is."
+                +   "\nYou only have " +NUMBEROFTRIESALLOWED+" tries allowed regardless of difficulty."
+                +   "\nThere are no repeat pictures.");
+        }
+
+
+
+        /* To show Answer for error checking/debugging
+         * To be removed along with buttons when project is done
+         */
+        private void btnShowAnswer_Click(object sender, EventArgs e)
+        {
+            lblAnswer.Text = "";
+            lblAnswer.Text = string.Join("", globalRandomNumber);
+        }
+        
 
 
         /* Give Up button event
@@ -483,7 +482,7 @@ namespace Mastermind_Game
         private Int32[] RandomNumberGenerator(int difficultyDigits)
         {
             Random Randomnizer = new Random();
-            bool[] NumberIsUsed = new bool[8];
+            /*bool[] NumberIsUsed = new bool[8];
             for (int i = 0; i < 8; i++)
             {
                 NumberIsUsed[i] = false;
@@ -502,6 +501,12 @@ namespace Mastermind_Game
                 }
                 NumberIsUsed[numberToPick] = true;
                 number[digits] = numberToPick;
+            }*/
+
+            Int32[] number = new Int32[difficultyDigits];
+            for(int i =0; i < difficultyDigits ; i++)
+            {
+                number[i] = Randomnizer.Next(0,8);
             }
             return number;
         }
@@ -628,7 +633,7 @@ namespace Mastermind_Game
                 }
                 if (outputArray[i] == "P")
                 {
-                    lviOutputXOP.SubItems[i + 1].ForeColor = Color.Yellow;
+                    lviOutputXOP.SubItems[i + 1].ForeColor = Color.Orange;
                 }
             }
             lstvOutput.Items.Add(lviOutputName);

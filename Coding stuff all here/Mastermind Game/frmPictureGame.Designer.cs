@@ -37,6 +37,8 @@
             this.btnInstructions = new System.Windows.Forms.Button();
             this.lblAnswer = new System.Windows.Forms.Label();
             this.panelGameStart = new System.Windows.Forms.Panel();
+            this.btnHint = new System.Windows.Forms.Button();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.btnGiveUp = new System.Windows.Forms.Button();
             this.panelNewGame = new System.Windows.Forms.Panel();
             this.rBtnHard = new System.Windows.Forms.RadioButton();
@@ -60,8 +62,6 @@
             this.picFive = new System.Windows.Forms.PictureBox();
             this.picSix = new System.Windows.Forms.PictureBox();
             this.btnRecordBoard = new System.Windows.Forms.Button();
-            this.btnHint = new System.Windows.Forms.Button();
-            this.btnCheck = new System.Windows.Forms.Button();
             this.lblLegend = new System.Windows.Forms.Label();
             this.panelGameStart.SuspendLayout();
             this.panelNewGame.SuspendLayout();
@@ -88,6 +88,7 @@
             // lstvOutput
             // 
             this.lstvOutput.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstvOutput.GridLines = true;
             this.lstvOutput.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstvOutput.Location = new System.Drawing.Point(30, 308);
             this.lstvOutput.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -157,6 +158,30 @@
             this.panelGameStart.Name = "panelGameStart";
             this.panelGameStart.Size = new System.Drawing.Size(803, 48);
             this.panelGameStart.TabIndex = 110;
+            // 
+            // btnHint
+            // 
+            this.btnHint.AutoSize = true;
+            this.btnHint.Location = new System.Drawing.Point(693, 8);
+            this.btnHint.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnHint.Name = "btnHint";
+            this.btnHint.Size = new System.Drawing.Size(100, 35);
+            this.btnHint.TabIndex = 114;
+            this.btnHint.Text = "Hint";
+            this.btnHint.UseVisualStyleBackColor = true;
+            this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.AutoSize = true;
+            this.btnCheck.Location = new System.Drawing.Point(553, 8);
+            this.btnCheck.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(100, 35);
+            this.btnCheck.TabIndex = 113;
+            this.btnCheck.Text = "Check";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // btnGiveUp
             // 
@@ -422,30 +447,6 @@
             this.btnRecordBoard.Text = "RecordBoard";
             this.btnRecordBoard.UseVisualStyleBackColor = true;
             this.btnRecordBoard.Click += new System.EventHandler(this.btnRecordBoard_Click);
-            // 
-            // btnHint
-            // 
-            this.btnHint.AutoSize = true;
-            this.btnHint.Location = new System.Drawing.Point(693, 8);
-            this.btnHint.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnHint.Name = "btnHint";
-            this.btnHint.Size = new System.Drawing.Size(100, 35);
-            this.btnHint.TabIndex = 114;
-            this.btnHint.Text = "Hint";
-            this.btnHint.UseVisualStyleBackColor = true;
-            this.btnHint.Click += new System.EventHandler(this.btnHint_Click);
-            // 
-            // btnCheck
-            // 
-            this.btnCheck.AutoSize = true;
-            this.btnCheck.Location = new System.Drawing.Point(553, 8);
-            this.btnCheck.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(100, 35);
-            this.btnCheck.TabIndex = 113;
-            this.btnCheck.Text = "Check";
-            this.btnCheck.UseVisualStyleBackColor = true;
-            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // lblLegend
             // 

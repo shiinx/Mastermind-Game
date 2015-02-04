@@ -69,6 +69,7 @@
             // 
             // lstvOutput
             // 
+            this.lstvOutput.GridLines = true;
             this.lstvOutput.Location = new System.Drawing.Point(52, 172);
             this.lstvOutput.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.lstvOutput.Name = "lstvOutput";

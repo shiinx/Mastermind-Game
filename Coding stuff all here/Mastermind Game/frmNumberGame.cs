@@ -97,30 +97,6 @@ namespace Mastermind_Game
 
 
 
-        private void btnInstructions_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("List below shows the number of digits per difficulty."
-                + "\nEasy: "    + EASY      +   " digits\t"
-                + "\nMedium: "  + MEDIUM    +   " digits\t"
-                + "\nHard: "    + HARD      +   " digits\t"
-                + "\nInsane: "  + INSANE    +   " digits\t"
-                + "\nYou can only press check/enter once you've input the correct number of digits."
-                + "\nYou only have "+ NUMBEROFTRIESALLOWED + "tries regardless of difficulty."
-                + "\nThere are no repeat digits, eg 2233, 5111, 0980.");
-        }
-
-
-
-        /* For debugging purposes REMOVE BEFORE HANDING PROJECT IN
-         */
-        private void btnShowAnswer_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(string.Join("", globalRandNumber));
-        }
-
-
-        
-
         /* New Game button Click event
          */
         private void btnNewGame_Click(object sender, EventArgs e)
@@ -152,10 +128,36 @@ namespace Mastermind_Game
             {
                 lstvOutputVisualSettings();
             }
+            txtDigitInput.Focus();
         }
 
 
 
+        // Instructions 
+        private void btnInstructions_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("List below shows the number of digits per difficulty."
+                + "\nEasy: "    + EASY      +   " digits\t"
+                + "\nMedium: "  + MEDIUM    +   " digits\t"
+                + "\nHard: "    + HARD      +   " digits\t"
+                + "\nInsane: "  + INSANE    +   " digits\t"
+                + "\nYou can only press check/enter once you've input the correct number of digits."
+                + "\nYou only have "+ NUMBEROFTRIESALLOWED + "tries regardless of difficulty."
+                + "\nThere are no repeat digits, eg 2233, 5111, 0980.");
+        }
+
+
+
+        /* For debugging purposes REMOVE BEFORE HANDING PROJECT IN
+         */
+        private void btnShowAnswer_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(string.Join("", globalRandNumber));
+        }
+
+
+
+        // Ask for confirmation before giving up, display answer if yes. Stop timers and reset lbltips.
         private void btnGiveUp_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to give up?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -418,8 +420,6 @@ namespace Mastermind_Game
         /* Returns string of randomned number
          * Fuction required to indiviudally randomnize digits
          * To check and prevent repeat number within the random number string
-         * 
-         * End...
          */
         private Int32[] RandomNumberGenerator(int difficultyDigits)
         {
@@ -455,10 +455,11 @@ namespace Mastermind_Game
         private int CorrectNumDigitsPlaced(int numOfDigits)
         {
             string InputNumber = txtDigitInput.Text;
+            string RandomNumber = String.Join("", globalRandNumber);
             int CorrectlyPlacedDigits = 0, n;
             for (n = 0; n < numOfDigits; n++)
             {
-                if (InputNumber[n] == globalRandNumber[n])
+                if (InputNumber[n] == RandomNumber[n])
                     CorrectlyPlacedDigits++;
             }
             return CorrectlyPlacedDigits;
@@ -468,13 +469,14 @@ namespace Mastermind_Game
         // Return number of correct digits
         private int CorrectNumDigits(int numOfDigits)
         {
-            string strInputNumber = txtDigitInput.Text;
+            string InputNumber = txtDigitInput.Text;
+            string RandomNumber = String.Join("", globalRandNumber);
             int i, a, n = 0;
             for (i = 0; i < numOfDigits; i++)
             {
                 for (a = 0; a < numOfDigits; a++)
                 {
-                    if (strInputNumber[a] == globalRandNumber[i])
+                    if (InputNumber[a] == RandomNumber[i])
                     {
                         n++;
                         break;
@@ -546,7 +548,7 @@ namespace Mastermind_Game
                 }
                 if (outputArray[i] == "P")
                 {
-                    lviOutputXOP.SubItems[i+1].ForeColor = Color.Yellow;
+                    lviOutputXOP.SubItems[i+1].ForeColor = Color.Orange;
                 }
             }
             lstvOutput.Items.Add(lviOutputName);
