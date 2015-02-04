@@ -546,7 +546,7 @@ namespace Mastermind_Game
                 }
                 if (outputArray[i] == "P")
                 {
-                    lviOutputXOP.SubItems[i+1].ForeColor = Color.Orange;
+                    lviOutputXOP.SubItems[i+1].ForeColor = Color.Yellow;
                 }
             }
             lstvOutput.Items.Add(lviOutputName);

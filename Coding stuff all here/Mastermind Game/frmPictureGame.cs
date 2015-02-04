@@ -583,7 +583,7 @@ namespace Mastermind_Game
             String[] lblName = new String[NUMBEROFPICTUREBOXINFORM] { lblPic1.Text, lblPic2.Text, lblPic3.Text, lblPic4.Text, lblPic5.Text, lblPic6.Text };
             ListViewItem lviOutputName = new ListViewItem(ClickCount.ToString());
             ListViewItem lviOutputXOP = new ListViewItem();
-            lviOutputXOP.ForeColor = Color.Red;
+            lviOutputXOP.UseItemStyleForSubItems = false;
             String[] outputArray = new String[numOfPicsBoxUsed];
             Boolean[] usedPorO = new Boolean[numOfPicsBoxUsed];
             for (int k = 0; k < numOfPicsBoxUsed; k++)
@@ -628,7 +628,7 @@ namespace Mastermind_Game
                 }
                 if (outputArray[i] == "P")
                 {
-                    lviOutputXOP.SubItems[i + 1].ForeColor = Color.Orange;
+                    lviOutputXOP.SubItems[i + 1].ForeColor = Color.Yellow;
                 }
             }
             lstvOutput.Items.Add(lviOutputName);
